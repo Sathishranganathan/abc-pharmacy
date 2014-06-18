@@ -13,18 +13,18 @@ import java.util.Set;
  * @author rdjayawe
  */
 public class Permission {
-    private int id;
+    private String id;
     private String name;
     private String code;
     private String description;
     
     private Set<Role> roles;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

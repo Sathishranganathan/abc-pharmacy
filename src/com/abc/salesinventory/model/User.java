@@ -13,7 +13,7 @@ import java.util.Set;
  * @author rdjayawe
  */
 public class User {
-    private int id;
+    private String id;
     private String firstName;
     private String lastName;
     private String userId;
@@ -21,11 +21,11 @@ public class User {
     
     private Set<Role> roles;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
