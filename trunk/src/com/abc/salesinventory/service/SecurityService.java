@@ -16,4 +16,6 @@ public interface SecurityService {
     
     public User getUserById(String id) throws SecurityException;
     
+    public String createUser(User user) throws SecurityException;
+    
 }

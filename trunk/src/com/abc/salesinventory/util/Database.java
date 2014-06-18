@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -31,39 +30,25 @@ public class Database {
     }
 
     public ResultSet getdata(String sql) throws Exception {
-//    try {
-        Statement st = Database.con().createStatement();
-        ResultSet rset = st.executeQuery(sql);
-        return rset;
+        try {
+            Statement st = Database.con().createStatement();
+            ResultSet rset = st.executeQuery(sql);
+            return rset;
 
-//     } catch (Exception e) {
-//        JOptionPane.showMessageDialog(null, "Data NOT found!!", "Error", 0);
-//        System.out.println("Error : " + e);
-//         return null;
-//     }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data NOT found!!", "Error", 1);
+            System.out.println(e);
+            return null;
+        }
     }
 
     public void putdata(String sql) throws Exception {
         try {
             PreparedStatement ps = Database.con().prepareStatement(sql);
             ps.executeUpdate();
-            if (sql.startsWith("Insert")) {
-                JOptionPane.showMessageDialog(null, "Your data saved successfully!!", "Save - Success", 1);
-            } else if (sql.startsWith("Update")) {
-                JOptionPane.showMessageDialog(null, "Your data updated successfully!!", "Update - Success", 1);
-            } else if (sql.startsWith("Delete")) {
-                JOptionPane.showMessageDialog(null, "Your data deleted successfully!!", "Delete - Success", 1);
-            }
-
         } catch (Exception e) {
             System.out.println(e);
-            if (sql.startsWith("Insert")) {
-                JOptionPane.showMessageDialog(null, "Your data NOT saved successfully!!", "Save - Error", 0);
-            } else if (sql.startsWith("Update")) {
-                JOptionPane.showMessageDialog(null, "Your data NOT updated successfully!!", "Update - Error", 0);
-            } else if (sql.startsWith("Delete")) {
-                JOptionPane.showMessageDialog(null, "Your data NOT deleted successfully!!", "Delete - Error", 0);
-            }
+            JOptionPane.showMessageDialog(null, "Your data NOT saved successfully! : " + e.getMessage(), "Error", 2);
         }
     }
 
