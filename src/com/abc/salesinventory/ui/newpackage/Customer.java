@@ -59,7 +59,7 @@ public class Customer extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 153));
         setName("AddCustomer"); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Add Customer Details");
