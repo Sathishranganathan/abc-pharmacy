@@ -37,23 +37,23 @@ public class Supplier extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtSupplierId = new javax.swing.JTextField();
+        txtSupplierName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtSupplierAddress = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtSupplierMobile = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtSupplierHome = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtSupplierOffice = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtSupplierEmail = new javax.swing.JTextField();
+        btnSupplierAdd = new javax.swing.JButton();
+        btnSupplierClear = new javax.swing.JButton();
+        btnSupplierClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,11 +87,11 @@ public class Supplier extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Address");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField1.setName("txtSupplierID"); // NOI18N
+        txtSupplierId.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierId.setName(""); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField2.setName("txtSupplierName"); // NOI18N
+        txtSupplierName.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierName.setName(""); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Contact Number");
@@ -99,8 +99,8 @@ public class Supplier extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Format +94#########");
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField4.setName("txtSupAddress"); // NOI18N
+        txtSupplierAddress.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierAddress.setName(""); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("Mobile");
@@ -109,41 +109,41 @@ public class Supplier extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("*");
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField3.setText("+94");
-        jTextField3.setName("txtSupMobile"); // NOI18N
+        txtSupplierMobile.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierMobile.setText("+94");
+        txtSupplierMobile.setName(""); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel9.setText("Home");
 
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField5.setText("+94");
-        jTextField5.setName("txtSupHome"); // NOI18N
+        txtSupplierHome.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierHome.setText("+94");
+        txtSupplierHome.setName(""); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel10.setText("Office");
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField6.setText("+94");
-        jTextField6.setName("txtSupOffice"); // NOI18N
+        txtSupplierOffice.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierOffice.setText("+94");
+        txtSupplierOffice.setName(""); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel11.setText("Email");
 
-        jTextField7.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jTextField7.setName("txtSupEmail"); // NOI18N
+        txtSupplierEmail.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtSupplierEmail.setName(""); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.setName("btnSupAdd"); // NOI18N
+        btnSupplierAdd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierAdd.setText("Add");
+        btnSupplierAdd.setName(""); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setText("Clear");
-        jButton2.setName("btnSupClear"); // NOI18N
+        btnSupplierClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierClear.setText("Clear");
+        btnSupplierClear.setName(""); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setText("Close");
-        jButton3.setName("btnSupClose"); // NOI18N
+        btnSupplierClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierClose.setText("Close");
+        btnSupplierClose.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,7 +165,7 @@ public class Supplier extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -180,20 +180,20 @@ public class Supplier extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGap(0, 136, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField6)
-                                            .addComponent(jTextField5)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                            .addComponent(jTextField4)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField7)))
+                                            .addComponent(txtSupplierOffice)
+                                            .addComponent(txtSupplierHome)
+                                            .addComponent(txtSupplierMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                            .addComponent(txtSupplierAddress)
+                                            .addComponent(txtSupplierName)
+                                            .addComponent(txtSupplierEmail)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jButton1)
+                                                .addComponent(btnSupplierAdd)
                                                 .addGap(52, 52, 52)
-                                                .addComponent(jButton2)
+                                                .addComponent(btnSupplierClear)
                                                 .addGap(49, 49, 49)
-                                                .addComponent(jButton3))
+                                                .addComponent(btnSupplierClose))
                                             .addComponent(jLabel6))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(55, 55, 55))
@@ -223,12 +223,12 @@ public class Supplier extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -237,7 +237,7 @@ public class Supplier extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSupplierAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -246,24 +246,24 @@ public class Supplier extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSupplierAdd)
+                    .addComponent(btnSupplierClear)
+                    .addComponent(btnSupplierClose))
                 .addGap(63, 63, 63))
         );
 
@@ -317,9 +317,9 @@ public class Supplier extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnSupplierAdd;
+    private javax.swing.JButton btnSupplierClear;
+    private javax.swing.JButton btnSupplierClose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -336,12 +336,12 @@ public class Supplier extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtSupplierAddress;
+    private javax.swing.JTextField txtSupplierEmail;
+    private javax.swing.JTextField txtSupplierHome;
+    private javax.swing.JTextField txtSupplierId;
+    private javax.swing.JTextField txtSupplierMobile;
+    private javax.swing.JTextField txtSupplierName;
+    private javax.swing.JTextField txtSupplierOffice;
     // End of variables declaration//GEN-END:variables
 }
