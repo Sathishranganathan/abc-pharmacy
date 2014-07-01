@@ -21,14 +21,8 @@ public class Customer extends javax.swing.JFrame {
     
     public Customer() {
         initComponents();
-        
-        txtCustomerId.setText(null);
-        txtCustomerName.setText(null);
-        txtCustomerAddress.setText(null);
-        txtCustomerHome.setText(null);
-        txtCustomerMobile.setText(null);
-        txtCustomerOffice.setText(null);
-        txtCustomerEmail.setText(null);        
+        Loading();
+              
     }
 
     /**
@@ -66,6 +60,7 @@ public class Customer extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 153));
@@ -115,6 +110,11 @@ public class Customer extends javax.swing.JFrame {
 
         txtCustomerMobile.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerMobile.setName(""); // NOI18N
+        txtCustomerMobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerMobileKeyTyped(evt);
+            }
+        });
 
         txtCustomerHome.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerHome.setName(""); // NOI18N
@@ -137,10 +137,20 @@ public class Customer extends javax.swing.JFrame {
         btnCustomerClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnCustomerClear.setText("Clear");
         btnCustomerClear.setName(""); // NOI18N
+        btnCustomerClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerClearActionPerformed(evt);
+            }
+        });
 
         btnCustomerClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnCustomerClose.setText("Close");
         btnCustomerClose.setName(""); // NOI18N
+        btnCustomerClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerCloseActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 0));
@@ -160,6 +170,9 @@ public class Customer extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Format - eg:07712345678");
+
+        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel16.setText("eg: abc@gmail.com");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,14 +199,6 @@ public class Customer extends javax.swing.JFrame {
                                 .addComponent(txtCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtCustomerMobile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(btnCustomerAdd)
-                        .addGap(88, 88, 88)
-                        .addComponent(btnCustomerClear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCustomerClose)
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel12)
@@ -210,9 +215,19 @@ public class Customer extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCustomerAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnCustomerAdd)
+                                    .addComponent(jLabel16))
+                                .addGap(50, 50, 50)
+                                .addComponent(btnCustomerClear)
+                                .addGap(56, 56, 56)
+                                .addComponent(btnCustomerClose)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel10)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
@@ -220,7 +235,7 @@ public class Customer extends javax.swing.JFrame {
                                         .addGap(51, 51, 51)
                                         .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -267,13 +282,14 @@ public class Customer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addComponent(txtCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCustomerAdd)
                     .addComponent(btnCustomerClear)
                     .addComponent(btnCustomerClose))
-                .addGap(51, 51, 51))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,33 +309,66 @@ public class Customer extends javax.swing.JFrame {
     private void btnCustomerAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerAddActionPerformed
           
          if(txtCustomerId.getText().trim().equals("") || txtCustomerName.getText().trim().equals("") || txtCustomerAddress.getText().trim().equals("")|| txtCustomerMobile.getText().trim().equals(""))
-             //these fields shouldn't be empty
+             //checks whether all required fields are filled
         {
             JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Customer Details", 2);
         }
         else
         {
-            if(val.validateCustomerId(txtCustomerId.getText().trim()))
+            if(val.validateCustomerId(txtCustomerId.getText().trim()))//validates customer ID format
            {
-               if(val.validatePhoneNumber(txtCustomerMobile.getText().trim()))
+               if(val.validatePhoneNumber(txtCustomerMobile.getText().trim()))//validates customer mobile number format
                {
+                   if(txtCustomerEmail.getText().trim().equals("")||val.validEmail(txtCustomerEmail.getText().trim()))
+                   {
+                      try
+                      {
+                          //and if customer ID is alredy exists message should be promped
+                      }
+                      catch(Exception x)
+                      {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);}
+                   }
+                   else
+                   {
+                   JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
+                   txtCustomerEmail.requestFocus();
+                   }
                
                }
                    else
                {
                    JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
+                   txtCustomerMobile.requestFocus();
                }
                
            }
             else
             {
                 JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Customer Details", 2);
+                txtCustomerId.requestFocus();
             }
         }
         
        
     }//GEN-LAST:event_btnCustomerAddActionPerformed
 
+    private void txtCustomerMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMobileKeyTyped
+       if(txtCustomerMobile.getText().length()==10)
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtCustomerMobileKeyTyped
+
+    private void btnCustomerClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerClearActionPerformed
+        Loading();
+    }//GEN-LAST:event_btnCustomerClearActionPerformed
+
+    private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
+        System.exit(1);
+    }//GEN-LAST:event_btnCustomerCloseActionPerformed
+
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -366,6 +415,7 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -383,4 +433,16 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtCustomerOffice;
     // End of variables declaration//GEN-END:variables
+
+    private void Loading() {
+        
+        txtCustomerId.setText(null);
+        txtCustomerName.setText(null);
+        txtCustomerAddress.setText(null);
+        txtCustomerHome.setText(null);
+        txtCustomerMobile.setText(null);
+        txtCustomerOffice.setText(null);
+        txtCustomerEmail.setText(null);  
+    
+    }
 }

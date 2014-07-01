@@ -6,6 +6,8 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manuri
@@ -15,8 +17,11 @@ public class Supplier extends javax.swing.JFrame {
     /**
      * Creates new form Supplier
      */
+    Validator val = new Validator();
+    
     public Supplier() {
         initComponents();
+        Loading();
     }
 
     /**
@@ -107,6 +112,11 @@ public class Supplier extends javax.swing.JFrame {
 
         txtSupplierMobile.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtSupplierMobile.setName(""); // NOI18N
+        txtSupplierMobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSupplierMobileKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel9.setText("Home");
@@ -129,14 +139,29 @@ public class Supplier extends javax.swing.JFrame {
         btnSupplierAdd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnSupplierAdd.setText("Add");
         btnSupplierAdd.setName(""); // NOI18N
+        btnSupplierAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierAddActionPerformed(evt);
+            }
+        });
 
         btnSupplierClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnSupplierClear.setText("Clear");
         btnSupplierClear.setName(""); // NOI18N
+        btnSupplierClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierClearActionPerformed(evt);
+            }
+        });
 
         btnSupplierClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnSupplierClose.setText("Close");
         btnSupplierClose.setName(""); // NOI18N
+        btnSupplierClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierCloseActionPerformed(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Format - eg:07712345678");
@@ -157,9 +182,7 @@ public class Supplier extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel14))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -180,31 +203,37 @@ public class Supplier extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)))
-                        .addGap(18, 26, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSupplierOffice)
-                            .addComponent(txtSupplierHome)
-                            .addComponent(txtSupplierMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addComponent(txtSupplierAddress)
-                            .addComponent(txtSupplierName)
-                            .addComponent(txtSupplierEmail)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSupplierMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierHome, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierOffice, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel5))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSupplierAdd)))
-                        .addGap(71, 71, 71)
-                        .addComponent(btnSupplierClear)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnSupplierClose)
-                        .addGap(0, 52, Short.MAX_VALUE)))
-                .addGap(55, 55, 55))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(btnSupplierClear)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnSupplierClose))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(txtSupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,15 +277,15 @@ public class Supplier extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(txtSupplierOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtSupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSupplierAdd)
                     .addComponent(btnSupplierClear)
                     .addComponent(btnSupplierClose))
-                .addGap(63, 63, 63))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,6 +302,66 @@ public class Supplier extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSupplierAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierAddActionPerformed
+        if(txtSupplierId.getText().trim().equals("") || txtSupplierName.getText().trim().equals("") || txtSupplierAddress.getText().trim().equals("")|| txtSupplierMobile.getText().trim().equals(""))
+             //checks whether all required fields are filled
+        {
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Customer Details", 2);
+        }
+        else
+        {
+            if(val.validateSupplierId(txtSupplierId.getText().trim()))//validates customer ID format
+           {
+               if(val.validatePhoneNumber(txtSupplierMobile.getText().trim()))//validates customer mobile number format
+               {
+                   if(txtSupplierEmail.getText().trim().equals("")||val.validEmail(txtSupplierEmail.getText().trim()))
+                   {
+                      try
+                      {
+                          //and if supplier ID is alredy exists message should be promped
+                      }
+                      catch(Exception x)
+                      {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);}
+                   }
+                   else
+                   {
+                   JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
+                   txtSupplierEmail.requestFocus();
+                   }
+               
+               }
+                   else
+               {
+                   JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
+                   txtSupplierMobile.requestFocus();
+               }
+               
+           }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Customer Details", 2);
+                txtSupplierId.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_btnSupplierAddActionPerformed
+
+    private void txtSupplierMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSupplierMobileKeyTyped
+       if(txtSupplierMobile.getText().length()==10)
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtSupplierMobileKeyTyped
+
+    private void btnSupplierClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierClearActionPerformed
+        Loading();
+    }//GEN-LAST:event_btnSupplierClearActionPerformed
+
+    private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
+        System.exit(1);
+    }//GEN-LAST:event_btnSupplierCloseActionPerformed
+
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -336,4 +425,14 @@ public class Supplier extends javax.swing.JFrame {
     private javax.swing.JTextField txtSupplierName;
     private javax.swing.JTextField txtSupplierOffice;
     // End of variables declaration//GEN-END:variables
+
+    private void Loading() {
+        txtSupplierId.setText(null);
+        txtSupplierName.setText(null);
+        txtSupplierAddress.setText(null);
+        txtSupplierHome.setText(null);
+        txtSupplierMobile.setText(null);
+        txtSupplierOffice.setText(null);
+        txtSupplierEmail.setText(null);  
+    }
 }

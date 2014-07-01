@@ -19,18 +19,23 @@ private Pattern patternCusId;
 private Matcher matcherCusId;
 private Pattern patternPhone;
 private Matcher matcherPhone;
-private Pattern patternCusemail;
-private Matcher matcherCusEmail;
+private Pattern patternEmail;
+private Matcher matcherEmail;
+private Pattern patternSupId;
+private Matcher matcherSupId;
+
 
 private static final String CustomerId = "[Cc][0-9][0-9][0-9][0-9][0-9]";
 private static final String Phone = "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]";
 private static final String Email = "(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})";
+private static final String SupplierId = "[Cc][0-9][0-9][0-9][0-9][0-9]";
     
 
 public Validator() {
     patternCusId = Pattern.compile(CustomerId);
     patternPhone = Pattern.compile(Phone);
-    patternCusemail = Pattern.compile(Email);
+    patternEmail = Pattern.compile(Email);
+    patternSupId = Pattern.compile(SupplierId);
 }
 
 /**
@@ -55,9 +60,14 @@ public boolean validatePhoneNumber (final String hex)
 
 public boolean validEmail (final String hex)
 {
-    matcherCusEmail = patternCusemail.matcher(hex);
-    return matcherCusEmail.matches();
+    matcherEmail = patternEmail.matcher(hex);
+    return matcherEmail.matches();
 }
-    
+
+public boolean validateSupplierId(final String hex) {
+
+    matcherSupId = patternSupId.matcher(hex);
+    return matcherSupId.matches();
+}
     
 }
