@@ -306,7 +306,7 @@ public class Supplier extends javax.swing.JFrame {
         if(txtSupplierId.getText().trim().equals("") || txtSupplierName.getText().trim().equals("") || txtSupplierAddress.getText().trim().equals("")|| txtSupplierMobile.getText().trim().equals(""))
              //checks whether all required fields are filled
         {
-            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Customer Details", 2);
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Supplier Details", 2);
         }
         else
         {
@@ -321,25 +321,25 @@ public class Supplier extends javax.swing.JFrame {
                           //and if supplier ID is alredy exists message should be promped
                       }
                       catch(Exception x)
-                      {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);}
+                      {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Supplier Details", 2);}
                    }
                    else
                    {
-                   JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
+                   JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Supplier Details", 2);
                    txtSupplierEmail.requestFocus();
                    }
                
                }
                    else
                {
-                   JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
+                   JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Supplier Details", 2);
                    txtSupplierMobile.requestFocus();
                }
                
            }
             else
             {
-                JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Customer Details", 2);
+                JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Supplier Details", 2);
                 txtSupplierId.requestFocus();
             }
         }

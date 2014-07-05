@@ -6,6 +6,8 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Manuri
@@ -17,6 +19,7 @@ public class Product extends javax.swing.JFrame {
      */
     public Product() {
         initComponents();
+        Loding();
     }
 
     /**
@@ -41,9 +44,7 @@ public class Product extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtPurchasedPrice = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtSellingPrice = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         cmbCategory = new javax.swing.JComboBox();
         cmbUnit = new javax.swing.JComboBox();
@@ -55,9 +56,11 @@ public class Product extends javax.swing.JFrame {
         btnProductClear = new javax.swing.JButton();
         btnProductClose = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtReOrderLevel = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         ftxtExpiryDate = new javax.swing.JFormattedTextField();
+        ftxtPurchasedPrice = new javax.swing.JFormattedTextField();
+        ftxtSellingPrice = new javax.swing.JFormattedTextField();
+        ftxtReorderLevel = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,14 +106,8 @@ public class Product extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel11.setText("Purchased Unit Price (Rs)");
 
-        txtPurchasedPrice.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        txtPurchasedPrice.setName(""); // NOI18N
-
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setText("Selling Unit Price (Rs)");
-
-        txtSellingPrice.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        txtSellingPrice.setName(""); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel13.setText("Supplier");
@@ -140,12 +137,27 @@ public class Product extends javax.swing.JFrame {
 
         btnProductSave.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnProductSave.setText("Save");
+        btnProductSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductSaveActionPerformed(evt);
+            }
+        });
 
         btnProductClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnProductClear.setText("Clear");
+        btnProductClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductClearActionPerformed(evt);
+            }
+        });
 
         btnProductClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnProductClose.setText("Close");
+        btnProductClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductCloseActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Expiry Date");
@@ -155,6 +167,12 @@ public class Product extends javax.swing.JFrame {
         jLabel17.setText("*");
 
         ftxtExpiryDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        ftxtPurchasedPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rs#,###,###.##"))));
+
+        ftxtSellingPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rs#,###,###.00"))));
+
+        ftxtReorderLevel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,11 +214,11 @@ public class Product extends javax.swing.JFrame {
                     .addComponent(txtProductCode, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                     .addComponent(cmbCategory, 0, 229, Short.MAX_VALUE)
                     .addComponent(cmbUnit, 0, 229, Short.MAX_VALUE)
-                    .addComponent(txtPurchasedPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                    .addComponent(txtSellingPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                     .addComponent(cmbSupplier, 0, 229, Short.MAX_VALUE)
-                    .addComponent(txtReOrderLevel)
-                    .addComponent(ftxtExpiryDate))
+                    .addComponent(ftxtExpiryDate)
+                    .addComponent(ftxtPurchasedPrice)
+                    .addComponent(ftxtSellingPrice)
+                    .addComponent(ftxtReorderLevel))
                 .addGap(40, 40, 40))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
@@ -235,12 +253,12 @@ public class Product extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txtPurchasedPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(ftxtPurchasedPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -253,14 +271,14 @@ public class Product extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(txtReOrderLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
+                    .addComponent(jLabel17)
+                    .addComponent(ftxtReorderLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProductSave)
                     .addComponent(btnProductClear)
                     .addComponent(btnProductClose))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,6 +295,28 @@ public class Product extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnProductSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductSaveActionPerformed
+       if(txtProductCode.getText().trim().equals("")||txtProductName.getText().trim().equals("")||
+cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtPurchasedPrice.getText().trim().equals("")||
+ftxtExpiryDate.getText().trim().equals("")||ftxtReorderLevel.getText().trim().equals(""))
+       {
+           JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Product Details", 2);
+       }
+       
+       else
+       {}
+    }//GEN-LAST:event_btnProductSaveActionPerformed
+
+    private void btnProductClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductClearActionPerformed
+        Loding();
+    }//GEN-LAST:event_btnProductClearActionPerformed
+
+    private void btnProductCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCloseActionPerformed
+        System.exit(1);
+    }//GEN-LAST:event_btnProductCloseActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -320,6 +360,9 @@ public class Product extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbSupplier;
     private javax.swing.JComboBox cmbUnit;
     private javax.swing.JFormattedTextField ftxtExpiryDate;
+    private javax.swing.JFormattedTextField ftxtPurchasedPrice;
+    private javax.swing.JFormattedTextField ftxtReorderLevel;
+    private javax.swing.JFormattedTextField ftxtSellingPrice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -340,8 +383,19 @@ public class Product extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtProductCode;
     private javax.swing.JTextField txtProductName;
-    private javax.swing.JTextField txtPurchasedPrice;
-    private javax.swing.JTextField txtReOrderLevel;
-    private javax.swing.JTextField txtSellingPrice;
     // End of variables declaration//GEN-END:variables
+
+    private void Loding() {
+        txtProductCode.setText(null);
+        txtProductName.setText(null);
+        cmbCategory.setSelectedItem(0);
+        cmbUnit.setSelectedItem(0);
+        ftxtPurchasedPrice.setText(null);
+        ftxtSellingPrice.setText(null);
+        cmbSupplier.setSelectedItem(0);
+        ftxtExpiryDate.setText(null);
+        ftxtReorderLevel.setText(null);
+        }
+
+    
 }
