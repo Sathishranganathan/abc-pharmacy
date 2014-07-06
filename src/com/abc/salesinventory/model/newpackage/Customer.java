@@ -11,64 +11,60 @@ package com.abc.salesinventory.model.newpackage;
  * @author Manuri
  */
 public class Customer {
-    private String customerId;
-    private String customerName;
-    private String customerMobile;
-    private String customerHome;
-    private String customerOffice;
-    private String customerEmail;
+    private String id;
+    private String name;
+    private String mobile;
+    private String home;
+    private String office;
+    private String email;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setOffice(String office) {
+        this.office = office;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
-    public String getCustomerId()
-    {
-        return customerId;
-    }
-    public void setCustomerId(String customerId)
-    {
-        this.customerId = customerId;
-    }
     
-    public String getCustomerName()
-    {
-        return customerName;
-    }
-    public void setCustomerName(String customerName)
-    {
-        this.customerName = customerName;
-    }
-    
-    public String getCustomerMobile()
-    {
-        return customerMobile;
-    }
-    public void setCustomerMobile(String customerMobile)
-    {
-        this.customerMobile = customerMobile;
-    }
-    
-    public String getCustomerHome()
-    {
-        return customerHome;
-    }
-    public void setCustomerHome(String customerHome)
-    {
-        this.customerHome = customerHome;
-    }
-    
-    public String getCustomerOffice()
-    {
-        return customerOffice;
-    }
-    public void setCustomerOffice(String customerOffice)
-    {
-        this.customerOffice = customerOffice;
-    }
-    
-    public String getCustomerEmail()
-    {
-        return customerEmail;
-    }
-    public void setCustomerEmail(String customerEmail)
-    {
-        this.customerEmail = customerEmail;
-    }
 }
