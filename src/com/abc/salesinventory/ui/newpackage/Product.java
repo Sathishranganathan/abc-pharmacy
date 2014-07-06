@@ -6,7 +6,10 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+
+import Util.DatePicker;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -167,10 +170,15 @@ public class Product extends javax.swing.JFrame {
         jLabel17.setText("*");
 
         ftxtExpiryDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        ftxtExpiryDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ftxtExpiryDateKeyPressed(evt);
+            }
+        });
 
-        ftxtPurchasedPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rs#,###,###.##"))));
+        ftxtPurchasedPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        ftxtSellingPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("Rs#,###,###.00"))));
+        ftxtSellingPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         ftxtReorderLevel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
@@ -314,6 +322,11 @@ ftxtExpiryDate.getText().trim().equals("")||ftxtReorderLevel.getText().trim().eq
     private void btnProductCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCloseActionPerformed
         System.exit(1);
     }//GEN-LAST:event_btnProductCloseActionPerformed
+
+    private void ftxtExpiryDateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxtExpiryDateKeyPressed
+       DatePicker datePicker = new DatePicker(jPanel1);
+        ftxtExpiryDate.setText(datePicker.setPickedDate());
+    }//GEN-LAST:event_ftxtExpiryDateKeyPressed
 
     
     
