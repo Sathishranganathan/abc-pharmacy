@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.service.MasterService;
+import com.abc.salesinventory.service.MasterServiceImpl;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +15,16 @@ import javax.swing.JOptionPane;
  */
 public class Customer extends javax.swing.JFrame {
 
+    MasterService masterService = new MasterServiceImpl();
+    Validator val = new Validator();
+
     /**
      * Creates new form Customer
      */
-    Validator val = new Validator();
-    
     public Customer() {
         initComponents();
         Loading();
-              
+
     }
 
     /**
@@ -307,56 +309,61 @@ public class Customer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCustomerAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerAddActionPerformed
-          
-         if(txtCustomerId.getText().trim().equals("") || txtCustomerName.getText().trim().equals("") || txtCustomerAddress.getText().trim().equals("")|| txtCustomerMobile.getText().trim().equals(""))
-             //checks whether all required fields are filled
+
+        if (txtCustomerId.getText().trim().equals("") || txtCustomerName.getText().trim().equals("") || txtCustomerAddress.getText().trim().equals("") || txtCustomerMobile.getText().trim().equals("")) //checks whether all required fields are filled
         {
             JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Customer Details", 2);
-        }
-        else
-        {
-            if(val.validateCustomerId(txtCustomerId.getText().trim()))//validates customer ID format
-           {
-               if(val.validatePhoneNumber(txtCustomerMobile.getText().trim()))//validates customer mobile number format
-               {
-                   if(txtCustomerEmail.getText().trim().equals("")||val.validEmail(txtCustomerEmail.getText().trim()))
-                   {
-                      try
-                      {
-                          //and if customer ID is alredy exists message should be promped
-                      }
-                      catch(Exception x)
-                      {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);}
-                   }
-                   else
-                   {
-                   JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
-                   txtCustomerEmail.requestFocus();
-                   }
-               
-               }
-                   else
-               {
-                   JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
-                   txtCustomerMobile.requestFocus();
-               }
-               
-           }
-            else
+            return;
+        } else {
+            if (val.validateCustomerId(txtCustomerId.getText().trim()))//validates customer ID format
             {
-                JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Customer Details", 2);
+                if (val.validatePhoneNumber(txtCustomerMobile.getText().trim()))//validates customer mobile number format
+                {
+                    if (txtCustomerEmail.getText().trim().equals("") || val.validEmail(txtCustomerEmail.getText().trim())) {
+                        try {
+                            //and if customer ID is alredy exists message should be promped
+                        } catch (Exception x) {
+                            JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);
+                            return;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
+                        txtCustomerEmail.requestFocus();
+                        return;
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
+                    txtCustomerMobile.requestFocus();
+                    return;
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect Customer ID Format", "Save Customer Details", 2);
                 txtCustomerId.requestFocus();
+                return;
             }
         }
-        
-       
+
+        com.abc.salesinventory.model.newpackage.Customer customer = new com.abc.salesinventory.model.newpackage.Customer();
+        customer.setId(txtCustomerId.getText().trim());
+        customer.setName(txtCustomerName.getText().trim());
+        customer.setMobile(txtCustomerMobile.getText().trim());
+        customer.setHome(txtCustomerHome.getText().trim());
+        customer.setOffice(txtCustomerOffice.getText().trim());
+        customer.setEmail(txtCustomerEmail.getText().trim());
+        try {
+            masterService.saveOrUpdateCustomer(customer);
+            Loading();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
     }//GEN-LAST:event_btnCustomerAddActionPerformed
 
     private void txtCustomerMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMobileKeyTyped
-       if(txtCustomerMobile.getText().length()==10)
-       {
-           evt.consume();
-       }
+        if (txtCustomerMobile.getText().length() == 10) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCustomerMobileKeyTyped
 
     private void btnCustomerClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerClearActionPerformed
@@ -367,8 +374,6 @@ public class Customer extends javax.swing.JFrame {
         System.exit(1);
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
 
-   
-    
     /**
      * @param args the command line arguments
      */
@@ -435,14 +440,14 @@ public class Customer extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Loading() {
-        
+
         txtCustomerId.setText(null);
         txtCustomerName.setText(null);
         txtCustomerAddress.setText(null);
         txtCustomerHome.setText(null);
         txtCustomerMobile.setText(null);
         txtCustomerOffice.setText(null);
-        txtCustomerEmail.setText(null);  
-    
+        txtCustomerEmail.setText(null);
+
     }
 }
