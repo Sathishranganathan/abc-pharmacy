@@ -5,16 +5,13 @@
  */
 
 package com.abc.salesinventory.ui.newpackage;
-
-
-import Util.DatePicker;
-import javax.swing.JOptionPane;
-
-
 /**
  *
  * @author Manuri
  */
+import Util.DatePicker;
+import javax.swing.JOptionPane;
+
 public class Product extends javax.swing.JFrame {
 
     /**
