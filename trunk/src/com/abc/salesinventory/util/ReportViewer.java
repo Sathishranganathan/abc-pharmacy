@@ -27,7 +27,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class ReportViewer extends JFrame {
 
-    private String reportPath = "C:\\Users\\rdjayawe\\Downloads\\ayesha_project\\source\\SalesInventorySystem\\src\\com\\abc\\salesinventory\\report\\";
+    private String reportPath = "D:\\BIT\\Project_2014\\Pharmacy\\trunk\\src\\com\\abc\\salesinventory\\report\\";
 
     public ReportViewer(String fileName) {
         this(fileName, null);
@@ -72,6 +72,7 @@ public class ReportViewer extends JFrame {
 
     public static void main(String a[]) {
         ReportViewer reportViewer = new ReportViewer("report1.jrxml");
+        reportViewer.setVisible(true);
 
     }
 }

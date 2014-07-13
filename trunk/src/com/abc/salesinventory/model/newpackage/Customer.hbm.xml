@@ -23,5 +23,8 @@
         <property name="email" type="string">
             <column name="email" length="45" />
         </property>
+        <property name="address" type="string">
+            <column name="address" length="100" />
+        </property>
     </class>
 </hibernate-mapping>

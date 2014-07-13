@@ -25,7 +25,7 @@ public class Database {
 
     public static Connection con() throws Exception {
         Class.forName(driver);
-        Connection con1 = DriverManager.getConnection(url, "root", "password");
+        Connection con1 = DriverManager.getConnection(url, "root", "root");
         return con1;
     }
 
