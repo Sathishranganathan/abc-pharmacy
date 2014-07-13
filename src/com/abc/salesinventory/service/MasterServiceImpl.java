@@ -31,10 +31,10 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public void removeCustomer(String customerId) {        
+    public void removeCustomer(Customer customer) {        
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.delete(customerId);
+        session.delete(customer);
         session.getTransaction().commit();
     }
 
@@ -42,7 +42,7 @@ public class MasterServiceImpl implements MasterService {
     public Customer getCustomer(String customerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "from Customer";
+        String hql = "from Customer c where c.id='"+customerId+"' ";
         Query q = session.createQuery(hql);
         List<Customer> resultList = q.list();
         session.getTransaction().commit();

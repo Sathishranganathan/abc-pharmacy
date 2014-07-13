@@ -22,6 +22,6 @@ public interface MasterService {
     
     public String saveOrUpdateCustomer(Customer customer) throws HibernateException;
     
-    public void removeCustomer(String customerId);
+    public void removeCustomer(Customer customer);
     
 }
