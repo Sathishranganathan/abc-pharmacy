@@ -295,7 +295,7 @@ public class MainScreen extends javax.swing.JFrame {
 
             if (s.equals(s2)) {
                 if (s.equals(s1)) {
-                    new ReportViewer("./Reports/EmpolyeeDetailsInProject.jasper", s).setVisible(true);
+//                    new ReportViewer("./Reports/EmpolyeeDetailsInProject.jasper", s).setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "No members in this Project..!!", "Reports", 1);
                 }

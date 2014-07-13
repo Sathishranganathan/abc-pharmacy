@@ -33,46 +33,41 @@ public class ReportViewer extends JFrame {
         this(fileName, null);
     }
 
-    public ReportViewer(String fileName, String s) {
+    public ReportViewer(String fileName, HashMap params) {
         super("View Reports");
         try {
             Connection con = Database.con();
-            HashMap params = new HashMap();
-            params.put("Project", s);
 
-            InputStream stream = new FileInputStream(new File(reportPath+fileName));
+            InputStream stream = new FileInputStream(new File(reportPath + fileName));
             JasperDesign jasperDesign = JRXmlLoader.load(stream);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, con);
-
             JasperViewer.viewReport(jasperPrint, false);
             JRViewer jr = new JRViewer(jasperPrint);
+
             Container cn = getContentPane();
             cn.add(jr);
 
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
-
             System.out.println("ERROR: " + cnfe.getMessage());
+            JOptionPane.showMessageDialog(null, "Error in generating Reports !!" + cnfe.getMessage(), "Error", 0);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.out.println("ERROR: " + sqle.getMessage());
+            JOptionPane.showMessageDialog(null, "Error in generating Reports !!" + sqle.getMessage(), "Error", 0);
         } catch (JRException jre) {
             jre.printStackTrace();
             System.out.println("ERROR: " + jre.getMessage());
+            JOptionPane.showMessageDialog(null, "Error in generating Reports !!" + jre.getMessage(), "Error", 0);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error in generating Reports !!", "Error", 0);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error in generating Reports !!" + e.getMessage(), "Error", 0);
             System.out.println("ERROR: " + e.getMessage());
         }
-
-        setBounds(10, 10, 1000, 800);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
         pack();
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-//        java.awt.Dimension dialogSize = getSize();
-
-        setLocation(283, getLocation().y);
     }
 
     public static void main(String a[]) {
