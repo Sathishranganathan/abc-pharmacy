@@ -6,20 +6,23 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.service.MasterService;
+import com.abc.salesinventory.service.MasterServiceImpl;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Manuri
  */
-public class Supplier extends javax.swing.JFrame {
+public class CreateSupplier extends javax.swing.JFrame {
 
     /**
-     * Creates new form Supplier
+     * Creates new form CreateSupplier
      */
+    MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();
     
-    public Supplier() {
+    public CreateSupplier() {
         initComponents();
         Loading();
     }
@@ -306,6 +309,7 @@ public class Supplier extends javax.swing.JFrame {
              //checks whether all required fields are filled
         {
             JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Supplier Details", 2);
+            return;
         }
         else
         {
@@ -317,7 +321,11 @@ public class Supplier extends javax.swing.JFrame {
                    {
                       try
                       {
-                          //and if supplier ID is alredy exists message should be promped
+                        com.abc.salesinventory.model.newpackage.Supplier supplier = masterService.getSupplier(txtSupplierId.getText().trim());
+                            if(supplier != null){
+                                JOptionPane.showMessageDialog(null, "Supplier Already Exists !", "Save Supplier Details", 2);
+                                return; // Customer ID is already exists.
+                            }
                       }
                       catch(Exception x)
                       {JOptionPane.showMessageDialog(null, "Error Occured !", "Save Supplier Details", 2);}
@@ -326,6 +334,7 @@ public class Supplier extends javax.swing.JFrame {
                    {
                    JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Supplier Details", 2);
                    txtSupplierEmail.requestFocus();
+                   return;
                    }
                
                }
@@ -333,6 +342,7 @@ public class Supplier extends javax.swing.JFrame {
                {
                    JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Supplier Details", 2);
                    txtSupplierMobile.requestFocus();
+                   return;
                }
                
            }
@@ -340,7 +350,25 @@ public class Supplier extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Supplier Details", 2);
                 txtSupplierId.requestFocus();
+                return;
             }
+        }
+        
+        com.abc.salesinventory.model.newpackage.Supplier supplier = new com.abc.salesinventory.model.newpackage.Supplier();
+        supplier.setSupplierId(txtSupplierId.getText().trim());
+        supplier.setSupplierName(txtSupplierName.getText().trim());
+        supplier.setSupplierAddress(txtSupplierAddress.getText().trim());
+        supplier.setSupplierMobile(txtSupplierMobile.getText().trim());
+        supplier.setSupplierHome(ftxtSupplierHome.getText().trim());
+        supplier.setSupplierOffice(ftxtSupplierOffice.getText().trim());
+        supplier.setSupplierEmail(txtSupplierEmail.getText().trim());
+        
+        try {
+            masterService.saveOrUpdateSupplier(supplier);
+            JOptionPane.showMessageDialog(null, "Successfully Added", "Save Customer Details", 2);
+            Loading();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnSupplierAddActionPerformed
 
@@ -378,20 +406,20 @@ public class Supplier extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Supplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Supplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Supplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Supplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Supplier().setVisible(true);
+                new CreateSupplier().setVisible(true);
             }
         });
     }
