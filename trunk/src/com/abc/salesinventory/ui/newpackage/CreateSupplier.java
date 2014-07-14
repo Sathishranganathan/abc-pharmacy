@@ -6,6 +6,7 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.service.MasterService;
 import com.abc.salesinventory.service.MasterServiceImpl;
 import javax.swing.JOptionPane;
@@ -321,7 +322,7 @@ public class CreateSupplier extends javax.swing.JFrame {
                    {
                       try
                       {
-                        com.abc.salesinventory.model.newpackage.Supplier supplier = masterService.getSupplier(txtSupplierId.getText().trim());
+                          Supplier supplier = masterService.getSupplier(txtSupplierId.getText().trim());
                             if(supplier != null){
                                 JOptionPane.showMessageDialog(null, "Supplier Already Exists !", "Save Supplier Details", 2);
                                 return; // Customer ID is already exists.
@@ -355,13 +356,13 @@ public class CreateSupplier extends javax.swing.JFrame {
         }
         
         com.abc.salesinventory.model.newpackage.Supplier supplier = new com.abc.salesinventory.model.newpackage.Supplier();
-        supplier.setSupplierId(txtSupplierId.getText().trim());
-        supplier.setSupplierName(txtSupplierName.getText().trim());
-        supplier.setSupplierAddress(txtSupplierAddress.getText().trim());
-        supplier.setSupplierMobile(txtSupplierMobile.getText().trim());
-        supplier.setSupplierHome(ftxtSupplierHome.getText().trim());
-        supplier.setSupplierOffice(ftxtSupplierOffice.getText().trim());
-        supplier.setSupplierEmail(txtSupplierEmail.getText().trim());
+        supplier.setId(txtSupplierId.getText().trim());
+        supplier.setName(txtSupplierName.getText().trim());
+        supplier.setAddress(txtSupplierAddress.getText().trim());
+        supplier.setMobile(txtSupplierMobile.getText().trim());
+        supplier.setHome(ftxtSupplierHome.getText().trim());
+        supplier.setOffice(ftxtSupplierOffice.getText().trim());
+        supplier.setEmail(txtSupplierEmail.getText().trim());
         
         try {
             masterService.saveOrUpdateSupplier(supplier);

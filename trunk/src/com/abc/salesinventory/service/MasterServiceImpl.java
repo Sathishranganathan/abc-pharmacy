@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.service;
 
 import com.abc.salesinventory.model.newpackage.Customer;
@@ -32,7 +31,7 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public void removeCustomer(Customer customer) {        
+    public void removeCustomer(Customer customer) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.delete(customer);
@@ -43,11 +42,11 @@ public class MasterServiceImpl implements MasterService {
     public Customer getCustomer(String customerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "from Customer c where c.id='"+customerId+"' ";
+        String hql = "from Customer c where c.id='" + customerId + "' ";
         Query q = session.createQuery(hql);
         List<Customer> resultList = q.list();
         session.getTransaction().commit();
-        if(resultList!= null && resultList.size() == 1){
+        if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
         return null;
@@ -56,66 +55,65 @@ public class MasterServiceImpl implements MasterService {
     @Override
     public Set<Customer> getAllCustomers() {
         Set<Customer> customers = new HashSet<Customer>();
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         String hql = "from Customer";
         Query q = session.createQuery(hql);
         List<Customer> resultList = q.list();
         session.getTransaction().commit();
-        if(resultList!= null && resultList.size() > 0){
+        if (resultList != null && resultList.size() > 0) {
             customers.addAll(resultList);
         }
         return customers;
     }
-    
+
     //SUPPLIER
-    
- @Override
+    @Override
     public String saveOrUpdateSupplier(Supplier supplier) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.saveOrUpdate(supplier);
         session.getTransaction().commit();
-        return supplier.getSupplierId();
+        return supplier.getId();
     }
-    
+
     @Override
-    public void removeSupplier(Supplier supplier) {        
+    public void removeSupplier(Supplier supplier) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.delete(supplier);
         session.getTransaction().commit();
-        }
-        
-     @Override
+    }
+
+    @Override
     public Supplier getSupplier(String supplierId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "from Supplier s where s.id='"+supplierId+"' ";
+        String hql = "from Supplier s where s.id='" + supplierId + "' ";
         Query q = session.createQuery(hql);
         List<Supplier> resultList = q.list();
         session.getTransaction().commit();
-        if(resultList!= null && resultList.size() == 1){
+        if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
         return null;
     }
-    
+
     @Override
     public Set<Supplier> getAllSuppliers() {
         Set<Supplier> suppliers = new HashSet<Supplier>();
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         String hql = "from Supplier";
         Query q = session.createQuery(hql);
         List<Supplier> resultList = q.list();
         session.getTransaction().commit();
-        if(resultList!= null && resultList.size() > 0){
+        if (resultList != null && resultList.size() > 0) {
             suppliers.addAll(resultList);
         }
         return suppliers;
     }
-  
+
 }
