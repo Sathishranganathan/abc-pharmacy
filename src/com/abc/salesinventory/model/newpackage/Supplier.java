@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.model.newpackage;
 
 /**
@@ -11,111 +10,111 @@ package com.abc.salesinventory.model.newpackage;
  * @author Manuri
  */
 public class Supplier {
-    private String supplierId;
-    private String supplierName;
-    private String supplierAddress;
-    private String supplierMobile;
-    private String supplierHome;
-    private String supplierOffice;
-    private String supplierEmail;
+
+    private String id;
+    private String name;
+    private String address;
+    private String mobile;
+    private String home;
+    private String office;
+    private String email;
 
     /**
-     * @return the supplierId
+     * @return the id
      */
-    public String getSupplierId() {
-        return supplierId;
+    public String getId() {
+        return id;
     }
 
     /**
-     * @param supplierId the supplierId to set
+     * @param id the id to set
      */
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
-     * @return the supplierName
+     * @return the name
      */
-    public String getSupplierName() {
-        return supplierName;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param supplierName the supplierName to set
+     * @param name the name to set
      */
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * @return the supplierAddress
+     * @return the address
      */
-    public String getSupplierAddress() {
-        return supplierAddress;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @param supplierAddress the supplierAddress to set
+     * @param address the address to set
      */
-    public void setSupplierAddress(String supplierAddress) {
-        this.supplierAddress = supplierAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
-     * @return the supplierMobile
+     * @return the mobile
      */
-    public String getSupplierMobile() {
-        return supplierMobile;
+    public String getMobile() {
+        return mobile;
     }
 
     /**
-     * @param supplierMobile the supplierMobile to set
+     * @param mobile the mobile to set
      */
-    public void setSupplierMobile(String supplierMobile) {
-        this.supplierMobile = supplierMobile;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     /**
-     * @return the supplierHome
+     * @return the home
      */
-    public String getSupplierHome() {
-        return supplierHome;
+    public String getHome() {
+        return home;
     }
 
     /**
-     * @param supplierHome the supplierHome to set
+     * @param home the home to set
      */
-    public void setSupplierHome(String supplierHome) {
-        this.supplierHome = supplierHome;
+    public void setHome(String home) {
+        this.home = home;
     }
 
     /**
-     * @return the supplierOffice
+     * @return the office
      */
-    public String getSupplierOffice() {
-        return supplierOffice;
+    public String getOffice() {
+        return office;
     }
 
     /**
-     * @param supplierOffice the supplierOffice to set
+     * @param office the office to set
      */
-    public void setSupplierOffice(String supplierOffice) {
-        this.supplierOffice = supplierOffice;
+    public void setOffice(String office) {
+        this.office = office;
     }
 
     /**
-     * @return the supplierEmail
+     * @return the email
      */
-    public String getSupplierEmail() {
-        return supplierEmail;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param supplierEmail the supplierEmail to set
+     * @param email the email to set
      */
-    public void setSupplierEmail(String supplierEmail) {
-        this.supplierEmail = supplierEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    
-   
+
 }

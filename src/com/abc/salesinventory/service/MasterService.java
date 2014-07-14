@@ -7,7 +7,7 @@
 package com.abc.salesinventory.service;
 
 import com.abc.salesinventory.model.newpackage.Customer;
-import com.abc.salesinventory.service.Supplier;
+import com.abc.salesinventory.model.newpackage.Supplier;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
