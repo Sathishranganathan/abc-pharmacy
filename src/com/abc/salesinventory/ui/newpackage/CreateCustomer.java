@@ -325,8 +325,8 @@ public class CreateCustomer extends javax.swing.JFrame {
                         try {
                             com.abc.salesinventory.model.newpackage.Customer customer = masterService.getCustomer(txtCustomerId.getText().trim());
                             if(customer != null){
-                                JOptionPane.showMessageDialog(null, "Error Occured !", "Customer Already Exists.", 2);
-                                return;
+                                JOptionPane.showMessageDialog(null, "Customer Already Exists !", "Save Customer Details", 2);
+                                return; // Customer ID is already exists.
                             }
                         } catch (Exception x) {
                             JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);

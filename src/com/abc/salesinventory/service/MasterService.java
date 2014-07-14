@@ -7,6 +7,7 @@
 package com.abc.salesinventory.service;
 
 import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.service.Supplier;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -24,4 +25,14 @@ public interface MasterService {
     
     public void removeCustomer(Customer customer);
     
+    public Supplier getSupplier(String supplierId);
+    
+    public Set<Supplier> getAllSuppliers();
+    
+    public String saveOrUpdateSupplier(Supplier supplier) throws HibernateException;
+    
+    public void removeSupplier(Supplier supplier);  
+
+   
+       
 }
