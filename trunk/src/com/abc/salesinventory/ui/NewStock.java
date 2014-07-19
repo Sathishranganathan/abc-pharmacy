@@ -44,6 +44,7 @@ public class NewStock extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jPanel1 = new javax.swing.JPanel();
         unit = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,6 +63,9 @@ public class NewStock extends javax.swing.JFrame {
         searchItem = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         code = new javax.swing.JLabel();
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("New Stock");
@@ -166,9 +170,7 @@ public class NewStock extends javax.swing.JFrame {
         );
 
         pack();
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        java.awt.Dimension dialogSize = getSize();
-        setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnclsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclsActionPerformed
@@ -271,6 +273,7 @@ public class NewStock extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JTextField qty;
     private javax.swing.JButton searchItem;
     private javax.swing.JLabel supplier;
