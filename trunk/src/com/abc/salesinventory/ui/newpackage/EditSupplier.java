@@ -3,35 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.abc.salesinventory.ui.newpackage;
 
-import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.service.MasterService;
 import com.abc.salesinventory.service.MasterServiceImpl;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 /**
  *
  * @author Manuri
  */
-public class EditCustomer extends javax.swing.JFrame {
+public class EditSupplier extends javax.swing.JFrame {
 
-    MasterService masterService = new MasterServiceImpl();
+   MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();
-
-    /**
-     * Creates new form EditCustomer
-     */
-    public EditCustomer(Customer c) {
+    
+    
+    public EditSupplier(Supplier s) {
         initComponents();
-        txtCustomerId.setText(c.getId());
-        txtCustomerName.setText(c.getName());
-        txtCustomerMobile.setText(c.getMobile());
-        ftxtCustomerHome.setText(c.getHome());
-        ftxtCustomerOffice.setText(c.getOffice());
-        txtCustomerEmail.setText(c.getEmail());
-        txtCustomerAddress.setText(c.getAddress());
+        txtSupplierId.setText(s.getId());
+        txtSupplierName.setText(s.getName());
+        txtSupplierAddress.setText(s.getAddress());
+        txtSupplierMobile.setText(s.getMobile());
+        ftxtSupplierHome.setText(s.getHome());
+        ftxtSupplierOffice.setText(s.getOffice());
+        txtSupplierEmail.setText(s.getEmail());
     }
 
     /**
@@ -54,11 +52,11 @@ public class EditCustomer extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtCustomerId = new javax.swing.JTextField();
-        txtCustomerMobile = new javax.swing.JTextField();
-        txtCustomerEmail = new javax.swing.JTextField();
-        btnCustomerUpdate = new javax.swing.JButton();
-        btnCustomerClose = new javax.swing.JButton();
+        txtSupplierId = new javax.swing.JTextField();
+        txtSupplierMobile = new javax.swing.JTextField();
+        txtSupplierEmail = new javax.swing.JTextField();
+        btnSupplierUpdate = new javax.swing.JButton();
+        btnSupplierClose = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -66,23 +64,23 @@ public class EditCustomer extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtCustomerAddress = new javax.swing.JTextArea();
-        ftxtCustomerHome = new javax.swing.JFormattedTextField();
-        ftxtCustomerOffice = new javax.swing.JFormattedTextField();
-        txtCustomerName = new javax.swing.JTextField();
+        txtSupplierAddress = new javax.swing.JTextArea();
+        ftxtSupplierHome = new javax.swing.JFormattedTextField();
+        ftxtSupplierOffice = new javax.swing.JFormattedTextField();
+        txtSupplierName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Edit Customer Details");
+        jLabel1.setText("Edit Supplier Details");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Customer ID");
+        jLabel2.setText("Supplier ID");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Customer Name");
+        jLabel3.setText("Supplier Name");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Address");
@@ -103,39 +101,39 @@ public class EditCustomer extends javax.swing.JFrame {
         jLabel10.setText("Email");
 
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel11.setText("Format - C#####");
+        jLabel11.setText("Format - S#####");
 
-        txtCustomerId.setName(""); // NOI18N
-        txtCustomerId.addActionListener(new java.awt.event.ActionListener() {
+        txtSupplierId.setName(""); // NOI18N
+        txtSupplierId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerIdActionPerformed(evt);
+                txtSupplierIdActionPerformed(evt);
             }
         });
 
-        txtCustomerMobile.setName(""); // NOI18N
-        txtCustomerMobile.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSupplierMobile.setName(""); // NOI18N
+        txtSupplierMobile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCustomerMobileKeyTyped(evt);
+                txtSupplierMobileKeyTyped(evt);
             }
         });
 
-        txtCustomerEmail.setName(""); // NOI18N
+        txtSupplierEmail.setName(""); // NOI18N
 
-        btnCustomerUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCustomerUpdate.setText("Update");
-        btnCustomerUpdate.setName(""); // NOI18N
-        btnCustomerUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnSupplierUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSupplierUpdate.setText("Update");
+        btnSupplierUpdate.setName(""); // NOI18N
+        btnSupplierUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerUpdateActionPerformed(evt);
+                btnSupplierUpdateActionPerformed(evt);
             }
         });
 
-        btnCustomerClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCustomerClose.setText("Close");
-        btnCustomerClose.setName(""); // NOI18N
-        btnCustomerClose.addActionListener(new java.awt.event.ActionListener() {
+        btnSupplierClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSupplierClose.setText("Close");
+        btnSupplierClose.setName(""); // NOI18N
+        btnSupplierClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerCloseActionPerformed(evt);
+                btnSupplierCloseActionPerformed(evt);
             }
         });
 
@@ -161,16 +159,16 @@ public class EditCustomer extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 0, 0));
         jLabel16.setText("eg: abc@gmail.com");
 
-        txtCustomerAddress.setColumns(20);
-        txtCustomerAddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        txtCustomerAddress.setRows(5);
-        jScrollPane1.setViewportView(txtCustomerAddress);
+        txtSupplierAddress.setColumns(20);
+        txtSupplierAddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtSupplierAddress.setRows(5);
+        jScrollPane1.setViewportView(txtSupplierAddress);
 
-        ftxtCustomerHome.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
+        ftxtSupplierHome.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
 
-        ftxtCustomerOffice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
+        ftxtSupplierOffice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
 
-        txtCustomerName.setName(""); // NOI18N
+        txtSupplierName.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,10 +189,10 @@ public class EditCustomer extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCustomerEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(txtCustomerMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(ftxtCustomerHome)
-                            .addComponent(ftxtCustomerOffice)))
+                            .addComponent(txtSupplierEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(txtSupplierMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(ftxtSupplierHome)
+                            .addComponent(ftxtSupplierOffice)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -211,25 +209,25 @@ public class EditCustomer extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel11)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCustomerId)
+                                    .addComponent(txtSupplierId)
                                     .addComponent(jScrollPane1)
-                                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtSupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel16)
-                                        .addGap(183, 183, 183))
+                                        .addComponent(jLabel16))
                                     .addComponent(jLabel5))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCustomerUpdate)
-                                .addGap(73, 73, 73)
-                                .addComponent(btnCustomerClose)
-                                .addGap(102, 102, 102)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(btnSupplierUpdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSupplierClose)
+                                .addGap(76, 76, 76)))))
                 .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -246,12 +244,12 @@ public class EditCustomer extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
-                    .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel13)
-                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -263,7 +261,7 @@ public class EditCustomer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtCustomerMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSupplierMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
@@ -273,19 +271,19 @@ public class EditCustomer extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(ftxtCustomerOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ftxtSupplierOffice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(txtCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCustomerClose)
-                            .addComponent(btnCustomerUpdate))
+                            .addComponent(btnSupplierUpdate)
+                            .addComponent(btnSupplierClose))
                         .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ftxtCustomerHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ftxtSupplierHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -303,74 +301,75 @@ public class EditCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCustomerMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMobileKeyTyped
-        if (txtCustomerMobile.getText().length() == 10) {
+    private void txtSupplierIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSupplierIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSupplierIdActionPerformed
+
+    private void txtSupplierMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSupplierMobileKeyTyped
+        if (txtSupplierMobile.getText().length() == 10) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtCustomerMobileKeyTyped
+    }//GEN-LAST:event_txtSupplierMobileKeyTyped
 
-    private void btnCustomerUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerUpdateActionPerformed
+    private void btnSupplierUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierUpdateActionPerformed
 
-        if (txtCustomerId.getText().trim().equals("") || txtCustomerName.getText().trim().equals("") || txtCustomerAddress.getText().trim().equals("") || txtCustomerMobile.getText().trim().equals("")) //checks whether all required fields are filled
+        if (txtSupplierId.getText().trim().equals("") || txtSupplierName.getText().trim().equals("") || txtSupplierAddress.getText().trim().equals("") || txtSupplierMobile.getText().trim().equals("")) //checks whether all required fields are filled
         {
-            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Customer Details", 2);
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Supplier Details", 2);
             return;
 
         } else {
-            if (val.validateCustomerId(txtCustomerId.getText().trim()))//validates customer ID format
+            if (val.validateSupplierId(txtSupplierId.getText().trim()))//validates supplier ID format
             {
-                if (val.validatePhoneNumber(txtCustomerMobile.getText().trim()))//validates customer mobile number format
+                if (val.validatePhoneNumber(txtSupplierMobile.getText().trim()))//validates suplier mobile number format
                 {
-                    if (txtCustomerEmail.getText().trim().equals("") || val.validEmail(txtCustomerEmail.getText().trim())) {
+                    if (txtSupplierEmail.getText().trim().equals("") || val.validEmail(txtSupplierEmail.getText().trim()))//validates supplier email format
+                    {
                         try {
 
                         } catch (Exception x) {
-                            JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);
+                            JOptionPane.showMessageDialog(null, "Error Occured !", "Save Supplier Details", 2);
                             return;
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
-                        txtCustomerEmail.requestFocus();
+                        JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Supplier Details", 2);
+                        txtSupplierEmail.requestFocus();
                         return;
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
-                    txtCustomerMobile.requestFocus();
+                    JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Supplier Details", 2);
+                    txtSupplierMobile.requestFocus();
                     return;
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Incorrect Customer ID Format", "Save Customer Details", 2);
-                txtCustomerId.requestFocus();
+                JOptionPane.showMessageDialog(null, "Incorrect Supplier ID Format", "Save Supplier Details", 2);
+                txtSupplierId.requestFocus();
                 return;
             }
         }
 
-        com.abc.salesinventory.model.newpackage.Customer customer = new com.abc.salesinventory.model.newpackage.Customer();
-        customer.setId(txtCustomerId.getText().trim());
-        customer.setName(txtCustomerName.getText().trim());
-        customer.setMobile(txtCustomerMobile.getText().trim());
-        customer.setHome(ftxtCustomerHome.getText().trim());
-        customer.setOffice(ftxtCustomerOffice.getText().trim());
-        customer.setEmail(txtCustomerEmail.getText().trim());
-        customer.setAddress(txtCustomerAddress.getText().trim());
+        com.abc.salesinventory.model.newpackage.Supplier suplier = new com.abc.salesinventory.model.newpackage.Supplier();
+        suplier.setId(txtSupplierId.getText().trim());
+        suplier.setName(txtSupplierName.getText().trim());
+        suplier.setAddress(txtSupplierAddress.getText().trim());
+        suplier.setMobile(txtSupplierMobile.getText().trim());
+        suplier.setHome(ftxtSupplierHome.getText().trim());
+        suplier.setOffice(ftxtSupplierOffice.getText().trim());
+        suplier.setEmail(txtSupplierEmail.getText().trim());
         try {
-            masterService.saveOrUpdateCustomer(customer);
-            JOptionPane.showMessageDialog(null, "Successfully Updated", "Edit Customer Details", 2);
+            masterService.saveOrUpdateSupplier(suplier);
+            JOptionPane.showMessageDialog(null, "Successfully Updated", "Edit Supplier Details", 2);
             this.setVisible(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
-    }//GEN-LAST:event_btnCustomerUpdateActionPerformed
+    }//GEN-LAST:event_btnSupplierUpdateActionPerformed
 
-    private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
+    private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
         System.exit(1);
-    }//GEN-LAST:event_btnCustomerCloseActionPerformed
-
-    private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomerIdActionPerformed
+    }//GEN-LAST:event_btnSupplierCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,29 +388,29 @@ public class EditCustomer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new EditCustomer().setVisible(true);
+             //   new EditSupplier().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCustomerClose;
-    private javax.swing.JButton btnCustomerUpdate;
-    private javax.swing.JFormattedTextField ftxtCustomerHome;
-    private javax.swing.JFormattedTextField ftxtCustomerOffice;
+    private javax.swing.JButton btnSupplierClose;
+    private javax.swing.JButton btnSupplierUpdate;
+    private javax.swing.JFormattedTextField ftxtSupplierHome;
+    private javax.swing.JFormattedTextField ftxtSupplierOffice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -430,10 +429,10 @@ public class EditCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtCustomerAddress;
-    private javax.swing.JTextField txtCustomerEmail;
-    private javax.swing.JTextField txtCustomerId;
-    private javax.swing.JTextField txtCustomerMobile;
-    private javax.swing.JTextField txtCustomerName;
+    private javax.swing.JTextArea txtSupplierAddress;
+    private javax.swing.JTextField txtSupplierEmail;
+    private javax.swing.JTextField txtSupplierId;
+    private javax.swing.JTextField txtSupplierMobile;
+    private javax.swing.JTextField txtSupplierName;
     // End of variables declaration//GEN-END:variables
 }

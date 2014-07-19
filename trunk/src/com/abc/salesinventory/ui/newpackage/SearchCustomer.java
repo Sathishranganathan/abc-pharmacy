@@ -8,7 +8,7 @@ package com.abc.salesinventory.ui.newpackage;
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.service.MasterService;
 import com.abc.salesinventory.service.MasterServiceImpl;
-import com.abc.salesinventory.ui.HibernateUtil;
+import com.abc.salesinventory.util.HibernateUtil;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -24,6 +24,7 @@ import org.hibernate.Session;
  */
 public class SearchCustomer extends javax.swing.JFrame {
 
+      
     MasterService masterService = new MasterServiceImpl();
 
     /**
@@ -31,7 +32,7 @@ public class SearchCustomer extends javax.swing.JFrame {
      */
     public SearchCustomer() {
         initComponents();
-        txtMobileNumber.requestFocus();
+        txtCustomerName.requestFocus();
     }
 
     private static String QUERY_BASED_ON_NAME = "from Customer a where a.name like '";
@@ -79,6 +80,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         Vector<String> tableHeaders = new Vector<String>();
         tableHeaders.add("id");
         tableHeaders.add("name");
+        tableHeaders.add("address");
         tableHeaders.add("mobile");
         tableHeaders.add("home");
         tableHeaders.add("office");
@@ -91,6 +93,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(customer.getId());
             oneRow.add(customer.getName());
+            oneRow.add(customer.getAddress());
             oneRow.add(customer.getMobile());
             oneRow.add(customer.getHome());
             oneRow.add(customer.getOffice());
@@ -123,11 +126,12 @@ public class SearchCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCustomerName = new javax.swing.JTextField();
-        txtMobileNumber = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtMobileNumber = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
@@ -142,15 +146,10 @@ public class SearchCustomer extends javax.swing.JFrame {
         jLabel2.setText("Customer Name");
 
         txtCustomerName.setColumns(10);
-        txtCustomerName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerNameActionPerformed(evt);
-            }
-        });
-
-        txtMobileNumber.setColumns(10);
 
         jLabel3.setText("Mobile Number");
+
+        txtMobileNumber.setColumns(10);
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -186,100 +185,78 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(243, 243, 243))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel3)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(btnEditCustomer)
+                        .addGap(115, 115, 115)
+                        .addComponent(btnDeleteCustomer)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditCustomer)
+                    .addComponent(btnDeleteCustomer))
+                .addGap(23, 23, 23))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEditCustomer)
-                        .addGap(76, 76, 76)
-                        .addComponent(btnDeleteCustomer)
-                        .addGap(161, 161, 161))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(197, 197, 197))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
-                        .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditCustomer)
-                    .addComponent(btnDeleteCustomer))
-                .addGap(22, 22, 22))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomerNameActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         search();
-    }
-
-    private void runQueryBasedOnLastName() {
-
-    }//GEN-LAST:event_btnSearchActionPerformed
-
-    private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
-
-        int row = resultTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
-        Vector dataModel = model.getDataVector();
-        Customer customer = new Customer();
-        Iterator it = dataModel.iterator();
-        int x = 0;
-        while (it.hasNext()) {
-            Vector vector = (Vector) it.next();
-            if (x == row) {
-                customer.setId((String) vector.get(0));
-                customer.setName((String) vector.get(1));
-                customer.setMobile((String) vector.get(2));
-                customer.setHome((String) vector.get(3));
-                customer.setOffice((String) vector.get(4));
-                customer.setEmail((String) vector.get(5));
-                break;
-            }
-            x++;
         }
-        EditCustomer ec = new EditCustomer(customer);
-        ec.setVisible(true);
 
-    }//GEN-LAST:event_btnEditCustomerActionPerformed
+        private void runQueryBasedOnLastName() {
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
         int row = resultTable.getSelectedRow();
@@ -301,8 +278,35 @@ public class SearchCustomer extends javax.swing.JFrame {
         if (dialogResult == JOptionPane.YES_OPTION) {
             masterService.removeCustomer(customer);
             search();
+            JOptionPane.showMessageDialog(null, "Selected Customer ID is Deleted !", "Delete Customer Details", 2);
         }
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
+
+    private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
+
+        int row = resultTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        Vector dataModel = model.getDataVector();
+        Customer customer = new Customer();
+        Iterator it = dataModel.iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Vector vector = (Vector) it.next();
+            if (x == row) {
+                customer.setId((String) vector.get(0));
+                customer.setName((String) vector.get(1));
+                customer.setAddress((String) vector.get(2));
+                customer.setMobile((String) vector.get(3));
+                customer.setHome((String) vector.get(4));
+                customer.setOffice((String) vector.get(5));
+                customer.setEmail((String) vector.get(6));
+                break;
+            }
+            x++;
+        }
+        EditCustomer ec = new EditCustomer(customer);
+        ec.setVisible(true);
+    }//GEN-LAST:event_btnEditCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,6 +355,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable resultTable;
     private javax.swing.JTextField txtCustomerName;

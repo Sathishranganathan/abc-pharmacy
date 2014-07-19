@@ -25,10 +25,10 @@ private Pattern patternSupId;
 private Matcher matcherSupId;
 
 
-private static final String CustomerId = "[Cc][0-9][0-9][0-9][0-9][0-9]";
+private static final String CustomerId = "[C][0-9][0-9][0-9][0-9][0-9]";
 private static final String Phone = "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]";
 private static final String Email = "(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})";
-private static final String SupplierId = "[Ss][0-9][0-9][0-9][0-9][0-9]";
+private static final String SupplierId = "[S][0-9][0-9][0-9][0-9][0-9]";
     
 
 public Validator() {

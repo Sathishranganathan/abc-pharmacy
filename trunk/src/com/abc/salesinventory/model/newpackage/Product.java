@@ -15,10 +15,6 @@ public class Product {
     private String productName;
     private String category;
     private String unit;
-    private double purchasedUnitPrice;
-    private double sellingUnitPrice;
-    private String supplier;
-    private String expiryDate;
     private int reOrderLevel;
     
     public String getProductCode()
@@ -43,7 +39,7 @@ public class Product {
     {
         return category;
     }
-    public void getCategory (String category)
+    public void setCategory (String category)
     {
         this.category = category;
     }
@@ -52,52 +48,16 @@ public class Product {
     {
         return unit;
     }
-    public void getUnit (String unit)
+    public void setUnit (String unit)
     {
         this.unit = unit;
-    }
-    
-    public double getPurchasedUnitPrice()
-    {
-        return purchasedUnitPrice;
-    }
-    public void getPurchasedUnitPrice (double purchasedUnitPrice)
-    {
-        this.purchasedUnitPrice = purchasedUnitPrice;
-    }
-    
-    public double getSellingUnitPrice()
-    {
-        return sellingUnitPrice;
-    }
-    public void getSellingUnitPrice (double sellingUnitPrice)
-    {
-        this.sellingUnitPrice = sellingUnitPrice;
-    }
-    
-    public String getSupplier()
-    {
-        return supplier;
-    }
-    public void getSupplier (String supplier)
-    {
-        this.supplier = supplier;
-    }
-    
-    public String getExpiryDate()
-    {
-        return expiryDate;
-    }
-    public void getExpiryDate (String expiryDate)
-    {
-        this.expiryDate = expiryDate;
     }
     
     public int getReOrderLevel()
     {
         return reOrderLevel;
     }
-    public void getReOrderLevel (int reOrderLevel)
+    public void setReOrderLevel (int reOrderLevel)
     {
         this.reOrderLevel = reOrderLevel;
     }
