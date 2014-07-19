@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.abc.salesinventory.ui;
+package com.abc.salesinventory.util;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;

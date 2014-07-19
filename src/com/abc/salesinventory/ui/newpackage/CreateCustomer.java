@@ -71,43 +71,45 @@ public class CreateCustomer extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Add Customer Details");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Customer ID");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Customer Name");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Address");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Contact Number");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Mobile");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Home");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Office");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Email");
 
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Format - C#####");
 
-        txtCustomerId.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerId.setName(""); // NOI18N
+        txtCustomerId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerIdKeyTyped(evt);
+            }
+        });
 
-        txtCustomerName.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerName.setName(""); // NOI18N
 
-        txtCustomerMobile.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerMobile.setName(""); // NOI18N
         txtCustomerMobile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -115,10 +117,9 @@ public class CreateCustomer extends javax.swing.JFrame {
             }
         });
 
-        txtCustomerEmail.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerEmail.setName(""); // NOI18N
 
-        btnCustomerAdd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnCustomerAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCustomerAdd.setText("Add");
         btnCustomerAdd.setName(""); // NOI18N
         btnCustomerAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +128,7 @@ public class CreateCustomer extends javax.swing.JFrame {
             }
         });
 
-        btnCustomerClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnCustomerClear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCustomerClear.setText("Clear");
         btnCustomerClear.setName(""); // NOI18N
         btnCustomerClear.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +137,7 @@ public class CreateCustomer extends javax.swing.JFrame {
             }
         });
 
-        btnCustomerClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnCustomerClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCustomerClose.setText("Close");
         btnCustomerClose.setName(""); // NOI18N
         btnCustomerClose.addActionListener(new java.awt.event.ActionListener() {
@@ -145,19 +146,19 @@ public class CreateCustomer extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 0));
         jLabel12.setText("*");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 0, 0));
         jLabel13.setText("*");
 
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
         jLabel14.setText("*");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 0));
         jLabel15.setText("*");
 
@@ -168,14 +169,13 @@ public class CreateCustomer extends javax.swing.JFrame {
         jLabel16.setText("eg: abc@gmail.com");
 
         txtCustomerAddress.setColumns(20);
+        txtCustomerAddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtCustomerAddress.setRows(5);
         jScrollPane1.setViewportView(txtCustomerAddress);
 
         ftxtCustomerHome.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
-        ftxtCustomerHome.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
 
         ftxtCustomerOffice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
-        ftxtCustomerOffice.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -284,7 +284,7 @@ public class CreateCustomer extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(txtCustomerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCustomerAdd)
                             .addComponent(btnCustomerClear)
@@ -321,7 +321,8 @@ public class CreateCustomer extends javax.swing.JFrame {
             {
                 if (val.validatePhoneNumber(txtCustomerMobile.getText().trim()))//validates customer mobile number format
                 {
-                    if (txtCustomerEmail.getText().trim().equals("") || val.validEmail(txtCustomerEmail.getText().trim())) {
+                    if (txtCustomerEmail.getText().trim().equals("") || val.validEmail(txtCustomerEmail.getText().trim()))//validates customer email format
+                    {
                         try {
                             com.abc.salesinventory.model.newpackage.Customer customer = masterService.getCustomer(txtCustomerId.getText().trim());
                             if(customer != null){
@@ -381,6 +382,13 @@ public class CreateCustomer extends javax.swing.JFrame {
     private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
         System.exit(1);
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
+
+    private void txtCustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyTyped
+       if(txtCustomerId.getText().length()==6)
+       {
+           evt.consume();
+       }
+    }//GEN-LAST:event_txtCustomerIdKeyTyped
 
     /**
      * @param args the command line arguments

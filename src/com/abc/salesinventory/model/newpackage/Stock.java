@@ -17,6 +17,7 @@ public class Stock {
     private int qty;
     private String expDate;
     private double purchasedUnitPrice;
+    private double sellingUnitPrice;
 
     /**
      * @return the uuid
@@ -100,5 +101,19 @@ public class Stock {
      */
     public void setPurchasedUnitPrice(double purchasedUnitPrice) {
         this.purchasedUnitPrice = purchasedUnitPrice;
+    }
+
+    /**
+     * @return the sellingUnitPrice
+     */
+    public double getSellingUnitPrice() {
+        return sellingUnitPrice;
+    }
+
+    /**
+     * @param sellingUnitPrice the sellingUnitPrice to set
+     */
+    public void setSellingUnitPrice(double sellingUnitPrice) {
+        this.sellingUnitPrice = sellingUnitPrice;
     }
 }

@@ -7,7 +7,8 @@ package com.abc.salesinventory.service;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
-import com.abc.salesinventory.ui.HibernateUtil;
+import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -116,4 +117,52 @@ public class MasterServiceImpl implements MasterService {
         return suppliers;
     }
 
+    //Product
+    
+    @Override
+    public String saveOrUpdateProduct(Product product) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(product);
+        session.getTransaction().commit();
+        return product.getProductCode();
+    }
+
+    @Override
+    public void removeProduct(Product product) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(product);
+        session.getTransaction().commit();
+    }
+
+    @Override
+    public Product getProduct(String productCode) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Product p where p.productCode='" + productCode + "' ";
+        Query q = session.createQuery(hql);
+        List<Product> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<Product> getAllpProducts() {
+        Set<Product> products = new HashSet<Product>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Product";
+        Query q = session.createQuery(hql);
+        List<Product> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() > 0) {
+            products.addAll(resultList);
+        }
+        return products;
+    }
 }

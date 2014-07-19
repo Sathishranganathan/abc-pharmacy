@@ -26,6 +26,7 @@ public class CreateSupplier extends javax.swing.JFrame {
     public CreateSupplier() {
         initComponents();
         Loading();
+        masterService.getAllSuppliers();
     }
 
     /**
@@ -69,50 +70,52 @@ public class CreateSupplier extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Add Supplier Details");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Supplier ID");
 
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
         jLabel14.setText("Format - S#####");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 0));
         jLabel15.setText("*");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("*");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Supplier Name");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("*");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Address");
 
-        txtSupplierId.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtSupplierId.setName(""); // NOI18N
+        txtSupplierId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSupplierIdKeyTyped(evt);
+            }
+        });
 
-        txtSupplierName.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtSupplierName.setName(""); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Contact Number");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Mobile");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("*");
 
-        txtSupplierMobile.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtSupplierMobile.setName(""); // NOI18N
         txtSupplierMobile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -120,19 +123,18 @@ public class CreateSupplier extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Home");
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Office");
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Email");
 
-        txtSupplierEmail.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtSupplierEmail.setName(""); // NOI18N
 
-        btnSupplierAdd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSupplierAdd.setText("Add");
         btnSupplierAdd.setName(""); // NOI18N
         btnSupplierAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +143,7 @@ public class CreateSupplier extends javax.swing.JFrame {
             }
         });
 
-        btnSupplierClear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierClear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSupplierClear.setText("Clear");
         btnSupplierClear.setName(""); // NOI18N
         btnSupplierClear.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +152,7 @@ public class CreateSupplier extends javax.swing.JFrame {
             }
         });
 
-        btnSupplierClose.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnSupplierClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSupplierClose.setText("Close");
         btnSupplierClose.setName(""); // NOI18N
         btnSupplierClose.addActionListener(new java.awt.event.ActionListener() {
@@ -163,12 +165,11 @@ public class CreateSupplier extends javax.swing.JFrame {
         jLabel6.setText("Format - eg:07712345678");
 
         ftxtSupplierHome.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
-        ftxtSupplierHome.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
 
         ftxtSupplierOffice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
-        ftxtSupplierOffice.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
 
         txtSupplierAddress.setColumns(20);
+        txtSupplierAddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtSupplierAddress.setRows(5);
         jScrollPane1.setViewportView(txtSupplierAddress);
 
@@ -223,7 +224,7 @@ public class CreateSupplier extends javax.swing.JFrame {
                                 .addComponent(txtSupplierMobile)
                                 .addComponent(ftxtSupplierHome, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ftxtSupplierOffice, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +284,7 @@ public class CreateSupplier extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtSupplierEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSupplierAdd)
                     .addComponent(btnSupplierClear)
@@ -314,18 +315,18 @@ public class CreateSupplier extends javax.swing.JFrame {
         }
         else
         {
-            if(val.validateSupplierId(txtSupplierId.getText().trim()))//validates customer ID format
+            if(val.validateSupplierId(txtSupplierId.getText().trim()))//validates supplier ID format
            {
-               if(val.validatePhoneNumber(txtSupplierMobile.getText().trim()))//validates customer mobile number format
+               if(val.validatePhoneNumber(txtSupplierMobile.getText().trim()))//validates supplier mobile number format
                {
-                   if(txtSupplierEmail.getText().trim().equals("")||val.validEmail(txtSupplierEmail.getText().trim()))
+                   if(txtSupplierEmail.getText().trim().equals("")||val.validEmail(txtSupplierEmail.getText().trim()))//validates supplier email format
                    {
                       try
                       {
                           Supplier supplier = masterService.getSupplier(txtSupplierId.getText().trim());
                             if(supplier != null){
                                 JOptionPane.showMessageDialog(null, "Supplier Already Exists !", "Save Supplier Details", 2);
-                                return; // Customer ID is already exists.
+                                return; // Supplier ID is already exists.
                             }
                       }
                       catch(Exception x)
@@ -349,7 +350,7 @@ public class CreateSupplier extends javax.swing.JFrame {
            }
             else
             {
-                JOptionPane.showMessageDialog(null, "Incorrect Employee ID Format", "Save Supplier Details", 2);
+                JOptionPane.showMessageDialog(null, "Incorrect Supplier ID Format", "Save Supplier Details", 2);
                 txtSupplierId.requestFocus();
                 return;
             }
@@ -366,7 +367,7 @@ public class CreateSupplier extends javax.swing.JFrame {
         
         try {
             masterService.saveOrUpdateSupplier(supplier);
-            JOptionPane.showMessageDialog(null, "Successfully Added", "Save Customer Details", 2);
+            JOptionPane.showMessageDialog(null, "Successfully Added", "Save Supplier Details", 2);
             Loading();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
@@ -387,6 +388,13 @@ public class CreateSupplier extends javax.swing.JFrame {
     private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
         System.exit(1);
     }//GEN-LAST:event_btnSupplierCloseActionPerformed
+
+    private void txtSupplierIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSupplierIdKeyTyped
+        if(txtSupplierId.getText().length()==6)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSupplierIdKeyTyped
 
    
     
