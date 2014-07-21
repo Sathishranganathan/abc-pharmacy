@@ -11,7 +11,6 @@ package com.abc.salesinventory.ui.newpackage;
  */
 import com.abc.salesinventory.service.MasterService;
 import com.abc.salesinventory.service.MasterServiceImpl;
-import Util.DatePicker;
 import javax.swing.JOptionPane;
 
 
@@ -132,7 +131,7 @@ public class AddNewProduct extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("*");
 
-        ftxtReorderLevel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        ftxtReorderLevel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0"))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
