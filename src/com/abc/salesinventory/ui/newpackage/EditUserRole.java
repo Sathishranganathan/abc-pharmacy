@@ -33,13 +33,15 @@ public class EditUserRole extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescription = new javax.swing.JTextArea();
         txtRoleName = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbUserId = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,17 +59,23 @@ public class EditUserRole extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Description");
 
-        txtDescription.setColumns(20);
-        txtDescription.setRows(5);
-        jScrollPane1.setViewportView(txtDescription);
-
         btnUpdate.setText("Update");
 
         btnCancel.setText("Cancel");
 
         btnDelete.setText("Delete");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select User Role ID--" }));
+        cmbUserId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select User Role ID--" }));
+
+        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel10.setText("*");
+
+        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel11.setText("*");
+
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane1.setViewportView(txtDescription);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,7 +86,11 @@ public class EditUserRole extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnUpdate)
@@ -93,9 +105,9 @@ public class EditUserRole extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                             .addComponent(txtRoleName)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cmbUserId, 0, 215, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,11 +118,13 @@ public class EditUserRole extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -176,8 +190,10 @@ public class EditUserRole extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cmbUserId;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
