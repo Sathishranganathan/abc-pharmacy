@@ -28,73 +28,144 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jMenu1 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        miChangePassword = new javax.swing.JMenuItem();
+        miExit = new javax.swing.JMenuItem();
         menuCustomer = new javax.swing.JMenu();
+        miAddCus = new javax.swing.JMenuItem();
+        miSearchCus = new javax.swing.JMenuItem();
         menuSupplier = new javax.swing.JMenu();
+        miAddSupp = new javax.swing.JMenuItem();
+        miSearchSup = new javax.swing.JMenuItem();
         menuStock = new javax.swing.JMenu();
+        miAddproduct = new javax.swing.JMenuItem();
+        miAddStock = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
         menuPurchases = new javax.swing.JMenu();
         menuReport = new javax.swing.JMenu();
+        miSalesR = new javax.swing.JMenuItem();
+        miInventoryR = new javax.swing.JMenuItem();
+        menuAccount = new javax.swing.JMenu();
+        miCreateAcc = new javax.swing.JMenuItem();
+        miEditAcc = new javax.swing.JMenuItem();
+        menuUserRole = new javax.swing.JMenu();
+        miChangeRole = new javax.swing.JMenuItem();
+        miEditRole = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Serif", 0, 20)); // NOI18N
+        jLabel2.setText("SALES AND INVENTORY MANAGEMENT SYSTEM");
 
         jLabel1.setFont(new java.awt.Font("Plantagenet Cherokee", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\BIT\\Project_2014\\Pharmacy\\reaized.jpg")); // NOI18N
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\BIT\\Project_2014\\Pharmacy\\Logo\\logo_icon.jpg")); // NOI18N
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
 
-        jLabel2.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jLabel2.setText("SALES AND INVENTORY MANAGEMENT SYSTEM");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setText("Eraj Pharmaceuticals");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(229, 229, 229))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Importers, Wholesale Dealers & Distributors of Pharmaceuticals & Surgical Products");
+
+        btnLogout.setText("Logout");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(35, 35, 35))))
+                        .addGap(93, 93, 93))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(172, 172, 172))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(133, 133, 133))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(165, 165, 165)
+                        .addComponent(btnLogout)
+                        .addContainerGap())))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnLogout))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuFile.setText("File");
+
+        miChangePassword.setText("Change Password");
+        menuFile.add(miChangePassword);
+
+        miExit.setText("Exit");
+        menuFile.add(miExit);
+
         jMenuBar1.add(menuFile);
 
         menuCustomer.setText("Customer");
+
+        miAddCus.setText("Add Customer");
+        menuCustomer.add(miAddCus);
+
+        miSearchCus.setText("Search Customer");
+        menuCustomer.add(miSearchCus);
+
         jMenuBar1.add(menuCustomer);
 
         menuSupplier.setText("Supplier");
+
+        miAddSupp.setText("Add Supplier");
+        menuSupplier.add(miAddSupp);
+
+        miSearchSup.setText("Search Supplier");
+        menuSupplier.add(miSearchSup);
+
         jMenuBar1.add(menuSupplier);
 
         menuStock.setText("Stock");
+
+        miAddproduct.setText("Add New Products");
+        menuStock.add(miAddproduct);
+
+        miAddStock.setText("Add New Stock");
+        menuStock.add(miAddStock);
+
         jMenuBar1.add(menuStock);
 
         menuSales.setText("Sales");
@@ -104,7 +175,34 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.add(menuPurchases);
 
         menuReport.setText("Reports");
+
+        miSalesR.setText("Sales Reports");
+        menuReport.add(miSalesR);
+
+        miInventoryR.setText("Inventory Reports");
+        menuReport.add(miInventoryR);
+
         jMenuBar1.add(menuReport);
+
+        menuAccount.setText("Account");
+
+        miCreateAcc.setText("Create User Account");
+        menuAccount.add(miCreateAcc);
+
+        miEditAcc.setText("Edit User Account");
+        menuAccount.add(miEditAcc);
+
+        jMenuBar1.add(menuAccount);
+
+        menuUserRole.setText("User Role");
+
+        miChangeRole.setText("Create User Role");
+        menuUserRole.add(miChangeRole);
+
+        miEditRole.setText("Edit User Role");
+        menuUserRole.add(miEditRole);
+
+        jMenuBar1.add(menuUserRole);
 
         setJMenuBar(jMenuBar1);
 
@@ -112,11 +210,11 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -158,11 +256,16 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu menuAccount;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuPurchases;
@@ -170,5 +273,20 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuStock;
     private javax.swing.JMenu menuSupplier;
+    private javax.swing.JMenu menuUserRole;
+    private javax.swing.JMenuItem miAddCus;
+    private javax.swing.JMenuItem miAddStock;
+    private javax.swing.JMenuItem miAddSupp;
+    private javax.swing.JMenuItem miAddproduct;
+    private javax.swing.JMenuItem miChangePassword;
+    private javax.swing.JMenuItem miChangeRole;
+    private javax.swing.JMenuItem miCreateAcc;
+    private javax.swing.JMenuItem miEditAcc;
+    private javax.swing.JMenuItem miEditRole;
+    private javax.swing.JMenuItem miExit;
+    private javax.swing.JMenuItem miInventoryR;
+    private javax.swing.JMenuItem miSalesR;
+    private javax.swing.JMenuItem miSearchCus;
+    private javax.swing.JMenuItem miSearchSup;
     // End of variables declaration//GEN-END:variables
 }
