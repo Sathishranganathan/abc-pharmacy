@@ -309,6 +309,7 @@ public class CreateCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Add customer details
     private void btnCustomerAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerAddActionPerformed
 
         if (txtCustomerId.getText().trim().equals("") || txtCustomerName.getText().trim().equals("") || txtCustomerAddress.getText().trim().equals("") || txtCustomerMobile.getText().trim().equals("")) //checks whether all required fields are filled
@@ -323,35 +324,35 @@ public class CreateCustomer extends javax.swing.JFrame {
                 {
                     if (txtCustomerEmail.getText().trim().equals("") || val.validEmail(txtCustomerEmail.getText().trim()))//validates customer email format
                     {
-                        try {
+                        try {//to check whether the customer ID is allready exists
                             com.abc.salesinventory.model.newpackage.Customer customer = masterService.getCustomer(txtCustomerId.getText().trim());
                             if(customer != null){
                                 JOptionPane.showMessageDialog(null, "Customer Already Exists !", "Save Customer Details", 2);
                                 return; // Customer ID is already exists.
                             }
-                        } catch (Exception x) {
+                        } catch (Exception x) {//Exception handling
                             JOptionPane.showMessageDialog(null, "Error Occured !", "Save Customer Details", 2);
                             return;
                         }
-                    } else {
+                    } else {//email address format is wrong
                         JOptionPane.showMessageDialog(null, "Incorrect Email Address Format !", "Save Customer Details", 2);
                         txtCustomerEmail.requestFocus();
                         return;
                     }
 
-                } else {
+                } else {//incorrect mobile number format
                     JOptionPane.showMessageDialog(null, "Incorrect Mobile Number Format !", "Save Customer Details", 2);
                     txtCustomerMobile.requestFocus();
                     return;
                 }
 
-            } else {
+            } else {//incorrect supplier ID format
                 JOptionPane.showMessageDialog(null, "Incorrect Customer ID Format", "Save Customer Details", 2);
                 txtCustomerId.requestFocus();
                 return;
             }
         }
-
+//add customer details into the database
         com.abc.salesinventory.model.newpackage.Customer customer = new com.abc.salesinventory.model.newpackage.Customer();
         customer.setId(txtCustomerId.getText().trim());
         customer.setName(txtCustomerName.getText().trim());
@@ -364,7 +365,7 @@ public class CreateCustomer extends javax.swing.JFrame {
             masterService.saveOrUpdateCustomer(customer);
             JOptionPane.showMessageDialog(null, "Successfully Added", "Save Customer Details", 2);
             Loading();
-        } catch (Exception e) {
+        } catch (Exception e) {//Exception handling
             JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_btnCustomerAddActionPerformed
@@ -372,22 +373,22 @@ public class CreateCustomer extends javax.swing.JFrame {
     private void txtCustomerMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMobileKeyTyped
         if (txtCustomerMobile.getText().length() == 10) {
             evt.consume();
-        }
+        }//set customer mobile number field length into 10 digits
     }//GEN-LAST:event_txtCustomerMobileKeyTyped
 
     private void btnCustomerClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerClearActionPerformed
-        Loading();
+        Loading();//click cancel button, clear all text fields
     }//GEN-LAST:event_btnCustomerClearActionPerformed
 
     private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
-        System.exit(1);
+        System.exit(1);//click close button,exit from the window
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
 
     private void txtCustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyTyped
        if(txtCustomerId.getText().length()==6)
        {
            evt.consume();
-       }
+       }//sets customer ID length into 6 digits
     }//GEN-LAST:event_txtCustomerIdKeyTyped
 
     /**
@@ -456,6 +457,7 @@ public class CreateCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerName;
     // End of variables declaration//GEN-END:variables
 
+    //method to set text fields null
     private void Loading() {
 
         txtCustomerId.setText(null);
