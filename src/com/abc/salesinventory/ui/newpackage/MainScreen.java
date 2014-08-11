@@ -11,12 +11,14 @@ package com.abc.salesinventory.ui.newpackage;
  * @author Manuri
  */
 public class MainScreen extends javax.swing.JFrame {
-
+private String userId;
     /**
      * Creates new form MainScreen
      */
-    public MainScreen() {
+
+    public MainScreen(String userId) {
         initComponents();
+        this.userId=userId;
     }
 
     /**
@@ -50,7 +52,9 @@ public class MainScreen extends javax.swing.JFrame {
         miAddproduct = new javax.swing.JMenuItem();
         miAddStock = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
+        miSales = new javax.swing.JMenuItem();
         menuPurchases = new javax.swing.JMenu();
+        miPurchase = new javax.swing.JMenuItem();
         menuReport = new javax.swing.JMenu();
         miSalesR = new javax.swing.JMenuItem();
         miInventoryR = new javax.swing.JMenuItem();
@@ -74,6 +78,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel1.setText("WELCOME");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/abc/salesinventory/ui/resource/logo_icon.jpg"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -88,25 +93,26 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(93, 93, 93))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(172, 172, 172))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(165, 165, 165)
                         .addComponent(btnLogout)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(67, 67, 67))))
+                        .addComponent(jLabel3)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(134, 134, 134))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(186, 186, 186))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,10 +121,10 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(btnLogout))
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -129,6 +135,11 @@ public class MainScreen extends javax.swing.JFrame {
         menuFile.setText("File");
 
         miChangePassword.setText("Change Password");
+        miChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miChangePasswordActionPerformed(evt);
+            }
+        });
         menuFile.add(miChangePassword);
 
         miExit.setText("Exit");
@@ -139,9 +150,19 @@ public class MainScreen extends javax.swing.JFrame {
         menuCustomer.setText("Customer");
 
         miAddCus.setText("Add Customer");
+        miAddCus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddCusActionPerformed(evt);
+            }
+        });
         menuCustomer.add(miAddCus);
 
         miSearchCus.setText("Search Customer");
+        miSearchCus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSearchCusActionPerformed(evt);
+            }
+        });
         menuCustomer.add(miSearchCus);
 
         jMenuBar1.add(menuCustomer);
@@ -149,9 +170,19 @@ public class MainScreen extends javax.swing.JFrame {
         menuSupplier.setText("Supplier");
 
         miAddSupp.setText("Add Supplier");
+        miAddSupp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddSuppActionPerformed(evt);
+            }
+        });
         menuSupplier.add(miAddSupp);
 
         miSearchSup.setText("Search Supplier");
+        miSearchSup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSearchSupActionPerformed(evt);
+            }
+        });
         menuSupplier.add(miSearchSup);
 
         jMenuBar1.add(menuSupplier);
@@ -159,6 +190,11 @@ public class MainScreen extends javax.swing.JFrame {
         menuStock.setText("Stock");
 
         miAddproduct.setText("Add New Products");
+        miAddproduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddproductActionPerformed(evt);
+            }
+        });
         menuStock.add(miAddproduct);
 
         miAddStock.setText("Add New Stock");
@@ -167,9 +203,27 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.add(menuStock);
 
         menuSales.setText("Sales");
+
+        miSales.setText("Sales");
+        miSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSalesActionPerformed(evt);
+            }
+        });
+        menuSales.add(miSales);
+
         jMenuBar1.add(menuSales);
 
         menuPurchases.setText("Purchases");
+
+        miPurchase.setText("Purchase");
+        miPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPurchaseActionPerformed(evt);
+            }
+        });
+        menuPurchases.add(miPurchase);
+
         jMenuBar1.add(menuPurchases);
 
         menuReport.setText("Reports");
@@ -185,9 +239,19 @@ public class MainScreen extends javax.swing.JFrame {
         menuAccount.setText("Account");
 
         miCreateAcc.setText("Create User Account");
+        miCreateAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCreateAccActionPerformed(evt);
+            }
+        });
         menuAccount.add(miCreateAcc);
 
         miEditAcc.setText("Edit User Account");
+        miEditAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditAccActionPerformed(evt);
+            }
+        });
         menuAccount.add(miEditAcc);
 
         jMenuBar1.add(menuAccount);
@@ -195,9 +259,19 @@ public class MainScreen extends javax.swing.JFrame {
         menuUserRole.setText("User Role");
 
         miChangeRole.setText("Create User Role");
+        miChangeRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miChangeRoleActionPerformed(evt);
+            }
+        });
         menuUserRole.add(miChangeRole);
 
         miEditRole.setText("Edit User Role");
+        miEditRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEditRoleActionPerformed(evt);
+            }
+        });
         menuUserRole.add(miEditRole);
 
         jMenuBar1.add(menuUserRole);
@@ -220,6 +294,54 @@ public class MainScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miAddCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddCusActionPerformed
+        new CreateCustomer().setVisible(true);
+    }//GEN-LAST:event_miAddCusActionPerformed
+
+    private void miSearchCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchCusActionPerformed
+        new SearchCustomer().setVisible(true);
+    }//GEN-LAST:event_miSearchCusActionPerformed
+
+    private void miAddSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddSuppActionPerformed
+       new CreateSupplier().setVisible(true);
+    }//GEN-LAST:event_miAddSuppActionPerformed
+
+    private void miSearchSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchSupActionPerformed
+       new SearchSupplier().setVisible(true);
+    }//GEN-LAST:event_miSearchSupActionPerformed
+
+    private void miAddproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddproductActionPerformed
+        new AddNewProduct().setVisible(true);
+    }//GEN-LAST:event_miAddproductActionPerformed
+
+    private void miSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesActionPerformed
+        new Purchases().setVisible(true);
+    }//GEN-LAST:event_miSalesActionPerformed
+
+    private void miPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPurchaseActionPerformed
+        new Sales().setVisible(true);
+    }//GEN-LAST:event_miPurchaseActionPerformed
+
+    private void miCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateAccActionPerformed
+        new CreateUser().setVisible(true);
+    }//GEN-LAST:event_miCreateAccActionPerformed
+
+    private void miEditAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditAccActionPerformed
+        new EditUser().setVisible(true);
+    }//GEN-LAST:event_miEditAccActionPerformed
+
+    private void miChangeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangeRoleActionPerformed
+        new CreateRole().setVisible(true);
+    }//GEN-LAST:event_miChangeRoleActionPerformed
+
+    private void miEditRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditRoleActionPerformed
+        new EditUserRole().setVisible(true);
+    }//GEN-LAST:event_miEditRoleActionPerformed
+
+    private void miChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangePasswordActionPerformed
+        new ChangePassword(this.userId).setVisible(true);
+    }//GEN-LAST:event_miChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,7 +373,7 @@ public class MainScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainScreen().setVisible(true);
+                new MainScreen("abc").setVisible(true);
             }
         });
     }
@@ -286,6 +408,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miEditRole;
     private javax.swing.JMenuItem miExit;
     private javax.swing.JMenuItem miInventoryR;
+    private javax.swing.JMenuItem miPurchase;
+    private javax.swing.JMenuItem miSales;
     private javax.swing.JMenuItem miSalesR;
     private javax.swing.JMenuItem miSearchCus;
     private javax.swing.JMenuItem miSearchSup;

@@ -18,7 +18,11 @@ public class Product  implements java.io.Serializable {
     public Product() {
     }
 
-	
+    @Override
+    public String toString() {
+        return productName;
+    }
+    
     public Product(String productCode) {
         this.productCode = productCode;
     }

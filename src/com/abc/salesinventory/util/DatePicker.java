@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Util;
+package com.abc.salesinventory.util;
 
 import java.awt.*;
 import java.awt.event.*;
