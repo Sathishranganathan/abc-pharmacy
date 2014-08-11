@@ -27,6 +27,7 @@ public class InventoryServiceImpl implements InventoryService {
         session.beginTransaction();
         session.saveOrUpdate(transaction);
         session.getTransaction().commit();
+        session.close();
         return transaction.getTransactionId();
     }
     
@@ -38,6 +39,7 @@ public class InventoryServiceImpl implements InventoryService {
         Query q = session.createQuery(hql);
         List<Transaction> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -54,6 +56,7 @@ public class InventoryServiceImpl implements InventoryService {
         Query q = session.createQuery(hql);
         List<Transaction> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             transactions.addAll(resultList);
         }
