@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 11, 2014 11:38:51 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Aug 11, 2014 11:51:50 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="com.abc.salesinventory.model.newpackage.Product" table="product" catalog="pharmacy">
         <id name="productCode" type="string">
