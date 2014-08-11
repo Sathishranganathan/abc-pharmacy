@@ -28,6 +28,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.saveOrUpdate(customer);
         session.getTransaction().commit();
+        session.close();
         return customer.getId();
     }
 
@@ -37,6 +38,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.delete(customer);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -47,6 +49,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Customer> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -63,6 +66,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Customer> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             customers.addAll(resultList);
         }
@@ -76,6 +80,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.saveOrUpdate(supplier);
         session.getTransaction().commit();
+        session.close();
         return supplier.getId();
     }
 
@@ -85,6 +90,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.delete(supplier);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -95,6 +101,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Supplier> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -111,6 +118,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Supplier> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             suppliers.addAll(resultList);
         }
@@ -125,6 +133,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.saveOrUpdate(product);
         session.getTransaction().commit();
+        session.close();
         return product.getProductCode();
     }
 
@@ -134,6 +143,7 @@ public class MasterServiceImpl implements MasterService {
         session.beginTransaction();
         session.delete(product);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -144,6 +154,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Product> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -160,6 +171,7 @@ public class MasterServiceImpl implements MasterService {
         Query q = session.createQuery(hql);
         List<Product> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             products.addAll(resultList);
         }

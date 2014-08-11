@@ -15,8 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -27,7 +25,7 @@ import org.hibernate.Session;
  * @author rdjayawe
  */
 public class SecurityServiceImpl implements SecurityService {
-
+    
     @Override
     public String getPasswordHash(String plainTextPassword) {
         try {
@@ -74,6 +72,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.saveOrUpdate(user);
         session.getTransaction().commit();
+        session.close();
         return user.getId();
     }
 
@@ -83,6 +82,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.delete(user);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -93,6 +93,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<User> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -107,6 +108,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<User> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -123,6 +125,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<User> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             users.addAll(resultList);
         }
@@ -136,6 +139,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.saveOrUpdate(role);
         session.getTransaction().commit();
+        session.close();
         return role.getId();
     }
 
@@ -145,6 +149,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.delete(role);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -155,6 +160,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Role> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -169,6 +175,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Role> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -185,6 +192,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Role> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             roles.addAll(resultList);
         }
@@ -198,6 +206,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.saveOrUpdate(role);
         session.getTransaction().commit();
+        session.close();
         return role.getId();
     }
 
@@ -207,6 +216,7 @@ public class SecurityServiceImpl implements SecurityService {
         session.beginTransaction();
         session.delete(role);
         session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -217,6 +227,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Permission> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -231,6 +242,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Permission> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() == 1) {
             return resultList.get(0);
         }
@@ -247,6 +259,7 @@ public class SecurityServiceImpl implements SecurityService {
         Query q = session.createQuery(hql);
         List<Permission> resultList = q.list();
         session.getTransaction().commit();
+        session.close();
         if (resultList != null && resultList.size() > 0) {
             roles.addAll(resultList);
         }
