@@ -34,7 +34,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         initComponents();
         txtCustomerName.requestFocus();
     }
-
+//Query for search customer details
     private static String QUERY_BASED_ON_NAME = "from Customer a where a.name like '";
     private static String QUERY_BASED_ON_MOBILE = "from Customer a where a.mobile like '";
     private static String QUERY_ALL = "from Customer";
@@ -62,6 +62,8 @@ public class SearchCustomer extends javax.swing.JFrame {
 //            he.printStackTrace();
 //        }
 //    }
+    
+    //
     private void searchCustomer(String hql) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -74,7 +76,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             he.printStackTrace();
         }
     }
-
+//Display customer details in the table
     private void displayResult(List resultList) {
 
         Vector<String> tableHeaders = new Vector<String>();
@@ -104,15 +106,22 @@ public class SearchCustomer extends javax.swing.JFrame {
         
 
     }
-
+//Search customer details
     public void search() {
+        //Search by customer name
         if (!txtCustomerName.getText().trim().equals("") && txtMobileNumber.getText().trim().equals("")) {
             searchCustomer(QUERY_BASED_ON_NAME + txtCustomerName.getText() + "%'");
-        } else if (txtCustomerName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
+        }
+        //Search by mobile number
+        else if (txtCustomerName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
             searchCustomer(QUERY_BASED_ON_MOBILE + txtMobileNumber.getText() + "%'");
-        } else if (!txtCustomerName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
+        }
+        //search by customer name and mobile number
+        else if (!txtCustomerName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
             searchCustomer("from Customer a where a.name like '" + txtCustomerName.getText().trim() + "%' and a.mobile like '" + txtMobileNumber.getText().trim() + "%'");
-        } else if (txtCustomerName.getText().trim().equals("") && txtMobileNumber.getText().trim().equals("")) {
+        } 
+        //get all data
+        else if (txtCustomerName.getText().trim().equals("") && txtMobileNumber.getText().trim().equals("")) {
             searchCustomer(QUERY_ALL);
         }
     }
@@ -251,6 +260,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Search customer details
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         search();
         }
@@ -258,6 +268,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         private void runQueryBasedOnLastName() {
     }//GEN-LAST:event_btnSearchActionPerformed
 
+        //Delete selected customer
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
         int row = resultTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
@@ -282,6 +293,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
+    //edit customer
     private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
 
         int row = resultTable.getSelectedRow();

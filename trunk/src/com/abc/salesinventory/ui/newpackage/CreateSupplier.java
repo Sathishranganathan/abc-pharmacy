@@ -371,9 +371,11 @@ public class CreateSupplier extends javax.swing.JFrame {
             Loading();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
-        }
+        
+        }    
     }//GEN-LAST:event_btnSupplierAddActionPerformed
 
+    //set mobile number field length to 10 digits
     private void txtSupplierMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSupplierMobileKeyTyped
        if(txtSupplierMobile.getText().length()==10)
        {
@@ -385,6 +387,7 @@ public class CreateSupplier extends javax.swing.JFrame {
         Loading();
     }//GEN-LAST:event_btnSupplierClearActionPerformed
 
+    //close button
     private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
         System.exit(1);
     }//GEN-LAST:event_btnSupplierCloseActionPerformed

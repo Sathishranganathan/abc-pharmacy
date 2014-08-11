@@ -25,6 +25,7 @@ public class EditCustomer extends javax.swing.JFrame {
      */
     public EditCustomer(Customer c) {
         initComponents();
+        //set data to relevant fields
         txtCustomerId.setText(c.getId());
         txtCustomerName.setText(c.getName());
         txtCustomerMobile.setText(c.getMobile());
@@ -303,6 +304,7 @@ public class EditCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //sets mobile number field length to 10 digits
     private void txtCustomerMobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMobileKeyTyped
         if (txtCustomerMobile.getText().length() == 10) {
             evt.consume();
@@ -346,7 +348,7 @@ public class EditCustomer extends javax.swing.JFrame {
                 return;
             }
         }
-
+//update database
         com.abc.salesinventory.model.newpackage.Customer customer = new com.abc.salesinventory.model.newpackage.Customer();
         customer.setId(txtCustomerId.getText().trim());
         customer.setName(txtCustomerName.getText().trim());
@@ -364,6 +366,7 @@ public class EditCustomer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCustomerUpdateActionPerformed
 
+    //Close button
     private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
         System.exit(1);
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
