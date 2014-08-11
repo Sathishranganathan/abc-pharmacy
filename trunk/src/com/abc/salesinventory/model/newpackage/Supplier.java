@@ -20,7 +20,12 @@ public class Supplier  implements java.io.Serializable {
     public Supplier() {
     }
 
-	
+    
+    @Override
+    public String toString() {
+        return name;
+    }
+    
     public Supplier(String id) {
         this.id = id;
     }

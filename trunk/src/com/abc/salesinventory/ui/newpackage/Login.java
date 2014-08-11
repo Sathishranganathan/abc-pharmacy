@@ -159,7 +159,7 @@ public class Login extends javax.swing.JFrame {
             SecurityService securityService = new SecurityServiceImpl();
             boolean isPasswordCorrect = securityService.isPasswordCorrect(new String(txtPassword.getPassword()), txtUserName.getText());
             if(isPasswordCorrect){
-                new MainScreen().setVisible(true);
+                new MainScreen(txtUserName.getText().trim()).setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Error", 2);
