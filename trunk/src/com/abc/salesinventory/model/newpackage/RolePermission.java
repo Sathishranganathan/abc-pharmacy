@@ -1,8 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Jun 19, 2014 10:37:25 PM by Hibernate Tools 3.6.0
-
-import java.util.HashSet;
-
+// Generated Aug 11, 2014 11:51:50 AM by Hibernate Tools 3.6.0
 
 
 
