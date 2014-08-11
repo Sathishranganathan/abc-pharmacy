@@ -5,6 +5,6 @@
     <table-filter match-name="transaction"/>
     <table-filter match-name="transaction_detail"/>
     <table-filter match-name="supplier"/>
-    <table-filter match-name="customer"/>
     <table-filter match-name="product"/>
+    <table-filter match-name="customer"/>
 </hibernate-reverse-engineering>

@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Jun 19, 2014 10:37:25 PM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 12:37:38 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class User  implements java.io.Serializable {
      private String lastName;
      private String userid;
      private String email;
-     private Set<UserRole> userRoles = new HashSet<UserRole>(0);
+     private Set userRoles = new HashSet(0);
 
     public User() {
     }
@@ -26,7 +26,7 @@ public class User  implements java.io.Serializable {
         this.id = id;
         this.userid = userid;
     }
-    public User(String id, String firstName, String lastName, String userid, String email, Set<UserRole> userRoles) {
+    public User(String id, String firstName, String lastName, String userid, String email, Set userRoles) {
        this.id = id;
        this.firstName = firstName;
        this.lastName = lastName;
@@ -70,11 +70,11 @@ public class User  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Set<UserRole> getUserRoles() {
+    public Set getUserRoles() {
         return this.userRoles;
     }
     
-    public void setUserRoles(Set<UserRole> userRoles) {
+    public void setUserRoles(Set userRoles) {
         this.userRoles = userRoles;
     }
 

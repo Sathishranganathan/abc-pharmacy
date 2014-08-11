@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 11, 2014 11:51:50 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Aug 11, 2014 12:37:39 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="com.abc.salesinventory.model.Transaction" table="transaction" catalog="pharmacy">
+    <class name="com.abc.salesinventory.model.newpackage.Transaction" table="transaction" catalog="pharmacy">
         <id name="transactionId" type="string">
             <column name="transaction_id" length="45" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
-        <many-to-one name="customer" class="com.abc.salesinventory.model.Customer" fetch="select">
+        <many-to-one name="customer" class="com.abc.salesinventory.model.newpackage.Customer" fetch="select">
             <column name="customer_id" length="45" />
         </many-to-one>
-        <many-to-one name="supplier" class="com.abc.salesinventory.model.Supplier" fetch="select">
+        <many-to-one name="supplier" class="com.abc.salesinventory.model.newpackage.Supplier" fetch="select">
             <column name="supplier_id" length="45" />
         </many-to-one>
         <property name="date" type="timestamp">

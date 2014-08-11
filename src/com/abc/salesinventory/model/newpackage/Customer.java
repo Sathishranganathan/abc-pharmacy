@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Aug 11, 2014 11:51:50 AM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 12:37:38 PM by Hibernate Tools 3.6.0
 
 
 
@@ -85,4 +85,8 @@ public class Customer  implements java.io.Serializable {
     }
 
 
+
+
 }
+
+

@@ -17,13 +17,8 @@
     <mapping resource="com/abc/salesinventory/model/newpackage/Customer.hbm.xml"/>
     <mapping resource="com/abc/salesinventory/model/newpackage/Supplier.hbm.xml"/>
     <mapping resource="com/abc/salesinventory/model/newpackage/Product.hbm.xml"/>
-    <mapping resource="com/abc/salesinventory/model/TransactionDetail.hbm.xml"/>
-    <mapping resource="com/abc/salesinventory/model/Supplier.hbm.xml"/>
-    <mapping resource="com/abc/salesinventory/model/Transaction.hbm.xml"/>
-    <mapping resource="com/abc/salesinventory/model/Product.hbm.xml"/>
-    <mapping resource="com/abc/salesinventory/model/Customer.hbm.xml"/>
-    <mapping/>
-    <mapping/>
+    <mapping resource="com/abc/salesinventory/model/newpackage/TransactionDetail.hbm.xml"/>
     <mapping resource="com/abc/salesinventory/model/newpackage/Transaction.hbm.xml"/>
+    <mapping resource="com/abc/salesinventory/model/newpackage/Stock.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

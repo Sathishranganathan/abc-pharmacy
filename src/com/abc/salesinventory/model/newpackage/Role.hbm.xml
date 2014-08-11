@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 6, 2014 10:10:54 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Aug 11, 2014 12:37:39 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="com.abc.salesinventory.model.newpackage.Role" table="role" catalog="pharmacy">
         <id name="id" type="string">
@@ -14,7 +14,7 @@
         <property name="description" type="string">
             <column name="description" length="100" />
         </property>
-        <set name="rolePermissions" table="role_permission" inverse="true" lazy="true" fetch="select" cascade="save-update">
+        <set name="rolePermissions" table="role_permission" inverse="true" lazy="true" cascade="save-update" fetch="select">
             <key>
                 <column name="role_id" length="45" not-null="true" />
             </key>

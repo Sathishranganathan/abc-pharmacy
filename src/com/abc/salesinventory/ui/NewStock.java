@@ -13,7 +13,7 @@ package com.abc.salesinventory.ui;
 
 import Util.DatePicker;
 import com.abc.salesinventory.model.Item;
-import com.abc.salesinventory.model.Stock;
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.service.StockService;
 import com.abc.salesinventory.service.StockServiceImpl;
 import javax.swing.JOptionPane;
@@ -186,9 +186,9 @@ public class NewStock extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter Expire Date !", "Save Stock", 2);
         } else {
             Stock stock = new Stock();
-            stock.setItem(selectedItem);
-            stock.setQty(Integer.parseInt(qty.getText()));
-            stock.setExpiryDate(expDate.getText());
+//            stock.setItem(selectedItem);
+//            stock.setQty(Integer.parseInt(qty.getText()));
+//            stock.setExpiryDate(expDate.getText());
 
             boolean save = stockService.save(stock);
 

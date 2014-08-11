@@ -5,11 +5,11 @@
 package com.abc.salesinventory.service;
 
 
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.util.Database;
 import com.abc.salesinventory.model.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
 
@@ -82,7 +82,7 @@ public class SellServiceImpl implements SellService {
     public List<Sell> findByStock(Stock inStock) {
         List<Sell> foundSells = new ArrayList<Sell>();
         try {
-            ResultSet rst = db.getdata("Select * from sell where stock_ID=" + inStock.getId());
+            ResultSet rst = db.getdata("Select * from sell where stock_ID=" + inStock.getStockId());
 
             while (rst.next()) {
                 Sell foundSell = new Sell();
