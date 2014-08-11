@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.service.newpackage.SecurityService;
+import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,8 +40,8 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +75,6 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("SALES & INVENTORY MANAGEMENT SYSTEM");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\BIT\\Project_2014\\Pharmacy\\Logo\\1reaized.jpg")); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 153, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,9 +153,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if(txtUserName.getText().trim().equals("")&& txtPassword.getText().trim().equals(""))
-    {JOptionPane.showMessageDialog(null, "Username or Password fields cannot be empty", "Error", 2);}
-    else{}
+        if (txtUserName.getText().trim().equals("") || txtPassword.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Username or Password fields cannot be empty", "Error", 2);
+        } else {
+            SecurityService securityService = new SecurityServiceImpl();
+            boolean isPasswordCorrect = securityService.isPasswordCorrect(new String(txtPassword.getPassword()), txtUserName.getText());
+            if(isPasswordCorrect){
+                new MainScreen().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Error", 2);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -203,7 +212,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,10 @@ import org.hibernate.HibernateException;
  */
 public interface SecurityService {
     
+    public String getPasswordHash(String plainTextPassword);
+    
+    public boolean isPasswordCorrect(String plainTextPassword, String userId);
+    
     public String saveOrUpdateUser(User user) throws HibernateException;
     
     public void removeUser(User user);

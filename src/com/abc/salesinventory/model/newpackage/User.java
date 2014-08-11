@@ -16,6 +16,7 @@ public class User  implements java.io.Serializable {
      private String lastName;
      private String userid;
      private String email;
+     private String password;
      private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
     public User() {
@@ -76,6 +77,14 @@ public class User  implements java.io.Serializable {
     
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
