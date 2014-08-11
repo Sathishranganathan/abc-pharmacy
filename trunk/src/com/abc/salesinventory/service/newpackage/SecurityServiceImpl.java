@@ -9,9 +9,15 @@ import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.User;
 import com.abc.salesinventory.util.HibernateUtil;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,6 +27,46 @@ import org.hibernate.Session;
  * @author rdjayawe
  */
 public class SecurityServiceImpl implements SecurityService {
+
+    @Override
+    public String getPasswordHash(String plainTextPassword) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(plainTextPassword.getBytes("UTF-8"));
+            byte[] bytes = md.digest();
+
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            JOptionPane.showMessageDialog(null, "Password hashing failed!", "Save User Details", 2);
+            return null;
+        }
+    }
+
+    @Override
+    public boolean isPasswordCorrect(String plainTextPassword, String userId) {
+        try {
+            User user = getUserByUserName(userId);
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(plainTextPassword.getBytes("UTF-8"));
+            byte[] bytes = md.digest();
+
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return sb.toString().equals(user.getPassword());
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            JOptionPane.showMessageDialog(null, "Password hashing failed!", "Save User Details", 2);
+            return false;
+        }
+    }
 
     @Override
     public String saveOrUpdateUser(User user) throws HibernateException {

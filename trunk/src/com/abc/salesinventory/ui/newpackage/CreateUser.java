@@ -237,7 +237,14 @@ public class CreateUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error Occured !", "Save User Details", 2);
             return;
         }
+        String password = new String(txtPassword.getPassword());
+        String confirmpwd = new String(txtConfirmPassword.getPassword());
         
+        if (!password.equals(confirmpwd)) {
+            JOptionPane.showMessageDialog(null, "Passwords does not match!", "Save User Details", 2);
+            return;
+        }
+
         User user = new User();
         user.setFirstName(txtFirstName.getText());
         user.setLastName(txtLastName.getText());
@@ -245,11 +252,14 @@ public class CreateUser extends javax.swing.JFrame {
         user.setUserid(txtUserName.getText());
         user.setEmail(txtEmail.getText());
         
-        Role role = (Role)cmbUserRole.getSelectedItem();
-        
+        String passwordHash = securityService.getPasswordHash(password);
+        user.setPassword(passwordHash);
+
+        Role role = (Role) cmbUserRole.getSelectedItem();
+
         UserRole userRole = new UserRole(UUID.randomUUID().toString(), user, role);
         Set<UserRole> userRoles = new HashSet<UserRole>();
-        userRoles.add(userRole);        
+        userRoles.add(userRole);
         user.setUserRoles(userRoles);
 
         try {
