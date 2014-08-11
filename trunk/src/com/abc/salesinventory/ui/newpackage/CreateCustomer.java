@@ -5,8 +5,8 @@
  */
 package com.abc.salesinventory.ui.newpackage;
 
-import com.abc.salesinventory.service.MasterService;
-import com.abc.salesinventory.service.MasterServiceImpl;
+import com.abc.salesinventory.service.newpackage.MasterService;
+import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import javax.swing.JOptionPane;
 
 /**
