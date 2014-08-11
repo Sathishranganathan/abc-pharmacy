@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Aug 11, 2014 12:57:27 PM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;

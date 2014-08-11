@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Aug 11, 2014 12:57:27 PM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -15,7 +15,7 @@ public class Permission  implements java.io.Serializable {
      private String name;
      private String code;
      private String description;
-     private Set rolePermissions = new HashSet(0);
+     private Set<RolePermission> rolePermissions = new HashSet<RolePermission>(0);
 
     public Permission() {
     }
@@ -25,7 +25,7 @@ public class Permission  implements java.io.Serializable {
         this.id = id;
         this.code = code;
     }
-    public Permission(String id, String name, String code, String description, Set rolePermissions) {
+    public Permission(String id, String name, String code, String description, Set<RolePermission> rolePermissions) {
        this.id = id;
        this.name = name;
        this.code = code;
@@ -61,11 +61,11 @@ public class Permission  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getRolePermissions() {
+    public Set<RolePermission> getRolePermissions() {
         return this.rolePermissions;
     }
     
-    public void setRolePermissions(Set rolePermissions) {
+    public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
 
