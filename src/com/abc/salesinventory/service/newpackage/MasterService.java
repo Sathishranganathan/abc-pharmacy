@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.abc.salesinventory.service;
+package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
@@ -17,34 +16,31 @@ import org.hibernate.HibernateException;
  * @author rdjayawe
  */
 public interface MasterService {
-    
+
     public Customer getCustomer(String customerId);
-    
+
     public Set<Customer> getAllCustomers();
-    
+
     public String saveOrUpdateCustomer(Customer customer) throws HibernateException;
-    
+
     public void removeCustomer(Customer customer);
-    
+
     //Supplier
-    
     public Supplier getSupplier(String supplierId);
-    
+
     public Set<Supplier> getAllSuppliers();
-    
+
     public String saveOrUpdateSupplier(Supplier supplier) throws HibernateException;
-    
-    public void removeSupplier(Supplier supplier);  
+
+    public void removeSupplier(Supplier supplier);
 
     //Product
-    
-     public Product getProduct(String productCode);
-    
-    public Set<Product> getAllpProducts();
-    
+    public Product getProduct(String productCode);
+
+    public Set<Product> getAllProducts();
+
     public String saveOrUpdateProduct(Product product) throws HibernateException;
-    
+
     public void removeProduct(Product product);
-   
-       
+
 }

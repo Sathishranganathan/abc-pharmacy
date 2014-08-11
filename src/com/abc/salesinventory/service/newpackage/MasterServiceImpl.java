@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.abc.salesinventory.service;
+package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
@@ -151,7 +151,7 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public Set<Product> getAllpProducts() {
+    public Set<Product> getAllProducts() {
         Set<Product> products = new HashSet<Product>();
 
         Session session = HibernateUtil.getSessionFactory().openSession();

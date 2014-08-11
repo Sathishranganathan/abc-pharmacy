@@ -3,17 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.abc.salesinventory.service;
+package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Transaction;
-
+import java.util.Set;
+import org.hibernate.HibernateException;
 
 /**
  *
  * @author rdjayawe
  */
 public interface InventoryService {
-    
-    public void saveTransaction(Transaction transaction);
+
+    public String saveTransaction(Transaction transaction) throws HibernateException;
+
+    public Transaction getTransaction(String transactionId);
+
+    public Set<Transaction> getAllTransactions();
 }
