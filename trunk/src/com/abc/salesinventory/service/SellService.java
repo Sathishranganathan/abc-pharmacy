@@ -5,6 +5,7 @@
 
 package com.abc.salesinventory.service;
 
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.*;
 import java.util.List;
 

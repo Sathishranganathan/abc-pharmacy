@@ -5,6 +5,7 @@
 package com.abc.salesinventory.service;
 
 
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.util.Database;
 import com.abc.salesinventory.model.*;
 import java.sql.ResultSet;
@@ -29,10 +30,10 @@ public class StockServiceImpl implements StockService {
             while (rst.next()) {
                 foundStock = new Stock();
 
-                foundStock.setId(rst.getInt("stock_ID"));
-                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
-                foundStock.setQty(rst.getDouble("qty"));
-                foundStock.setExpiryDate(rst.getString("expiry_date"));
+//                foundStock.setId(rst.getInt("stock_ID"));
+//                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
+//                foundStock.setQty(rst.getDouble("qty"));
+//                foundStock.setExpiryDate(rst.getString("expiry_date"));
             }
         } catch (Exception e) {
             Logger.getLogger(StockServiceImpl.class.getName()).error(e);
@@ -42,7 +43,7 @@ public class StockServiceImpl implements StockService {
 
     public boolean save(Stock inStock) {
         try {
-            db.putdata("Insert into stock (item_No,qty,expiry_date) values (" + inStock.getItem().getId() + "," + inStock.getQty() + ",'" + inStock.getExpiryDate() + "')");
+//            db.putdata("Insert into stock (item_No,qty,expiry_date) values (" + inStock.getItem().getId() + "," + inStock.getQty() + ",'" + inStock.getExpiryDate() + "')");
             return true;
         } catch (Exception e) {
             Logger.getLogger(StockServiceImpl.class.getName()).error(e);
@@ -52,13 +53,13 @@ public class StockServiceImpl implements StockService {
 
     public Stock update(Stock inStock) {
         Stock updatedStock = null;
-        int id = inStock.getId();
-        int itemId = inStock.getItem().getId();
-        double qty = inStock.getQty();
-        String expdate = inStock.getExpiryDate();
+//        int id = inStock.getId();
+//        int itemId = inStock.getItem().getId();
+//        double qty = inStock.getQty();
+//        String expdate = inStock.getExpiryDate();
         try {
-            db.putdata("Update stock set item_No=" + itemId + ", qty=" + qty + ",expiry_date='" + expdate + "' where stock_ID=" + id);
-            updatedStock = findById(id);
+//            db.putdata("Update stock set item_No=" + itemId + ", qty=" + qty + ",expiry_date='" + expdate + "' where stock_ID=" + id);
+//            updatedStock = findById(id);
         } catch (Exception ex) {
             Logger.getLogger(StockServiceImpl.class.getName()).error(ex);
         }
@@ -77,10 +78,10 @@ public class StockServiceImpl implements StockService {
 
             while (rst.next()) {
                 Stock foundStock = new Stock();
-                foundStock.setId(rst.getInt("stock_ID"));
-                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
-                foundStock.setQty(rst.getDouble("qty"));
-                foundStock.setExpiryDate(rst.getString("expiry_date"));
+//                foundStock.setId(rst.getInt("stock_ID"));
+//                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
+//                foundStock.setQty(rst.getDouble("qty"));
+//                foundStock.setExpiryDate(rst.getString("expiry_date"));
 
                 foundStocks.add(foundStock);
             }
@@ -97,10 +98,10 @@ public class StockServiceImpl implements StockService {
 
             while (rst.next()) {
                 Stock foundStock = new Stock();
-                foundStock.setId(rst.getInt("stock_ID"));
-                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
-                foundStock.setQty(rst.getDouble("qty"));
-                foundStock.setExpiryDate(rst.getString("expiry_date"));
+//                foundStock.setId(rst.getInt("stock_ID"));
+//                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
+//                foundStock.setQty(rst.getDouble("qty"));
+//                foundStock.setExpiryDate(rst.getString("expiry_date"));
 
                 foundStocks.add(foundStock);
             }
@@ -117,10 +118,10 @@ public class StockServiceImpl implements StockService {
 
             while (rst.next()) {
                 Stock foundStock = new Stock();
-                foundStock.setId(rst.getInt("stock_ID"));
-                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
-                foundStock.setQty(rst.getDouble("qty"));
-                foundStock.setExpiryDate(rst.getString("expiry_date"));
+//                foundStock.setId(rst.getInt("stock_ID"));
+//                foundStock.setItem(itemService.findById(rst.getInt("item_No")));
+//                foundStock.setQty(rst.getDouble("qty"));
+//                foundStock.setExpiryDate(rst.getString("expiry_date"));
 
                 foundStocks.add(foundStock);
             }
