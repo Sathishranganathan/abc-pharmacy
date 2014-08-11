@@ -5,12 +5,15 @@
  */
 package com.abc.salesinventory.service;
 
-import com.abc.salesinventory.model.User;
-import com.abc.salesinventory.util.Database;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import com.abc.salesinventory.model.newpackage.Permission;
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.util.HibernateUtil;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 /**
  *
@@ -18,25 +21,129 @@ import javax.swing.JOptionPane;
  */
 public class SecurityServiceImpl implements SecurityService {
 
-    private Database db = new Database();
-
     @Override
-    public User getUserById(String id) throws SecurityException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String saveOrUpdateRole(Role role) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(role);
+        session.getTransaction().commit();
+        return role.getId();
     }
 
     @Override
-    public String createUser(User user) throws SecurityException {
+    public void removeRole(Role role) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(role);
+        session.getTransaction().commit();
+    }
 
-        user.setId(UUID.randomUUID().toString());
-        String sql = "Insert into user(id, first_name, last_name, userid, email) values ('" + user.getId() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + user.getUserId() + "','" + user.getEmail() + "')";
-        try {
-            db.putdata(sql);
-            return user.getId();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "User can not be saved successfully. " + ex.getMessage(), "Create User - Fail", 1);
+    @Override
+    public Role getRole(String roleId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Role c where c.id='" + roleId + "' ";
+        Query q = session.createQuery(hql);
+        List<Role> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
         }
         return null;
+    }
+    
+        @Override
+    public Role getRoleByName(String roleName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Role c where c.name='" + roleName + "' ";
+        Query q = session.createQuery(hql);
+        List<Role> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<Role> getAllRoles() {
+        Set<Role> roles = new HashSet<Role>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Role";
+        Query q = session.createQuery(hql);
+        List<Role> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() > 0) {
+            roles.addAll(resultList);
+        }
+        return roles;
+    }
+    
+    
+    
+    //Permission>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Override
+    public String saveOrUpdatePermission(Permission role) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(role);
+        session.getTransaction().commit();
+        return role.getId();
+    }
+
+    @Override
+    public void removePermission(Permission role) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(role);
+        session.getTransaction().commit();
+    }
+
+    @Override
+    public Permission getPermission(String roleId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Permission c where c.id='" + roleId + "' ";
+        Query q = session.createQuery(hql);
+        List<Permission> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+    
+        @Override
+    public Permission getPermissionByName(String roleName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Permission c where c.name='" + roleName + "' ";
+        Query q = session.createQuery(hql);
+        List<Permission> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<Permission> getAllPermissions() {
+        Set<Permission> roles = new HashSet<Permission>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Permission";
+        Query q = session.createQuery(hql);
+        List<Permission> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() > 0) {
+            roles.addAll(resultList);
+        }
+        return roles;
     }
 
 }
