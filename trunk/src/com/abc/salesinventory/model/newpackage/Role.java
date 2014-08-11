@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Aug 11, 2014 12:57:27 PM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,8 +14,8 @@ public class Role  implements java.io.Serializable {
      private String id;
      private String name;
      private String description;
-     private Set rolePermissions = new HashSet(0);
-     private Set userRoles = new HashSet(0);
+     private Set<RolePermission> rolePermissions = new HashSet<RolePermission>(0);
+     private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
     public Role() {
     }
@@ -25,7 +25,7 @@ public class Role  implements java.io.Serializable {
         this.id = id;
         this.name = name;
     }
-    public Role(String id, String name, String description, Set rolePermissions, Set userRoles) {
+    public Role(String id, String name, String description, Set<RolePermission> rolePermissions, Set<UserRole> userRoles) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -54,18 +54,18 @@ public class Role  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Set getRolePermissions() {
+    public Set<RolePermission> getRolePermissions() {
         return this.rolePermissions;
     }
     
-    public void setRolePermissions(Set rolePermissions) {
+    public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
-    public Set getUserRoles() {
+    public Set<UserRole> getUserRoles() {
         return this.userRoles;
     }
     
-    public void setUserRoles(Set userRoles) {
+    public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 

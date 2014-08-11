@@ -1,5 +1,5 @@
 package com.abc.salesinventory.model.newpackage;
-// Generated Aug 11, 2014 12:57:27 PM by Hibernate Tools 3.6.0
+// Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -19,7 +19,7 @@ public class Transaction  implements java.io.Serializable {
      private double total;
      private String transactionType;
      private String paymentMethod;
-     private Set transactionDetails = new HashSet(0);
+     private Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>(0);
 
     public Transaction() {
     }
@@ -32,7 +32,7 @@ public class Transaction  implements java.io.Serializable {
         this.transactionType = transactionType;
         this.paymentMethod = paymentMethod;
     }
-    public Transaction(String transactionId, Customer customer, Supplier supplier, Date date, double total, String transactionType, String paymentMethod, Set transactionDetails) {
+    public Transaction(String transactionId, Customer customer, Supplier supplier, Date date, double total, String transactionType, String paymentMethod, Set<TransactionDetail> transactionDetails) {
        this.transactionId = transactionId;
        this.customer = customer;
        this.supplier = supplier;
@@ -92,11 +92,11 @@ public class Transaction  implements java.io.Serializable {
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-    public Set getTransactionDetails() {
+    public Set<TransactionDetail> getTransactionDetails() {
         return this.transactionDetails;
     }
     
-    public void setTransactionDetails(Set transactionDetails) {
+    public void setTransactionDetails(Set<TransactionDetail> transactionDetails) {
         this.transactionDetails = transactionDetails;
     }
 

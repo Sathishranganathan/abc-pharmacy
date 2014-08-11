@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 11, 2014 12:57:28 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="com.abc.salesinventory.model.newpackage.Permission" table="permission" catalog="pharmacy">
         <id name="id" type="string">
