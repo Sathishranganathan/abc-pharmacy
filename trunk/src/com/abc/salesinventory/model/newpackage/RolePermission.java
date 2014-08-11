@@ -1,6 +1,9 @@
 package com.abc.salesinventory.model.newpackage;
 // Generated Jun 19, 2014 10:37:25 PM by Hibernate Tools 3.6.0
 
+import java.util.HashSet;
+
+
 
 
 /**
@@ -43,10 +46,6 @@ public class RolePermission  implements java.io.Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
-
-
-
-
 }
 
 
