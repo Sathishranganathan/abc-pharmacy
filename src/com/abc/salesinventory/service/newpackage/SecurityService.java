@@ -7,6 +7,7 @@ package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.User;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -15,6 +16,16 @@ import org.hibernate.HibernateException;
  * @author rdjayawe
  */
 public interface SecurityService {
+    
+    public String saveOrUpdateUser(User user) throws HibernateException;
+    
+    public void removeUser(User user);
+    
+    public User getUser(String userId);
+    
+    public User getUserByUserName(String userName);
+    
+    public Set<User> getAllUsers();
 
     public Role getRole(String roleId);
 
