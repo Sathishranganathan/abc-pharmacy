@@ -7,6 +7,7 @@ package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.User;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,68 @@ import org.hibernate.Session;
  */
 public class SecurityServiceImpl implements SecurityService {
 
+    @Override
+    public String saveOrUpdateUser(User user) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(user);
+        session.getTransaction().commit();
+        return user.getId();
+    }
+
+    @Override
+    public void removeUser(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(user);
+        session.getTransaction().commit();
+    }
+
+    @Override
+    public User getUser(String userId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from User c where c.id='" + userId + "' ";
+        Query q = session.createQuery(hql);
+        List<User> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserByUserName(String userName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from User c where c.userid='" + userName + "' ";
+        Query q = session.createQuery(hql);
+        List<User> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<User> getAllUsers() {
+        Set<User> users = new HashSet<User>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from User";
+        Query q = session.createQuery(hql);
+        List<User> resultList = q.list();
+        session.getTransaction().commit();
+        if (resultList != null && resultList.size() > 0) {
+            users.addAll(resultList);
+        }
+        return users;
+    }
+
+    ///Role///////////////////////////////////////////////
     @Override
     public String saveOrUpdateRole(Role role) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -51,8 +114,8 @@ public class SecurityServiceImpl implements SecurityService {
         }
         return null;
     }
-    
-        @Override
+
+    @Override
     public Role getRoleByName(String roleName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -81,9 +144,7 @@ public class SecurityServiceImpl implements SecurityService {
         }
         return roles;
     }
-    
-    
-    
+
     //Permission>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     @Override
     public String saveOrUpdatePermission(Permission role) throws HibernateException {
@@ -115,8 +176,8 @@ public class SecurityServiceImpl implements SecurityService {
         }
         return null;
     }
-    
-        @Override
+
+    @Override
     public Permission getPermissionByName(String roleName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

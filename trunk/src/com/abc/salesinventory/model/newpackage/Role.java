@@ -20,6 +20,11 @@ public class Role  implements java.io.Serializable {
     public Role() {
     }
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
 	
     public Role(String id, String name) {
         this.id = id;
