@@ -16,6 +16,5 @@
     <mapping resource="com/abc/salesinventory/model/newpackage/Permission.hbm.xml"/>
     <mapping resource="com/abc/salesinventory/model/newpackage/Customer.hbm.xml"/>
     <mapping resource="com/abc/salesinventory/model/newpackage/Supplier.hbm.xml"/>
-    <mapping/>
   </session-factory>
 </hibernate-configuration>
