@@ -33,6 +33,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     public SearchCustomer() {
         initComponents();
         txtCustomerName.requestFocus();
+        search();
     }
 //Query for search customer details
     private static String QUERY_BASED_ON_NAME = "from Customer a where a.name like '";
@@ -80,13 +81,13 @@ public class SearchCustomer extends javax.swing.JFrame {
     private void displayResult(List resultList) {
 
         Vector<String> tableHeaders = new Vector<String>();
-        tableHeaders.add("id");
-        tableHeaders.add("name");
-        tableHeaders.add("address");
-        tableHeaders.add("mobile");
-        tableHeaders.add("home");
-        tableHeaders.add("office");
-        tableHeaders.add("email");
+        tableHeaders.add("Customer ID");
+        tableHeaders.add("Name");
+        tableHeaders.add("Address");
+        tableHeaders.add("Mobile");
+        tableHeaders.add("Home");
+        tableHeaders.add("Office");
+        tableHeaders.add("Email");
 
         Vector tableData = new Vector();
         for (Object o : resultList) {
