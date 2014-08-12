@@ -241,9 +241,21 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Save Product Details", 2);
            return;
        }
-       
        else
        {
+           try {//to check whether the customer ID is allready exists
+                            com.abc.salesinventory.model.newpackage.Product product = masterService.getProduct(txtProductCode.getText().trim());
+                            if(product != null){
+                                JOptionPane.showMessageDialog(null, "Product Code Already Exists !", "Save Product Details", 2);
+                                return; // Product ID is already exists.
+                            }
+                        } catch (Exception x) {//Exception handling
+                            JOptionPane.showMessageDialog(null, "Error Occured !", "Save Product Details", 2);
+                            return;
+                        }
+       }
+       
+       
            com.abc.salesinventory.model.newpackage.Product product = new com.abc.salesinventory.model.newpackage.Product();
            product.setProductCode(txtProductCode.getText().trim());
            product.setProductName(txtProductName.getText().trim());
@@ -258,7 +270,7 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
             JOptionPane.showMessageDialog(rootPane, e);
         }
            
-       }
+       
     }//GEN-LAST:event_btnProductSaveActionPerformed
 
     private void btnProductClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductClearActionPerformed

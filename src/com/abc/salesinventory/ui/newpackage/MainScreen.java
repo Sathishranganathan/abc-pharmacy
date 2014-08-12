@@ -50,7 +50,7 @@ private String userId;
         miSearchSup = new javax.swing.JMenuItem();
         menuStock = new javax.swing.JMenu();
         miAddproduct = new javax.swing.JMenuItem();
-        miAddStock = new javax.swing.JMenuItem();
+        miSearchProduct = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
         miSales = new javax.swing.JMenuItem();
         menuPurchases = new javax.swing.JMenu();
@@ -143,6 +143,11 @@ private String userId;
         menuFile.add(miChangePassword);
 
         miExit.setText("Exit");
+        miExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExitActionPerformed(evt);
+            }
+        });
         menuFile.add(miExit);
 
         jMenuBar1.add(menuFile);
@@ -197,8 +202,13 @@ private String userId;
         });
         menuStock.add(miAddproduct);
 
-        miAddStock.setText("Add New Stock");
-        menuStock.add(miAddStock);
+        miSearchProduct.setText("Search Product");
+        miSearchProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSearchProductActionPerformed(evt);
+            }
+        });
+        menuStock.add(miSearchProduct);
 
         jMenuBar1.add(menuStock);
 
@@ -343,6 +353,14 @@ private String userId;
         new ChangePassword(this.userId).setVisible(true);
     }//GEN-LAST:event_miChangePasswordActionPerformed
 
+    private void miSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchProductActionPerformed
+        new SearchProduct().setVisible(true);
+    }//GEN-LAST:event_miSearchProductActionPerformed
+
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_miExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -398,7 +416,6 @@ private String userId;
     private javax.swing.JMenu menuSupplier;
     private javax.swing.JMenu menuUserRole;
     private javax.swing.JMenuItem miAddCus;
-    private javax.swing.JMenuItem miAddStock;
     private javax.swing.JMenuItem miAddSupp;
     private javax.swing.JMenuItem miAddproduct;
     private javax.swing.JMenuItem miChangePassword;
@@ -412,6 +429,7 @@ private String userId;
     private javax.swing.JMenuItem miSales;
     private javax.swing.JMenuItem miSalesR;
     private javax.swing.JMenuItem miSearchCus;
+    private javax.swing.JMenuItem miSearchProduct;
     private javax.swing.JMenuItem miSearchSup;
     // End of variables declaration//GEN-END:variables
 }

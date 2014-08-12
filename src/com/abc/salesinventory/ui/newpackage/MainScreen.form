@@ -30,6 +30,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExitActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -92,10 +95,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miAddproductActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miAddStock">
+            <MenuItem class="javax.swing.JMenuItem" name="miSearchProduct">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add New Stock"/>
+                <Property name="text" type="java.lang.String" value="Search Product"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSearchProductActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
