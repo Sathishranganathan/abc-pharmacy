@@ -113,7 +113,8 @@ public class Purchases extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 0, 0));
         jLabel31.setText("*");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Purchases");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

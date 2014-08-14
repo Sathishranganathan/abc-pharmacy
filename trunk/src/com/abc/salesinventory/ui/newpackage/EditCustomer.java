@@ -72,7 +72,8 @@ public class EditCustomer extends javax.swing.JFrame {
         ftxtCustomerOffice = new javax.swing.JFormattedTextField();
         txtCustomerName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit Customer Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -106,6 +107,7 @@ public class EditCustomer extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Format - C#####");
 
+        txtCustomerId.setEditable(false);
         txtCustomerId.setName(""); // NOI18N
         txtCustomerId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,10 +224,9 @@ public class EditCustomer extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel16)
-                                        .addGap(183, 183, 183))
+                                        .addComponent(jLabel16))
                                     .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 183, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnCustomerUpdate)
                                 .addGap(73, 73, 73)

@@ -65,7 +65,8 @@ public class CreateCustomer extends javax.swing.JFrame {
         ftxtCustomerHome = new javax.swing.JFormattedTextField();
         ftxtCustomerOffice = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Customer Details");
         setBackground(new java.awt.Color(204, 255, 153));
         setName("AddCustomer"); // NOI18N
 

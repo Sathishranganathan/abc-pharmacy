@@ -67,7 +67,8 @@ private String userId;
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sales & Inventory Management System - Eraj Pharmaceuticals");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

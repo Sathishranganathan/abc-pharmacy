@@ -59,7 +59,8 @@ public class EditProduct extends javax.swing.JFrame {
         cmbCategory = new javax.swing.JComboBox();
         cmbUnit = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit Product Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,6 +73,7 @@ public class EditProduct extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Product Name");
 
+        txtProductCode.setEditable(false);
         txtProductCode.setName(""); // NOI18N
         txtProductCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

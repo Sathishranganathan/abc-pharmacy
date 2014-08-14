@@ -55,7 +55,8 @@ public class AddNewProduct extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         ftxtReorderLevel = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add New Product");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -348,19 +349,5 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
         cmbUnit.setSelectedItem(0);
         ftxtReorderLevel.setText(null);
         }
-    
-    private void FillSupplierCombo()
-    {
-        try
-        {
-            
-    }
-        catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(rootPane, e);
-        
-        }
-
-    }
     
 }
