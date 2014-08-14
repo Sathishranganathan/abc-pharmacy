@@ -69,7 +69,8 @@ public class EditSupplier extends javax.swing.JFrame {
         ftxtSupplierOffice = new javax.swing.JFormattedTextField();
         txtSupplierName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit Supplier Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -103,6 +104,7 @@ public class EditSupplier extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Format - S#####");
 
+        txtSupplierId.setEditable(false);
         txtSupplierId.setName(""); // NOI18N
         txtSupplierId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -24,6 +24,8 @@ public class ChangePassword extends javax.swing.JFrame {
     public ChangePassword(String userId) {
         initComponents();
         this.userId = userId;
+        Loading();
+       
     }
 
     /**
@@ -51,6 +53,7 @@ public class ChangePassword extends javax.swing.JFrame {
         txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Change Password");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -71,8 +74,18 @@ public class ChangePassword extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(204, 0, 0));
         jLabel5.setText("*");
@@ -166,11 +179,17 @@ public class ChangePassword extends javax.swing.JFrame {
         String confirmPwd = new String(txtNewPassword.getPassword());
 
         SecurityService securityService = new SecurityServiceImpl();
-
+        
         if (currentPwd.equals("") || newPwd.equals("") || confirmPwd.equals("")) {
             JOptionPane.showMessageDialog(null, "All 3 fields cannot be empty", "Change Password - Error", 2);
             return;
-        } else if (!securityService.isPasswordCorrect(currentPwd, this.userId)) {
+        }else if(txtNewPassword.getText().length()>15){
+            JOptionPane.showMessageDialog(null, "Maximium Length of Password Should be 15", "Change Password - Error", 2);
+            return;
+        }else if(txtNewPassword.getText().length()<5){
+            JOptionPane.showMessageDialog(null, "Minimum Length of Password Should be 5", "Change Password - Error", 2);
+            return;
+        }else if (!securityService.isPasswordCorrect(currentPwd, this.userId)) {
             JOptionPane.showMessageDialog(null, "Current password does not match", "Change Password - Error", 2);
             return;
         } else if (!newPwd.equals(confirmPwd)) {
@@ -184,6 +203,14 @@ public class ChangePassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Successfully Changed Password", "Change Password", 2);
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+      Loading();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        System.exit(1);//click close button,exit from the window
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,4 +263,12 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtCurrentPassword;
     private javax.swing.JPasswordField txtNewPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void Loading(){
+      txtCurrentPassword.setText(null);
+      txtNewPassword.setText(null);
+      txtConfirmPassword.setText(null);
+      txtCurrentPassword.requestFocus();
+    }
+
 }

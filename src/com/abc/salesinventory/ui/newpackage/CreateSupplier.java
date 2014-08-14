@@ -66,7 +66,8 @@ public class CreateSupplier extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSupplierAddress = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Supplier Details");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
