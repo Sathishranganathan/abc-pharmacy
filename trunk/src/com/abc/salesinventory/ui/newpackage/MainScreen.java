@@ -3,22 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
+
+import com.abc.salesinventory.service.newpackage.SecurityService;
+import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Manuri
  */
 public class MainScreen extends javax.swing.JFrame {
-private String userId;
+
+    private String userId;
+    private SecurityService securityService = new SecurityServiceImpl();
+
     /**
      * Creates new form MainScreen
      */
 
     public MainScreen(String userId) {
         initComponents();
-        this.userId=userId;
+        this.userId = userId;
     }
 
     /**
@@ -315,11 +321,11 @@ private String userId;
     }//GEN-LAST:event_miSearchCusActionPerformed
 
     private void miAddSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddSuppActionPerformed
-       new CreateSupplier().setVisible(true);
+        new CreateSupplier().setVisible(true);
     }//GEN-LAST:event_miAddSuppActionPerformed
 
     private void miSearchSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchSupActionPerformed
-       new SearchSupplier().setVisible(true);
+        new SearchSupplier().setVisible(true);
     }//GEN-LAST:event_miSearchSupActionPerformed
 
     private void miAddproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddproductActionPerformed
@@ -343,7 +349,11 @@ private String userId;
     }//GEN-LAST:event_miEditAccActionPerformed
 
     private void miChangeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangeRoleActionPerformed
-        new CreateRole().setVisible(true);
+        if (securityService.hasPermission("MANAGE_ROLES", this.userId)) {
+            new CreateRole().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miChangeRoleActionPerformed
 
     private void miEditRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditRoleActionPerformed

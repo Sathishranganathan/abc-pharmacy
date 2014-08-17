@@ -7,7 +7,9 @@ package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.RolePermission;
 import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -16,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -25,7 +28,30 @@ import org.hibernate.Session;
  * @author rdjayawe
  */
 public class SecurityServiceImpl implements SecurityService {
-    
+
+    @Override
+    public boolean hasPermission(String permissionCode, String userId) {
+        boolean hasPermission = false;
+
+        User user = getUserByUserName(userId);
+        if (user == null) {
+            return false;
+        }
+
+        Set<UserRole> userRoles = user.getUserRoles();
+        for (UserRole userRole : userRoles) {
+            Role role = userRole.getRole();
+            Set<RolePermission> rolePermissions = role.getRolePermissions();
+            for (RolePermission rolePermission : rolePermissions) {
+                Permission permission = rolePermission.getPermission();
+                if (permission.getCode().equals(permissionCode)) {
+                    return true;
+                }
+            }
+        }
+        return hasPermission;
+    }
+
     @Override
     public String getPasswordHash(String plainTextPassword) {
         try {
@@ -107,6 +133,20 @@ public class SecurityServiceImpl implements SecurityService {
         String hql = "from User c where c.userid='" + userName + "' ";
         Query q = session.createQuery(hql);
         List<User> resultList = q.list();
+        for (User user : resultList) {
+            Hibernate.initialize(user.getUserRoles());
+            Set<UserRole> userRoles = user.getUserRoles();
+            for (UserRole userRole : userRoles) {
+                Role role = userRole.getRole();
+                Hibernate.initialize(role.getRolePermissions());
+                Set<RolePermission> rolePermissions = role.getRolePermissions();
+                for (RolePermission rolePermission : rolePermissions) {
+                    Permission permission = rolePermission.getPermission();
+                    Hibernate.initialize(permission);
+                }
+            }
+        }
+        Hibernate.initialize(resultList);
         session.getTransaction().commit();
         session.close();
         if (resultList != null && resultList.size() == 1) {
