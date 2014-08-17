@@ -71,6 +71,11 @@ public class EditUser extends javax.swing.JFrame {
         btnCancel.setText("Cancel");
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         cmbUserName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Username--" }));
 
@@ -161,6 +166,10 @@ public class EditUser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments

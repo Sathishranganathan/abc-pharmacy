@@ -17,6 +17,8 @@ import org.hibernate.HibernateException;
  */
 public interface SecurityService {
     
+    public boolean hasPermission(String permissionCode, String userId);
+    
     public String getPasswordHash(String plainTextPassword);
     
     public boolean isPasswordCorrect(String plainTextPassword, String userId);
