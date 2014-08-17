@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.service.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
@@ -22,6 +22,16 @@ import org.hibernate.Session;
 public class InventoryServiceImpl implements InventoryService {
 
     @Override
+    public String saveStock(Stock stock) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(stock);
+        session.getTransaction().commit();
+        session.close();
+        return stock.getStockId();
+    }
+
+    @Override
     public String saveTransaction(Transaction transaction) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -30,7 +40,7 @@ public class InventoryServiceImpl implements InventoryService {
         session.close();
         return transaction.getTransactionId();
     }
-    
+
     @Override
     public Transaction getTransaction(String transactionId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -62,5 +72,5 @@ public class InventoryServiceImpl implements InventoryService {
         }
         return transactions;
     }
-    
+
 }
