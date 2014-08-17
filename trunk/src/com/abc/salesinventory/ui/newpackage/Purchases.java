@@ -7,6 +7,7 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.model.newpackage.TransactionDetail;
 import com.abc.salesinventory.service.newpackage.InventoryService;
@@ -33,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Manuri
  */
 public class Purchases extends javax.swing.JFrame {
-
+    
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
 
@@ -51,11 +52,11 @@ public class Purchases extends javax.swing.JFrame {
         for (Product product : products) {
             cmbProductName.addItem(product);
         }
-
+        
         buttonGroup1.add(btnCash);
         buttonGroup1.add(btnCredit);
         buttonGroup1.add(btnCheque);
-
+        
     }
 
     /**
@@ -634,7 +635,7 @@ public class Purchases extends javax.swing.JFrame {
             Double x = Double.parseDouble(txtQty.getText());
             Double y = Double.parseDouble(txtUniPrice.getText());
             Double result = x * y;
-
+            
             Vector<String> tableHeaders = new Vector<String>();
             tableHeaders.add("Product Code");
             tableHeaders.add("Product Name");
@@ -642,9 +643,9 @@ public class Purchases extends javax.swing.JFrame {
             tableHeaders.add("Qty");
             tableHeaders.add("Price");
             tableHeaders.add("Amount");
-
+            
             Vector tableData = new Vector();
-
+            
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
@@ -653,10 +654,10 @@ public class Purchases extends javax.swing.JFrame {
             oneRow.add(txtUniPrice.getText());
             oneRow.add(result);
             tableData.add(oneRow);
-
+            
             jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
             Clear();
-
+            
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -666,16 +667,16 @@ public class Purchases extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExpDateKeyPressed
 
     private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
-
+        
         Transaction transaction = new Transaction();
-
-        Date date = null;
+        
+        Date txnDate = null;
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(txtDate.getText());
+            txnDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(txtDate.getText());
         } catch (ParseException ex) {
             Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
         }
-        transaction.setDate(date);
+        transaction.setDate(txnDate);
         if (btnCash.isSelected()) {
             transaction.setPaymentMethod("CASH");
         } else if (btnCheque.isSelected()) {
@@ -683,60 +684,71 @@ public class Purchases extends javax.swing.JFrame {
         } else if (btnCredit.isSelected()) {
             transaction.setPaymentMethod("CREDIT");
         }
-
+        
         Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
         transaction.setSupplier(supplier);
-
+        
         transaction.setTotal(0);
         transaction.setTransactionId(UUID.randomUUID().toString());
         transaction.setTransactionType("PURCHASE");
-
+        
         Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
-
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Vector dataModel = model.getDataVector();
         Iterator it = dataModel.iterator();
         int x = 0;
         while (it.hasNext()) {
             Vector v = (Vector) it.next();
-
+            
             TransactionDetail detail = new TransactionDetail();
-
+            
             String productCode = (String) v.get(0);
             Product product = masterService.getProduct(productCode);
             detail.setProduct(product);
-
+            
             Integer qty = Integer.parseInt((String) v.get(3));
             detail.setQuantity(qty);
-
+            
             detail.setTransaction(transaction);
             detail.setTransactionDetailId(UUID.randomUUID().toString());
-
+            
             Double uprice = Double.parseDouble((String) v.get(4));
             detail.setUnitPrice(uprice);
-
-            date = null;
+            
+            Date expDate = null;
             try {
-                date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
+                expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
             } catch (ParseException ex) {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }
-            detail.setExpDate(date);
-
+            detail.setExpDate(expDate);
+            
             transactionDetails.add(detail);
-
+            
+            Stock stock = new Stock();
+            stock.setExpDate(txnDate);
+            stock.setProduct(product);
+            stock.setPurchasedUnitPrice(uprice);
+            stock.setQuantity(qty);
+            stock.setStockId(UUID.randomUUID().toString());
+            stock.setSupplier(supplier);
+            
+            inventoryService.saveStock(stock);
+            
         }
-
-        transaction.setTransactionDetails(transactionDetails    );
+        
+        transaction.setTransactionDetails(transactionDetails);
         inventoryService.saveTransaction(transaction);
+        
 
     }//GEN-LAST:event_btnAddTransactionActionPerformed
 
     private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-
+        
 
     }//GEN-LAST:event_btnTotalActionPerformed
-
+    
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
         txtProductCode.setText(null);
@@ -745,7 +757,7 @@ public class Purchases extends javax.swing.JFrame {
         txtUniPrice.setText(null);
         txtStockBalance.setText(null);
         txtQty.setText(null);
-
+        
     }
 
     /**
@@ -762,7 +774,7 @@ public class Purchases extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
