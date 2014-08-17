@@ -26,7 +26,7 @@
         <property name="paymentMethod" type="string">
             <column name="payment_method" length="45" not-null="true" />
         </property>
-        <set name="transactionDetails" table="transaction_detail" inverse="true" lazy="true" fetch="select">
+        <set name="transactionDetails" table="transaction_detail" inverse="true" lazy="true" fetch="select" cascade="save-update">
             <key>
                 <column name="transaction_id" length="45" />
             </key>

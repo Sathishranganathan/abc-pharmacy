@@ -7,12 +7,24 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Transaction;
+import com.abc.salesinventory.model.newpackage.TransactionDetail;
+import com.abc.salesinventory.service.newpackage.InventoryService;
+import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import java.util.Set;
 import java.util.UUID;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.DatePicker;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 public class Purchases extends javax.swing.JFrame {
 
     MasterService masterService = new MasterServiceImpl();
+    InventoryService inventoryService = new InventoryServiceImpl();
 
     /**
      * Creates new form Purchases
@@ -228,26 +241,26 @@ public class Purchases extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Product Code", "Product Name", "Qty", "Price", "Amount"
+                "Product Code", "Product Name", "Expiry Date", "Qty", "Price", "Amount"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -268,6 +281,11 @@ public class Purchases extends javax.swing.JFrame {
 
         btnTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnTotal.setText("Total");
+        btnTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTotalActionPerformed(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 0, 0));
@@ -278,6 +296,11 @@ public class Purchases extends javax.swing.JFrame {
 
         btnAddTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAddTransaction.setText("Add Transaction");
+        btnAddTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTransactionActionPerformed(evt);
+            }
+        });
 
         btnCancelTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCancelTransaction.setText("Cancel Transaction");
@@ -615,6 +638,7 @@ public class Purchases extends javax.swing.JFrame {
             Vector<String> tableHeaders = new Vector<String>();
             tableHeaders.add("Product Code");
             tableHeaders.add("Product Name");
+            tableHeaders.add("Expiry Date");
             tableHeaders.add("Qty");
             tableHeaders.add("Price");
             tableHeaders.add("Amount");
@@ -624,6 +648,7 @@ public class Purchases extends javax.swing.JFrame {
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
+            oneRow.add(txtExpDate.getText());
             oneRow.add(txtQty.getText());
             oneRow.add(txtUniPrice.getText());
             oneRow.add(result);
@@ -639,6 +664,78 @@ public class Purchases extends javax.swing.JFrame {
         DatePicker datePicker = new DatePicker(jPanel1);
         txtExpDate.setText(datePicker.setPickedDate());
     }//GEN-LAST:event_txtExpDateKeyPressed
+
+    private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
+
+        Transaction transaction = new Transaction();
+
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(txtDate.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        transaction.setDate(date);
+        if (btnCash.isSelected()) {
+            transaction.setPaymentMethod("CASH");
+        } else if (btnCheque.isSelected()) {
+            transaction.setPaymentMethod("CHEQUE");
+        } else if (btnCredit.isSelected()) {
+            transaction.setPaymentMethod("CREDIT");
+        }
+
+        Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
+        transaction.setSupplier(supplier);
+
+        transaction.setTotal(0);
+        transaction.setTransactionId(UUID.randomUUID().toString());
+        transaction.setTransactionType("PURCHASE");
+
+        Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Vector dataModel = model.getDataVector();
+        Iterator it = dataModel.iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Vector v = (Vector) it.next();
+
+            TransactionDetail detail = new TransactionDetail();
+
+            String productCode = (String) v.get(0);
+            Product product = masterService.getProduct(productCode);
+            detail.setProduct(product);
+
+            Integer qty = Integer.parseInt((String) v.get(3));
+            detail.setQuantity(qty);
+
+            detail.setTransaction(transaction);
+            detail.setTransactionDetailId(UUID.randomUUID().toString());
+
+            Double uprice = Double.parseDouble((String) v.get(4));
+            detail.setUnitPrice(uprice);
+
+            date = null;
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
+            } catch (ParseException ex) {
+                Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            detail.setExpDate(date);
+
+            transactionDetails.add(detail);
+
+        }
+
+        transaction.setTransactionDetails(transactionDetails    );
+        inventoryService.saveTransaction(transaction);
+
+    }//GEN-LAST:event_btnAddTransactionActionPerformed
+
+    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
+
+
+    }//GEN-LAST:event_btnTotalActionPerformed
 
     private void Clear() {
         cmbProductName.setSelectedIndex(0);

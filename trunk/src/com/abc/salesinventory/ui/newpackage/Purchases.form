@@ -606,9 +606,10 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="10">
+                  <Table columnCount="6" rowCount="10">
                     <Column editable="false" title="Product Code" type="java.lang.String"/>
                     <Column editable="false" title="Product Name" type="java.lang.String"/>
+                    <Column editable="false" title="Expiry Date" type="java.lang.String"/>
                     <Column editable="false" title="Qty" type="java.lang.String"/>
                     <Column editable="false" title="Price" type="java.lang.String"/>
                     <Column editable="false" title="Amount" type="java.lang.String"/>
@@ -641,6 +642,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Total"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTotalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel28">
           <Properties>
@@ -668,6 +672,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add Transaction"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddTransactionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelTransaction">
           <Properties>
