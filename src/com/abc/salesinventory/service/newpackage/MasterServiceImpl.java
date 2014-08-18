@@ -12,6 +12,7 @@ import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.prefs.Preferences;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -126,7 +127,6 @@ public class MasterServiceImpl implements MasterService {
     }
 
     //Product
-    
     @Override
     public String saveOrUpdateProduct(Product product) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -176,5 +176,21 @@ public class MasterServiceImpl implements MasterService {
             products.addAll(resultList);
         }
         return products;
+    }
+
+    @Override
+    public String getPreference(String key) {
+        Preferences prefs = Preferences.userNodeForPackage(this.getClass());
+        String defaultValue = null;
+        if (key.equals(PREF_REPORT_LOCATION)) {
+            defaultValue = "C:\\SalesInventorySystem\\reports\\";
+        }
+        return prefs.get(key, defaultValue);
+    }
+
+    @Override
+    public void setPreference(String key, String value) {
+        Preferences prefs = Preferences.userNodeForPackage(this.getClass());
+        prefs.put(key, value);
     }
 }

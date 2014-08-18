@@ -17,6 +17,12 @@ import org.hibernate.HibernateException;
  */
 public interface MasterService {
 
+    public static String PREF_REPORT_LOCATION = "REPORT_LOC";
+
+    public String getPreference(String key);
+
+    public void setPreference(String key, String value);
+
     public Customer getCustomer(String customerId);
 
     public Set<Customer> getAllCustomers();
