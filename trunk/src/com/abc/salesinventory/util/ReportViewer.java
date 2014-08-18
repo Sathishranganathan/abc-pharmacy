@@ -25,16 +25,15 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author
  */
-public class ReportViewer extends JFrame {
+public class ReportViewer {
 
-    private String reportPath = "D:\\BIT\\Project_2014\\Pharmacy\\trunk\\src\\com\\abc\\salesinventory\\report\\";
+    private String reportPath = "C:\\Users\\rdjayawe\\Downloads\\ayesha_project\\source\\trunk\\src\\com\\abc\\salesinventory\\report\\";
 
     public ReportViewer(String fileName) {
         this(fileName, null);
     }
 
     public ReportViewer(String fileName, HashMap params) {
-        super("View Reports");
         try {
             Connection con = Database.con();
 
@@ -44,9 +43,6 @@ public class ReportViewer extends JFrame {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, con);
             JasperViewer.viewReport(jasperPrint, false);
             JRViewer jr = new JRViewer(jasperPrint);
-
-            Container cn = getContentPane();
-            cn.add(jr);
 
         } catch (ClassNotFoundException cnfe) {
             cnfe.printStackTrace();
@@ -65,14 +61,5 @@ public class ReportViewer extends JFrame {
             JOptionPane.showMessageDialog(null, "Error in generating Reports !!" + e.getMessage(), "Error", 0);
             System.out.println("ERROR: " + e.getMessage());
         }
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setLocationByPlatform(true);
-        pack();
-    }
-
-    public static void main(String a[]) {
-        ReportViewer reportViewer = new ReportViewer("report1.jrxml");
-        reportViewer.setVisible(true);
-
     }
 }
