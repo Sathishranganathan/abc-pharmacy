@@ -4,7 +4,8 @@
  */
 package com.abc.salesinventory.util;
 
-import java.awt.Container;
+import com.abc.salesinventory.service.newpackage.MasterService;
+import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -27,13 +28,25 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class ReportViewer {
 
-    private String reportPath = "C:\\Users\\rdjayawe\\Downloads\\ayesha_project\\source\\trunk\\src\\com\\abc\\salesinventory\\report\\";
+    private static String reportPath = null;
+    MasterService masterService = new MasterServiceImpl();
 
     public ReportViewer(String fileName) {
         this(fileName, null);
     }
 
     public ReportViewer(String fileName, HashMap params) {
+        if (reportPath == null) {
+            String tempPath = (String) masterService.getPreference(MasterService.PREF_REPORT_LOCATION);
+
+            if (tempPath == null || tempPath.equals("")) {
+                JOptionPane.showMessageDialog(null, "Error in generating Reports !! Report path needs to be set through preferences", "Error", 0);
+                return;
+            }else{
+                reportPath = tempPath;
+            }
+        }
+
         try {
             Connection con = Database.con();
 
