@@ -12,6 +12,9 @@ import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -177,20 +180,16 @@ public class MasterServiceImpl implements MasterService {
         }
         return products;
     }
-
+    
     @Override
     public String getPreference(String key) {
-        Preferences prefs = Preferences.userNodeForPackage(this.getClass());
-        String defaultValue = null;
-        if (key.equals(PREF_REPORT_LOCATION)) {
-            defaultValue = "C:\\SalesInventorySystem\\reports\\";
-        }
-        return prefs.get(key, defaultValue);
+        Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+        return prefs.get(key, "");
     }
 
     @Override
     public void setPreference(String key, String value) {
-        Preferences prefs = Preferences.userNodeForPackage(this.getClass());
+        Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
         prefs.put(key, value);
     }
 }
