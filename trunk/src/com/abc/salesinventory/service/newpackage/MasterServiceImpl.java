@@ -8,6 +8,7 @@ package com.abc.salesinventory.service.newpackage;
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
@@ -181,6 +182,7 @@ public class MasterServiceImpl implements MasterService {
         return products;
     }
     
+    //
     @Override
     public String getPreference(String key) {
         Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
@@ -191,5 +193,58 @@ public class MasterServiceImpl implements MasterService {
     public void setPreference(String key, String value) {
         Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
         prefs.put(key, value);
+    }
+    
+    //Stock
+    
+    @Override
+    public String saveOrUpdateStock(Stock stock) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(stock);
+        session.getTransaction().commit();
+        session.close();
+        return stock.getStockId();
+    }
+
+    @Override
+    public void removeStock(Stock stock) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(stock);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public Stock getStock(String stockId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Stock s where s.stockId='" + stockId + "' ";
+        Query q = session.createQuery(hql);
+        List<Stock> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<Stock> getAllStocks() {
+        Set<Stock> stocks = new HashSet<Stock>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Stock";
+        Query q = session.createQuery(hql);
+        List<Stock> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            stocks.addAll(resultList);
+        }
+        return stocks;
     }
 }
