@@ -345,8 +345,8 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
     private void Loading() {
         txtProductCode.setText(null);
         txtProductName.setText(null);
-        cmbCategory.setSelectedItem(0);
-        cmbUnit.setSelectedItem(0);
+        cmbCategory.setSelectedIndex(0);
+        cmbUnit.setSelectedIndex(0);
         ftxtReorderLevel.setText(null);
         }
     

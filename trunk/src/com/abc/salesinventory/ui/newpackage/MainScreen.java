@@ -313,39 +313,75 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miAddCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddCusActionPerformed
-        new CreateCustomer().setVisible(true);
+        if (securityService.hasPermission("DO_SALES", this.userId)) {
+            new CreateCustomer().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miAddCusActionPerformed
 
     private void miSearchCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchCusActionPerformed
-        new SearchCustomer().setVisible(true);
+        if (securityService.hasPermission("DO_SALES", this.userId)) {
+            new SearchCustomer().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSearchCusActionPerformed
 
     private void miAddSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddSuppActionPerformed
-        new CreateSupplier().setVisible(true);
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new CreateSupplier().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miAddSuppActionPerformed
 
     private void miSearchSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchSupActionPerformed
-        new SearchSupplier().setVisible(true);
+       if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new SearchSupplier().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSearchSupActionPerformed
 
     private void miAddproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddproductActionPerformed
-        new AddNewProduct().setVisible(true);
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new AddNewProduct().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miAddproductActionPerformed
 
     private void miSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesActionPerformed
-        new Purchases().setVisible(true);
+        if (securityService.hasPermission("DO_SALES", this.userId)) {
+            new Sales().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSalesActionPerformed
 
     private void miPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPurchaseActionPerformed
-        new Sales().setVisible(true);
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new Purchases().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miPurchaseActionPerformed
 
     private void miCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateAccActionPerformed
-        new CreateUser().setVisible(true);
+       if (securityService.hasPermission("MANAGE_USERS", this.userId)) {
+            new CreateUser().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miCreateAccActionPerformed
 
     private void miEditAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditAccActionPerformed
-        new EditUser().setVisible(true);
+        if (securityService.hasPermission("MANAGE_USERS", this.userId)) {
+            new EditUser().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miEditAccActionPerformed
 
     private void miChangeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangeRoleActionPerformed
@@ -357,7 +393,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miChangeRoleActionPerformed
 
     private void miEditRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditRoleActionPerformed
-        new EditUserRole().setVisible(true);
+        if (securityService.hasPermission("MANAGE_ROLES", this.userId)) {
+            new EditUserRole().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miEditRoleActionPerformed
 
     private void miChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangePasswordActionPerformed
@@ -365,7 +405,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miChangePasswordActionPerformed
 
     private void miSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchProductActionPerformed
-        new SearchProduct().setVisible(true);
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new SearchProduct().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSearchProductActionPerformed
 
     private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed

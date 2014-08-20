@@ -323,6 +323,11 @@ public class Purchases extends javax.swing.JFrame {
 
         btnCheque.setText("Cheque");
 
+        txtExpDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtExpDateActionPerformed(evt);
+            }
+        });
         txtExpDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExpDateKeyPressed(evt);
@@ -748,6 +753,11 @@ public class Purchases extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnTotalActionPerformed
+
+    private void txtExpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpDateActionPerformed
+       DatePicker datePicker = new DatePicker(jPanel1);
+        txtExpDate.setText(datePicker.setPickedDate());
+    }//GEN-LAST:event_txtExpDateActionPerformed
     
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
