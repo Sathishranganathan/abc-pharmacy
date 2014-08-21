@@ -7,8 +7,16 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<queryString language="SQL">
-		<![CDATA[select * from user]]>
+	<parameter name="uid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+     `user` user
+WHERE
+     userid = $P{uid}]]>
 	</queryString>
 	<field name="id" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -23,6 +31,9 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="password" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
@@ -135,7 +146,7 @@
 				<textElement>
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{REPORT_CONNECTION}.getWarnings()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
