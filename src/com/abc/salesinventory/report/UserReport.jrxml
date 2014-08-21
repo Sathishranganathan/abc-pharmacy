@@ -10,13 +10,19 @@
 	<parameter name="uid" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="roleid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     *
+     *,
+     user_role.`id` AS user_role_id,
+     user_role.`user_id` AS user_role_user_id,
+     user_role.`role_id` AS user_role_role_id
 FROM
-     `user` user
+     `user` user INNER JOIN `user_role` user_role ON user.`id` = user_role.`user_id`
 WHERE
-     userid = $P{uid}]]>
+     user_role.`role_id` = $P{roleid}]]>
 	</queryString>
 	<field name="id" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -36,6 +42,15 @@ WHERE
 	<field name="password" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="role_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="user_role_id" class="java.lang.String"/>
+	<field name="user_role_user_id" class="java.lang.String"/>
+	<field name="user_role_role_id" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
