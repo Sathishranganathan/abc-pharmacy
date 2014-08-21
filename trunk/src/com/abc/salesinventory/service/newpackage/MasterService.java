@@ -24,6 +24,7 @@ public interface MasterService {
 
     public void setPreference(String key, String value);
 
+    //Customer
     public Customer getCustomer(String customerId);
 
     public Set<Customer> getAllCustomers();
