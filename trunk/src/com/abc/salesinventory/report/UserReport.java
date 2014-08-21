@@ -110,7 +110,8 @@ public class UserReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HashMap map = new HashMap();
-        map.put("uid", txtUserId.getText().trim());
+        map.put("uid", "%"+txtUserId.getText().trim()+"%");
+        map.put("roleid", ((Role)cmbRole.getSelectedItem()).getId());
         ReportViewer reportViewer = new ReportViewer("UserReport.jrxml", map);
     }//GEN-LAST:event_jButton1ActionPerformed
 
