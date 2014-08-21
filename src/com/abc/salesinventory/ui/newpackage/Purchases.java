@@ -34,15 +34,28 @@ import javax.swing.table.DefaultTableModel;
  * @author Manuri
  */
 public class Purchases extends javax.swing.JFrame {
-    
+
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
+
+    DefaultTableModel model = null;
 
     /**
      * Creates new form Purchases
      */
     public Purchases() {
         initComponents();
+
+        model = new DefaultTableModel();
+        jTable1.setModel(model);
+
+        model.addColumn("Product Code");
+        model.addColumn("Product Name");
+        model.addColumn("Expiry Date");
+        model.addColumn("Qty");
+        model.addColumn("Price");
+        model.addColumn("Amount");
+
         txtTransactionId.setText(UUID.randomUUID().toString());
         Set<Supplier> suppliers = masterService.getAllSuppliers();
         for (Supplier supplier : suppliers) {
@@ -52,11 +65,11 @@ public class Purchases extends javax.swing.JFrame {
         for (Product product : products) {
             cmbProductName.addItem(product);
         }
-        
+
         buttonGroup1.add(btnCash);
         buttonGroup1.add(btnCredit);
         buttonGroup1.add(btnCheque);
-        
+
     }
 
     /**
@@ -310,6 +323,11 @@ public class Purchases extends javax.swing.JFrame {
 
         btnCancelTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCancelTransaction.setText("Cancel Transaction");
+        btnCancelTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelTransactionActionPerformed(evt);
+            }
+        });
 
         btnViewReciept.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnViewReciept.setText("View Purchased Reciept");
@@ -645,17 +663,27 @@ public class Purchases extends javax.swing.JFrame {
             Double x = Double.parseDouble(txtQty.getText());
             Double y = Double.parseDouble(txtUniPrice.getText());
             Double result = x * y;
-            
-            Vector<String> tableHeaders = new Vector<String>();
-            tableHeaders.add("Product Code");
-            tableHeaders.add("Product Name");
-            tableHeaders.add("Expiry Date");
-            tableHeaders.add("Qty");
-            tableHeaders.add("Price");
-            tableHeaders.add("Amount");
-            
-            Vector tableData = new Vector();
-            
+
+//            Vector<String> tableHeaders = new Vector<String>();
+//            tableHeaders.add("Product Code");
+//            tableHeaders.add("Product Name");
+//            tableHeaders.add("Expiry Date");
+//            tableHeaders.add("Qty");
+//            tableHeaders.add("Price");
+//            tableHeaders.add("Amount");
+//
+//            Vector tableData = new Vector();
+//
+//            Vector<Object> oneRow = new Vector<Object>();
+//            oneRow.add(txtProductCode.getText());
+//            oneRow.add(cmbProductName.getSelectedItem());
+//            oneRow.add(txtExpDate.getText());
+//            oneRow.add(txtQty.getText());
+//            oneRow.add(txtUniPrice.getText());
+//            oneRow.add(result);
+//            tableData.add(oneRow);
+//
+//            jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
@@ -663,11 +691,10 @@ public class Purchases extends javax.swing.JFrame {
             oneRow.add(txtQty.getText());
             oneRow.add(txtUniPrice.getText());
             oneRow.add(result);
-            tableData.add(oneRow);
-            
-            jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+
+            model.addRow(oneRow);
             Clear();
-            
+
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -677,9 +704,13 @@ public class Purchases extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExpDateKeyPressed
 
     private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
-        
+
+        if (!validatePurchase()) {
+            return;
+        }
+
         Transaction transaction = new Transaction();
-        
+
         Date txnDate = null;
         try {
             txnDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(txtDate.getText());
@@ -694,38 +725,38 @@ public class Purchases extends javax.swing.JFrame {
         } else if (btnCredit.isSelected()) {
             transaction.setPaymentMethod("CREDIT");
         }
-        
+
         Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
         transaction.setSupplier(supplier);
-        
+
         transaction.setTotal(0);
         transaction.setTransactionId(UUID.randomUUID().toString());
         transaction.setTransactionType("PURCHASE");
-        
+
         Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Vector dataModel = model.getDataVector();
         Iterator it = dataModel.iterator();
         int x = 0;
         while (it.hasNext()) {
             Vector v = (Vector) it.next();
-            
+
             TransactionDetail detail = new TransactionDetail();
-            
+
             String productCode = (String) v.get(0);
             Product product = masterService.getProduct(productCode);
             detail.setProduct(product);
-            
+
             Integer qty = Integer.parseInt((String) v.get(3));
             detail.setQuantity(qty);
-            
+
             detail.setTransaction(transaction);
             detail.setTransactionDetailId(UUID.randomUUID().toString());
-            
+
             Double uprice = Double.parseDouble((String) v.get(4));
             detail.setUnitPrice(uprice);
-            
+
             Date expDate = null;
             try {
                 expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
@@ -733,9 +764,9 @@ public class Purchases extends javax.swing.JFrame {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }
             detail.setExpDate(expDate);
-            
+
             transactionDetails.add(detail);
-            
+
             Stock stock = new Stock();
             stock.setExpDate(txnDate);
             stock.setProduct(product);
@@ -743,19 +774,27 @@ public class Purchases extends javax.swing.JFrame {
             stock.setQuantity(qty);
             stock.setStockId(UUID.randomUUID().toString());
             stock.setSupplier(supplier);
-            
+
             inventoryService.saveStock(stock);
-            
+
         }
-        
+
         transaction.setTransactionDetails(transactionDetails);
         inventoryService.saveTransaction(transaction);
-        
+
 
     }//GEN-LAST:event_btnAddTransactionActionPerformed
 
     private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Vector dataModel = model.getDataVector();
+        Iterator it = dataModel.iterator();
+        double total = 0.0d;
+        while (it.hasNext()) {
+            Vector v = (Vector) it.next();
+            total = total + (Double) v.get(5);
+        }
+        txtTotal.setText("" + total);
 
     }//GEN-LAST:event_btnTotalActionPerformed
 
@@ -768,7 +807,14 @@ public class Purchases extends javax.swing.JFrame {
          DatePicker datePicker = new DatePicker(jPanel1);
         txtExpDate.setText(datePicker.setPickedDate());
     }//GEN-LAST:event_txtExpDateMouseClicked
-    
+
+    private void btnCancelTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelTransactionActionPerformed
+        int reply = JOptionPane.showConfirmDialog(null, "This will cancel currentlt entered purchase details. Do you want to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_btnCancelTransactionActionPerformed
+
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
         txtProductCode.setText(null);
@@ -777,7 +823,7 @@ public class Purchases extends javax.swing.JFrame {
         txtUniPrice.setText(null);
         txtStockBalance.setText(null);
         txtQty.setText(null);
-        
+
     }
 
     /**
@@ -794,7 +840,7 @@ public class Purchases extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -876,4 +922,45 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JTextField txtTransactionId;
     private javax.swing.JTextField txtUniPrice;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validatePurchase() {
+        boolean flag = true;
+        if (txtTransactionId.getText() == null || txtTransactionId.getText().equals("")) {
+            flag = false;
+        }
+
+        if (txtDate.getText() == null || txtDate.getText().equals("")) {
+            flag = false;
+        }
+
+        if (txtSupplierId.getText() == null || txtSupplierId.getText().equals("")) {
+            flag = false;
+        }
+
+        boolean radioFlag = false;
+        if (btnCash.isSelected()) {
+            radioFlag = true;
+        } else if (btnCheque.isSelected()) {
+            radioFlag = true;
+        } else if (btnCredit.isSelected()) {
+            radioFlag = true;
+        }
+
+        if (!radioFlag) {
+            flag = false;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Vector dataModel = model.getDataVector();
+
+        if (dataModel == null || model.getRowCount() == 0) {
+            flag = false;
+        }
+
+        if (flag == false) {
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Purchase Details", 2);
+        }
+
+        return flag;
+    }
 }
