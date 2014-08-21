@@ -31,7 +31,7 @@
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="3cc84cd4-c391-4576-8f07-889009b89530"/>
+				<reportElement style="Title" x="156" y="13" width="263" height="33" uuid="3cc84cd4-c391-4576-8f07-889009b89530"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Leaf Green Title]]></text>
 			</staticText>

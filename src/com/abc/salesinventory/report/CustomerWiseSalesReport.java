@@ -10,12 +10,12 @@ package com.abc.salesinventory.report;
  *
  * @author Manuri
  */
-public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
+public class CustomerWiseSalesReport extends javax.swing.JFrame {
 
     /**
-     * Creates new form SupplierWisePurchasedAnalysisReport
+     * Creates new form CustomerWiseSalesReport
      */
-    public SupplierWisePurchasedAnalysisReport() {
+    public CustomerWiseSalesReport() {
         initComponents();
     }
 
@@ -28,28 +28,28 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        cmbMonth = new javax.swing.JComboBox();
-        btnViewReport = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        cmbSupplier = new javax.swing.JComboBox();
+        cmbCustomer = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        cmbYear = new javax.swing.JComboBox();
+        btnViewReport = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Supplier Wise Purchased Analysis Report");
+        setTitle("Customer Wise Sales Analysis Report");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Supplier Wise Purchased Analysis Report");
+        jLabel3.setText("Customer Name");
+
+        cmbCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Customer--" }));
 
         jLabel2.setText("Year");
 
-        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Year--", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+        cmbYear.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Year--", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         btnViewReport.setText("View Report");
 
-        jLabel3.setText("Supplier Name");
-
-        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Supplier--" }));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Customer Wise Sales Analysis Report");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,18 +59,18 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(cmbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnViewReport)
-                .addGap(177, 177, 177))
+                .addGap(163, 163, 163))
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(91, 91, 91)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -82,9 +82,9 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnViewReport)
                 .addContainerGap(187, Short.MAX_VALUE))
@@ -110,28 +110,28 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SupplierWisePurchasedAnalysisReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerWiseSalesReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SupplierWisePurchasedAnalysisReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerWiseSalesReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SupplierWisePurchasedAnalysisReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerWiseSalesReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SupplierWisePurchasedAnalysisReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerWiseSalesReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SupplierWisePurchasedAnalysisReport().setVisible(true);
+                new CustomerWiseSalesReport().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnViewReport;
-    private javax.swing.JComboBox cmbMonth;
-    private javax.swing.JComboBox cmbSupplier;
+    private javax.swing.JComboBox cmbCustomer;
+    private javax.swing.JComboBox cmbYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

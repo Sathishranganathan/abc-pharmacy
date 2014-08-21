@@ -147,6 +147,11 @@ public class Purchases extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Date");
 
+        txtDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDateMouseClicked(evt);
+            }
+        });
         txtDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDateKeyPressed(evt);
@@ -323,9 +328,9 @@ public class Purchases extends javax.swing.JFrame {
 
         btnCheque.setText("Cheque");
 
-        txtExpDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtExpDateActionPerformed(evt);
+        txtExpDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtExpDateMouseClicked(evt);
             }
         });
         txtExpDate.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -754,10 +759,15 @@ public class Purchases extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTotalActionPerformed
 
-    private void txtExpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpDateActionPerformed
-       DatePicker datePicker = new DatePicker(jPanel1);
+    private void txtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseClicked
+        DatePicker datePicker = new DatePicker(jPanel1);
         txtExpDate.setText(datePicker.setPickedDate());
-    }//GEN-LAST:event_txtExpDateActionPerformed
+    }//GEN-LAST:event_txtDateMouseClicked
+
+    private void txtExpDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExpDateMouseClicked
+         DatePicker datePicker = new DatePicker(jPanel1);
+        txtExpDate.setText(datePicker.setPickedDate());
+    }//GEN-LAST:event_txtExpDateMouseClicked
     
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
