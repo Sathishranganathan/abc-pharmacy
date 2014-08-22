@@ -6,12 +6,20 @@
 
 package com.abc.salesinventory.report;
 
+import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.service.newpackage.SecurityService;
+import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import com.abc.salesinventory.util.ReportViewer;
+import java.util.HashMap;
+import java.util.Set;
+
 /**
  *
  * @author Manuri
  */
 public class SupplierDetailsReport extends javax.swing.JFrame {
 
+    SecurityService securityService = new SecurityServiceImpl();
     /**
      * Creates new form SupplierDetailsReport
      */
@@ -39,6 +47,11 @@ public class SupplierDetailsReport extends javax.swing.JFrame {
 
         btnSupplierDetails.setText("View Supplier Details");
         btnSupplierDetails.setActionCommand("");
+        btnSupplierDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierDetailsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +78,11 @@ public class SupplierDetailsReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSupplierDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierDetailsActionPerformed
+        HashMap map = new HashMap();
+        ReportViewer reportViewer = new ReportViewer("SupplierDetailReport.jrxml", map);
+    }//GEN-LAST:event_btnSupplierDetailsActionPerformed
 
     /**
      * @param args the command line arguments
