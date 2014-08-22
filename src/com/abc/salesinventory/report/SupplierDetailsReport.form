@@ -63,6 +63,9 @@
         <Property name="text" type="java.lang.String" value="View Supplier Details"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupplierDetailsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

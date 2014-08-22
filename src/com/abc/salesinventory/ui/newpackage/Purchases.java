@@ -312,6 +312,11 @@ public class Purchases extends javax.swing.JFrame {
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRemove.setText("Remove Selected Item");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnAddTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAddTransaction.setText("Add Transaction");
@@ -798,11 +803,6 @@ public class Purchases extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTotalActionPerformed
 
-    private void txtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseClicked
-        DatePicker datePicker = new DatePicker(jPanel1);
-        txtExpDate.setText(datePicker.setPickedDate());
-    }//GEN-LAST:event_txtDateMouseClicked
-
     private void txtExpDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExpDateMouseClicked
          DatePicker datePicker = new DatePicker(jPanel1);
         txtExpDate.setText(datePicker.setPickedDate());
@@ -814,6 +814,15 @@ public class Purchases extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btnCancelTransactionActionPerformed
+
+    private void txtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseClicked
+        DatePicker datePicker = new DatePicker(jPanel1);
+        txtDate.setText(datePicker.setPickedDate());
+    }//GEN-LAST:event_txtDateMouseClicked
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
