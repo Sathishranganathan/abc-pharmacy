@@ -3,8 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.report;
+
+import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.Supplier;
+import com.abc.salesinventory.service.newpackage.MasterService;
+import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
+import com.abc.salesinventory.util.ReportViewer;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  *
@@ -12,11 +20,18 @@ package com.abc.salesinventory.report;
  */
 public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
 
+    MasterService masterService = new MasterServiceImpl();
+
     /**
      * Creates new form SupplierWisePurchasedAnalysisReport
      */
     public SupplierWisePurchasedAnalysisReport() {
         initComponents();
+
+        Set<Supplier> suppliers = masterService.getAllSuppliers();
+        for (Supplier supplier : suppliers) {
+            cmbSupplier.addItem(supplier);
+        }
     }
 
     /**
@@ -46,6 +61,11 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
         cmbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Year--", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         btnViewReport.setText("View Report");
+        btnViewReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewReportActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Supplier Name");
 
@@ -92,6 +112,15 @@ public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportActionPerformed
+        HashMap map = new HashMap();
+        String supid = ((Supplier) cmbSupplier.getSelectedItem()).getId();
+        
+        map.put("supplier_id", supid);
+        map.put("year", cmbMonth.getSelectedItem());
+        ReportViewer reportViewer = new ReportViewer("SuplierWisePurchaseReport.jrxml", map);
+    }//GEN-LAST:event_btnViewReportActionPerformed
 
     /**
      * @param args the command line arguments

@@ -69,6 +69,11 @@ public class Customer  implements java.io.Serializable {
     public void setOffice(String office) {
         this.office = office;
     }
+
+    @Override
+    public String toString() {
+        return "" + name;
+    }
     public String getEmail() {
         return this.email;
     }
