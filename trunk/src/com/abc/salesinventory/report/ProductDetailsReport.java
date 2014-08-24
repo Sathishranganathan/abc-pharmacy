@@ -6,6 +6,9 @@
 
 package com.abc.salesinventory.report;
 
+import com.abc.salesinventory.util.ReportViewer;
+import java.util.HashMap;
+
 /**
  *
  * @author Manuri
@@ -38,6 +41,11 @@ public class ProductDetailsReport extends javax.swing.JFrame {
         jLabel1.setText("Product Details Report");
 
         btnViewReport.setText("View Report");
+        btnViewReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +72,11 @@ public class ProductDetailsReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportActionPerformed
+        HashMap map = new HashMap();
+        ReportViewer reportViewer = new ReportViewer("ProductDetailsReport.jrxml", map);
+    }//GEN-LAST:event_btnViewReportActionPerformed
 
     /**
      * @param args the command line arguments

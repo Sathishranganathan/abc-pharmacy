@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.report;
+
+import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.service.newpackage.MasterService;
+import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
+import com.abc.salesinventory.util.ReportViewer;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  *
@@ -12,11 +19,17 @@ package com.abc.salesinventory.report;
  */
 public class CustomerWiseSalesReport extends javax.swing.JFrame {
 
+    MasterService masterService = new MasterServiceImpl();
+
     /**
      * Creates new form CustomerWiseSalesReport
      */
     public CustomerWiseSalesReport() {
         initComponents();
+        Set<Customer> customers = masterService.getAllCustomers();
+        for (Customer customer : customers) {
+            cmbCustomer.addItem(customer);
+        }
     }
 
     /**
@@ -47,6 +60,11 @@ public class CustomerWiseSalesReport extends javax.swing.JFrame {
         cmbYear.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Year--", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         btnViewReport.setText("View Report");
+        btnViewReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewReportActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Customer Wise Sales Analysis Report");
@@ -92,6 +110,14 @@ public class CustomerWiseSalesReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportActionPerformed
+        HashMap map = new HashMap();
+        String name = ((Customer) cmbCustomer.getSelectedItem()).getName();
+        map.put("customer_id", name);
+
+        ReportViewer reportViewer = new ReportViewer("CustomerWiseSalesReport.jrxml", map);
+    }//GEN-LAST:event_btnViewReportActionPerformed
 
     /**
      * @param args the command line arguments
