@@ -76,6 +76,10 @@ public class SecurityServiceImpl implements SecurityService {
         try {
             User user = getUserByUserName(userId);
 
+            if(user == null){
+                return false;
+            }
+            
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(plainTextPassword.getBytes("UTF-8"));
             byte[] bytes = md.digest();
