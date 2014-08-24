@@ -27,8 +27,7 @@ FROM
      INNER JOIN `transaction_detail` transaction_detail ON transaction.`transaction_id` = transaction_detail.`transaction_id`
      INNER JOIN `product` product ON transaction_detail.`product_code` = product.`product_code`
 WHERE
-    supplier.id= $P{supplier_id} AND year(transaction.date)=$P{year}
-]]>
+    supplier.id= $P{supplier_id} AND year(transaction.date)=$P{year}]]>
 	</queryString>
 	<field name="supplier_name" class="java.lang.String"/>
 	<field name="product_product_code" class="java.lang.String"/>
@@ -43,22 +42,22 @@ WHERE
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="111" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="36c0905d-10e9-4b4e-9b2a-fd1866f1ea65"/>
+				<reportElement style="Title" x="148" y="13" width="274" height="33" uuid="36c0905d-10e9-4b4e-9b2a-fd1866f1ea65"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Gray Title]]></text>
+				<text><![CDATA[Eraj Pharmaceuticals]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="a352f3c6-993a-4031-86ab-63c1bb07f133"/>
-				<text><![CDATA[Leaf Gray SubTitle]]></text>
+				<reportElement style="SubTitle" x="154" y="46" width="260" height="22" uuid="a352f3c6-993a-4031-86ab-63c1bb07f133"/>
+				<text><![CDATA[Supplier Wise Purchase Report]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="341" y="13" width="92" height="15" uuid="37ff2999-b3e3-4a2d-8ef8-fbea6a20d733"/>
-				<text><![CDATA[supplier_name]]></text>
+				<reportElement style="Column header" x="0" y="86" width="92" height="15" uuid="37ff2999-b3e3-4a2d-8ef8-fbea6a20d733"/>
+				<text><![CDATA[Supplier Name]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="Detail" x="433" y="13" width="92" height="15" uuid="44d7560f-9c6f-4743-bb41-f0607c2abd64"/>
+				<reportElement style="Detail" x="117" y="86" width="92" height="15" uuid="44d7560f-9c6f-4743-bb41-f0607c2abd64"/>
 				<textFieldExpression><![CDATA[$F{supplier_name}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -75,20 +74,20 @@ WHERE
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="92" y="19" width="92" height="15" uuid="05561115-0a23-49df-8eb8-a87e9c381f05"/>
-				<text><![CDATA[product_product_code]]></text>
+				<reportElement style="Column header" x="78" y="19" width="92" height="15" uuid="05561115-0a23-49df-8eb8-a87e9c381f05"/>
+				<text><![CDATA[Product Code]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="184" y="19" width="92" height="15" uuid="7e610c63-93e2-44d9-bbff-3ac8438332f9"/>
-				<text><![CDATA[product_product_name]]></text>
+				<text><![CDATA[Product Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="421" y="21" width="92" height="15" uuid="9e6afd02-5482-4b0d-a15d-50bfa9e913a2"/>
-				<text><![CDATA[transaction_detail_unit_price]]></text>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="276" y="19" width="117" height="15" uuid="ae521dd8-91d2-408b-9e82-1192222f24af"/>
-				<text><![CDATA[transaction_date]]></text>
+				<reportElement style="Column header" x="290" y="19" width="117" height="15" uuid="ae521dd8-91d2-408b-9e82-1192222f24af"/>
+				<text><![CDATA[Transaction Date]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -101,7 +100,7 @@ WHERE
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="92" y="0" width="92" height="15" uuid="336f9415-0928-42e2-a479-a5e929997463"/>
+				<reportElement style="Detail" x="78" y="0" width="92" height="15" uuid="336f9415-0928-42e2-a479-a5e929997463"/>
 				<textFieldExpression><![CDATA[$F{product_product_code}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -113,7 +112,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="274" y="1" width="92" height="15" uuid="3c192efb-2675-441a-bca4-0c4cb0b96e3c"/>
+				<reportElement style="Detail" x="288" y="1" width="92" height="15" uuid="3c192efb-2675-441a-bca4-0c4cb0b96e3c"/>
 				<textFieldExpression><![CDATA[$F{transaction_date}]]></textFieldExpression>
 			</textField>
 		</band>

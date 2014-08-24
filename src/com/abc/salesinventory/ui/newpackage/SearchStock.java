@@ -7,6 +7,7 @@
 package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Stock;
+import com.abc.salesinventory.model.newpackage.Product;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.HibernateUtil;
@@ -81,7 +82,7 @@ private static String QUERY_ALL = "from Stock";
             Stock stock = (Stock) o;
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(stock.getStockId());
-            oneRow.add(stock.getProduct());
+            oneRow.add(stock.getProduct().getProductCode());
             oneRow.add(stock.getSupplier());
             oneRow.add(stock.getQuantity());
             oneRow.add(stock.getExpDate());

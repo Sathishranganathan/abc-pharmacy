@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ff3a1db-01b4-408e-ad28-e4308eb412f4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="year" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     stock.`stock_id` AS stock_stock_id,
+     stock.`product_code` AS stock_product_code,
+     stock.`supplier_id` AS stock_supplier_id,
+     stock.`quantity` AS stock_quantity,
+     stock.`exp_date` AS stock_exp_date,
+     stock.`purchased_unit_price` AS stock_purchased_unit_price,
+     product.`product_code` AS product_product_code,
+     product.`product_name` AS product_product_name,
+     product.`category` AS product_category,
+     product.`unit` AS product_unit,
+     product.`reorder_level` AS product_reorder_level
+FROM
+     `product` product INNER JOIN `stock` stock ON product.`product_code` = stock.`product_code`
+
+WHERE
+year(stock.exp_date) = $P{year}]]>
+	</queryString>
+	<field name="stock_stock_id" class="java.lang.String"/>
+	<field name="stock_product_code" class="java.lang.String"/>
+	<field name="stock_supplier_id" class="java.lang.String"/>
+	<field name="stock_quantity" class="java.lang.Double"/>
+	<field name="stock_exp_date" class="java.sql.Timestamp"/>
+	<field name="stock_purchased_unit_price" class="java.lang.Double"/>
+	<field name="product_product_code" class="java.lang.String"/>
+	<field name="product_product_name" class="java.lang.String"/>
+	<field name="product_category" class="java.lang.String"/>
+	<field name="product_unit" class="java.lang.String"/>
+	<field name="product_reorder_level" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="127" y="13" width="272" height="33" uuid="8a5ed7f2-fab7-4d22-8e2d-79dddadd2a41"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Eraj Pharamecuticals]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="139" y="46" width="245" height="22" uuid="7f2c56da-b5e3-4592-8c98-b28ab13e15c4"/>
+				<text><![CDATA[Product Base on Expired Date]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="c8e08a2b-ec28-477c-bf37-d41ef46940cf"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="b9bedd21-d8fb-44cf-a77d-f07199edfb9a"/>
+				<text><![CDATA[Product Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="d4e8911d-2f08-42e6-a1c6-d77f1a93706e"/>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="138" height="15" uuid="722f5ad9-5ff5-4fab-9c77-be4cb59485cb"/>
+				<text><![CDATA[Stock ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="138" height="15" uuid="bc463bd0-7b03-42a4-a6f2-04047886756d"/>
+				<text><![CDATA[Expire Data]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="9745d7ce-8d3b-4848-905b-80272eff7d2e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="4bb69a6a-2ca5-47c4-8488-5c006e69f941"/>
+				<textFieldExpression><![CDATA[$F{stock_product_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="4274fe9d-81d6-4107-9ac2-606e9fd89291"/>
+				<textFieldExpression><![CDATA[$F{product_product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="70f77caa-b968-4669-bfeb-9570098b1601"/>
+				<textFieldExpression><![CDATA[$F{stock_stock_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="3c40c888-63d7-4dcf-8f7e-703c0f7f3da7"/>
+				<textFieldExpression><![CDATA[$F{stock_exp_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2cdd0a37-04be-4fb8-86cc-0c219a1f9c59"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="bc52c838-b666-4d85-9d43-293f30e55839"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="28bc4c8a-2507-422f-bced-a3a3f1542739"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="d8b9b051-4208-4e39-a7b1-d4b0d3b0052c"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -57,13 +57,13 @@ WHERE
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="156" y="13" width="263" height="33" uuid="3cc84cd4-c391-4576-8f07-889009b89530"/>
+				<reportElement style="Title" x="156" y="13" width="264" height="33" uuid="3cc84cd4-c391-4576-8f07-889009b89530"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Green Title]]></text>
+				<text><![CDATA[Eraj Pharamceuticals]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="100" y="46" width="174" height="22" uuid="2d654e5e-7a12-46b4-8df2-99df79713a4c"/>
-				<text><![CDATA[Leaf Green SubTitle]]></text>
+				<reportElement style="SubTitle" x="233" y="46" width="100" height="22" uuid="2d654e5e-7a12-46b4-8df2-99df79713a4c"/>
+				<text><![CDATA[User Report]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -80,36 +80,36 @@ WHERE
 			</line>
 			<staticText>
 				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="5de2dfc9-6a44-4e57-8c6a-931b51710619"/>
-				<text><![CDATA[id]]></text>
+				<text><![CDATA[User ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="111" y="19" width="111" height="15" uuid="5c800dfd-b12c-4732-a34e-bfbca1ca6e28"/>
-				<text><![CDATA[first_name]]></text>
+				<text><![CDATA[First Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="222" y="19" width="111" height="15" uuid="2490d575-df2e-4aa8-a024-11cee29a8aaf"/>
-				<text><![CDATA[last_name]]></text>
+				<text><![CDATA[Last Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="333" y="19" width="111" height="15" uuid="807d46a7-98d1-43d1-b3d5-9ca687571c3f"/>
-				<text><![CDATA[userid]]></text>
+				<text><![CDATA[User Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="72acede8-f48a-4dda-bbfb-169bd3c972d3"/>
-				<text><![CDATA[email]]></text>
+				<text><![CDATA[Email]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="50" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="69d2cc5f-2256-43fe-977f-e176121443e8"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="40" width="555" height="1" uuid="69d2cc5f-2256-43fe-977f-e176121443e8"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="a5c47631-e9fb-4746-b709-e0915748fabb"/>
+				<reportElement style="Detail" x="0" y="0" width="111" height="40" uuid="a5c47631-e9fb-4746-b709-e0915748fabb"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
