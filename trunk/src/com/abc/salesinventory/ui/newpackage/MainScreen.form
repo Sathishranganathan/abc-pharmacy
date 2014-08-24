@@ -140,14 +140,88 @@
             <Property name="text" type="java.lang.String" value="Reports"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miSalesR">
+            <MenuItem class="javax.swing.JMenuItem" name="miCustomerReport">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sales Reports"/>
+                <Property name="text" type="java.lang.String" value="Customer Details Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miCustomerReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miSupplierReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supplier Details Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSupplierReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miProductReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Product Details Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miProductReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miStockReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Stock Details Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miStockReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miExpiredReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Expired Products Detail Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExpiredReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miSupWisePurchased">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supplier Wise Purchased Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSupWisePurchasedActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miCusWiseSales">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Customer Wise Sales Report"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miInventoryR">
+            <MenuItem class="javax.swing.JMenuItem" name="miStockValueAnlysis">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Inventory Reports"/>
+                <Property name="text" type="java.lang.String" value="Stock Value Analysis Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miStockValueAnlysisActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miDailySalesReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Daily Sales Report"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miMonthlySalesReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monthly Sales Report"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miSlow">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Slow Moving Items"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSlowActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miFast">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fast Moving Items"/>
               </Properties>
             </MenuItem>
           </SubComponents>
