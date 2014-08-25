@@ -71,6 +71,7 @@ public class Purchases extends javax.swing.JFrame {
         buttonGroup1.add(btnCash);
         buttonGroup1.add(btnCredit);
         buttonGroup1.add(btnCheque);
+              
 
     }
 
