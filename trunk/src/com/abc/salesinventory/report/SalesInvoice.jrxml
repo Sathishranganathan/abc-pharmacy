@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7d11cf6-d742-4ddb-a126-9c5ae6c8fa43">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     customer.`id` AS customer_id,
+     customer.`name` AS customer_name,
+     customer.`mobile` AS customer_mobile,
+     customer.`home` AS customer_home,
+     customer.`office` AS customer_office,
+     customer.`email` AS customer_email,
+     customer.`address` AS customer_address,
+     product.`product_code` AS product_product_code,
+     product.`product_name` AS product_product_name,
+     product.`category` AS product_category,
+     product.`unit` AS product_unit,
+     product.`reorder_level` AS product_reorder_level,
+     transaction.`transaction_id` AS transaction_transaction_id,
+     transaction.`customer_id` AS transaction_customer_id,
+     transaction.`supplier_id` AS transaction_supplier_id,
+     transaction.`date` AS transaction_date,
+     transaction.`total` AS transaction_total,
+     transaction.`transaction_type` AS transaction_transaction_type,
+     transaction.`payment_method` AS transaction_payment_method,
+     transaction_detail.`transaction_detail_id` AS transaction_detail_transaction_detail_id,
+     transaction_detail.`product_code` AS transaction_detail_product_code,
+     transaction_detail.`transaction_id` AS transaction_detail_transaction_id,
+     transaction_detail.`unit_price` AS transaction_detail_unit_price,
+     transaction_detail.`discount` AS transaction_detail_discount,
+     transaction_detail.`exp_date` AS transaction_detail_exp_date,
+     transaction_detail.`quantity` AS transaction_detail_quantity
+FROM
+     `customer` customer INNER JOIN `transaction` transaction ON customer.`id` = transaction.`customer_id`
+     INNER JOIN `transaction_detail` transaction_detail ON transaction.`transaction_id` = transaction_detail.`transaction_id`
+     INNER JOIN `product` product ON transaction_detail.`product_code` = product.`product_code`]]>
+	</queryString>
+	<field name="transaction_transaction_id" class="java.lang.String"/>
+	<field name="transaction_date" class="java.sql.Timestamp"/>
+	<field name="transaction_customer_id" class="java.lang.String"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="transaction_payment_method" class="java.lang.String"/>
+	<field name="transaction_total" class="java.lang.Double"/>
+	<field name="transaction_detail_product_code" class="java.lang.String"/>
+	<field name="product_product_name" class="java.lang.String"/>
+	<field name="transaction_detail_exp_date" class="java.sql.Timestamp"/>
+	<field name="transaction_detail_unit_price" class="java.lang.Double"/>
+	<field name="transaction_detail_quantity" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="adfdf819-737a-49f1-9dbf-6c2a7118e870"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="24b2d6fa-3021-4360-8ddf-3f8ebecdf52a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Gray Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="643c82d6-2b3e-42bb-a01d-f1ff758fd6a0"/>
+				<text><![CDATA[Leaf Gray SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="bcfcb204-dc5c-4f97-8118-61ee40f393e8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="50" height="15" uuid="9db108de-f9df-4e33-9f9f-7e09e4050cd0"/>
+				<text><![CDATA[transaction_transaction_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="50" y="19" width="50" height="15" uuid="65a6542e-bc4b-4baa-851a-f63f4de667f7"/>
+				<text><![CDATA[transaction_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="19" width="50" height="15" uuid="223e9a7e-c52d-4ecb-9f46-b538255e8a85"/>
+				<text><![CDATA[transaction_customer_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="150" y="19" width="50" height="15" uuid="a6663b6a-6504-4111-afc5-66a064d4f2b5"/>
+				<text><![CDATA[customer_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="19" width="50" height="15" uuid="c6797e51-8e4c-417f-b46d-b2b9b31fcdfd"/>
+				<text><![CDATA[transaction_payment_method]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="250" y="19" width="50" height="15" uuid="06131e78-96e4-4cfc-9e79-ef70b46d4d84"/>
+				<text><![CDATA[transaction_total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="19" width="50" height="15" uuid="e43ad040-8ea7-4b16-ac0d-e904b570183d"/>
+				<text><![CDATA[transaction_detail_product_code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="350" y="19" width="50" height="15" uuid="292ceb93-29d8-4bd2-af2d-87e3ef805d5c"/>
+				<text><![CDATA[product_product_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="19" width="50" height="15" uuid="c5adf3c5-c8be-4497-bea9-ede9937402bf"/>
+				<text><![CDATA[transaction_detail_exp_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="450" y="19" width="50" height="15" uuid="7adf03ba-a72a-422d-9ea3-bf868456c721"/>
+				<text><![CDATA[transaction_detail_unit_price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="500" y="19" width="50" height="15" uuid="d13ca298-a268-4a6b-baf4-29554a0491c1"/>
+				<text><![CDATA[transaction_detail_quantity]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="daa68c30-3bc5-47d0-861c-c48c49dec0cf"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="50" height="15" uuid="b3376bb0-d78e-41f1-b96a-65efa3a671de"/>
+				<textFieldExpression><![CDATA[$F{transaction_transaction_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="50" y="0" width="50" height="15" uuid="44d7a204-6e90-4881-85bd-681aab21618d"/>
+				<textFieldExpression><![CDATA[$F{transaction_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="100" y="0" width="50" height="15" uuid="83e07f32-08b1-40b1-b6b3-96bfc9b51bf5"/>
+				<textFieldExpression><![CDATA[$F{transaction_customer_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="150" y="0" width="50" height="15" uuid="07c045bb-019c-413a-9e4a-1f60594e06e2"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="200" y="0" width="50" height="15" uuid="414eee10-9b20-4e5d-bc42-e8febe6cbd8d"/>
+				<textFieldExpression><![CDATA[$F{transaction_payment_method}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="250" y="0" width="50" height="15" uuid="0705d067-afcb-464c-84d0-3d901e35c0d8"/>
+				<textFieldExpression><![CDATA[$F{transaction_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="300" y="0" width="50" height="15" uuid="ba68800a-5d31-4a02-8f4c-536c7a841925"/>
+				<textFieldExpression><![CDATA[$F{transaction_detail_product_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="350" y="0" width="50" height="15" uuid="df6f7c2d-b25d-4e61-a1e8-197c2e35779a"/>
+				<textFieldExpression><![CDATA[$F{product_product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="400" y="0" width="50" height="15" uuid="c9d25f6a-9182-4b15-bdc4-ead3d7a3ee29"/>
+				<textFieldExpression><![CDATA[$F{transaction_detail_exp_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="450" y="0" width="50" height="15" uuid="f5deeb89-06e8-4a2f-94c9-4b18e5836368"/>
+				<textFieldExpression><![CDATA[$F{transaction_detail_unit_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="500" y="0" width="50" height="15" uuid="1ad7b862-2ce5-4dd3-bdf1-4ddf6f8983c8"/>
+				<textFieldExpression><![CDATA[$F{transaction_detail_quantity}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="f37cbd21-ae1d-4c3c-83ba-01f761721c90"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="c4e08303-4a5b-4001-adf4-ed8701cb82a2"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="2c2e738b-2e73-4e71-8eb7-25917666daf7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="de214cc0-3eba-4126-ba15-c00fa5d1077b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

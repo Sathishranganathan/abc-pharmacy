@@ -6,28 +6,30 @@
 
 package com.abc.salesinventory.report;
 
+import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.ReportViewer;
 import java.util.HashMap;
 import java.util.Set;
+
 /**
  *
  * @author Manuri
  */
-public class PurchasedReciept extends javax.swing.JFrame {
+public class SalesInvoice extends javax.swing.JFrame {
     MasterService masterService = new MasterServiceImpl();
 
     /**
-     * Creates new form PurchasedReciept
+     * Creates new form SalesInvoice
      */
-    public PurchasedReciept() {
+    public SalesInvoice() {
         initComponents();
         
-        Set<Supplier> suppliers = masterService.getAllSuppliers();
-        for (Supplier supplier : suppliers) {
-            cmbSupplier.addItem(supplier);
+        Set<Customer> customers = masterService.getAllCustomers();
+        for (Customer customer : customers) {
+            cmbCustomer.addItem(customer);
     }
     }
 
@@ -42,30 +44,30 @@ public class PurchasedReciept extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cmbSupplier = new javax.swing.JComboBox();
+        cmbCustomer = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnView = new javax.swing.JButton();
+        btnInvoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Purchased Receipt");
+        jLabel1.setText("Sales Invoice");
 
-        jLabel2.setText("Supplier ID");
+        jLabel2.setText("Customer Name");
 
-        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Select a Supplier --" }));
+        cmbCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Customer--" }));
 
-        jLabel3.setText("Date");
+        jLabel3.setText("Invoice Date");
 
         jLabel4.setForeground(new java.awt.Color(204, 0, 51));
         jLabel4.setText("eg: yyyy-mm-dd");
 
-        btnView.setText("View Receipt");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
+        btnInvoice.setText("View Invoice");
+        btnInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
+                btnInvoiceActionPerformed(evt);
             }
         });
 
@@ -76,55 +78,56 @@ public class PurchasedReciept extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
+                        .addGap(155, 155, 155)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnView)
-                .addGap(158, 158, 158))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbCustomer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDate))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(btnInvoice)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(38, 38, 38)
-                .addComponent(btnView)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(btnInvoice)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-         HashMap map = new HashMap();
-        String supid = ((Supplier) cmbSupplier.getSelectedItem()).getId();
+    private void btnInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceActionPerformed
+        HashMap map = new HashMap();
+        String cusid = ((Customer) cmbCustomer.getSelectedItem()).getId();
         
-        map.put("supplierid", supid);
+        map.put("customerid", cusid);
         map.put("date", txtDate.getText().trim());
-        ReportViewer reportViewer = new ReportViewer("PurchasedReceipt.jrxml", map);
-    }//GEN-LAST:event_btnViewActionPerformed
+        ReportViewer reportViewer = new ReportViewer("SalesInvoice.jrxml", map);
+    }//GEN-LAST:event_btnInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,27 +146,27 @@ public class PurchasedReciept extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PurchasedReciept.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PurchasedReciept.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PurchasedReciept.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PurchasedReciept.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PurchasedReciept().setVisible(true);
+                new SalesInvoice().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnView;
-    private javax.swing.JComboBox cmbSupplier;
+    private javax.swing.JButton btnInvoice;
+    private javax.swing.JComboBox cmbCustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
