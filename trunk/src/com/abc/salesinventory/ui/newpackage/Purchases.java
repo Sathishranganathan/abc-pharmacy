@@ -655,26 +655,6 @@ public class Purchases extends javax.swing.JFrame {
             Double y = Double.parseDouble(txtUniPrice.getText());
             Double result = x * y;
 
-//            Vector<String> tableHeaders = new Vector<String>();
-//            tableHeaders.add("Product Code");
-//            tableHeaders.add("Product Name");
-//            tableHeaders.add("Expiry Date");
-//            tableHeaders.add("Qty");
-//            tableHeaders.add("Price");
-//            tableHeaders.add("Amount");
-//
-//            Vector tableData = new Vector();
-//
-//            Vector<Object> oneRow = new Vector<Object>();
-//            oneRow.add(txtProductCode.getText());
-//            oneRow.add(cmbProductName.getSelectedItem());
-//            oneRow.add(txtExpDate.getText());
-//            oneRow.add(txtQty.getText());
-//            oneRow.add(txtUniPrice.getText());
-//            oneRow.add(result);
-//            tableData.add(oneRow);
-//
-//            jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
@@ -720,7 +700,6 @@ public class Purchases extends javax.swing.JFrame {
         Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
         transaction.setSupplier(supplier);
 
-        transaction.setTotal(0);
         transaction.setTransactionId(UUID.randomUUID().toString());
         transaction.setTransactionType("PURCHASE");
 
@@ -729,6 +708,7 @@ public class Purchases extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Vector dataModel = model.getDataVector();
         Iterator it = dataModel.iterator();
+        double total = 0.0d;
         int x = 0;
         while (it.hasNext()) {
             Vector v = (Vector) it.next();
@@ -747,7 +727,7 @@ public class Purchases extends javax.swing.JFrame {
 
             Double uprice = Double.parseDouble((String) v.get(4));
             detail.setUnitPrice(uprice);
-
+            total = total + (qty * uprice);
             Date expDate = null;
             try {
                 expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
@@ -769,6 +749,8 @@ public class Purchases extends javax.swing.JFrame {
             inventoryService.saveStock(stock);
 
         }
+
+        transaction.setTotal(total);
 
         transaction.setTransactionDetails(transactionDetails);
         inventoryService.saveTransaction(transaction);
