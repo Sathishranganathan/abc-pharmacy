@@ -7,6 +7,7 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.model.newpackage.TransactionDetail;
 import com.abc.salesinventory.service.newpackage.InventoryService;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -125,7 +127,6 @@ public class Sales extends javax.swing.JFrame {
         txtNetValue = new javax.swing.JTextField();
         btnAddTransaction = new javax.swing.JButton();
         btnCancelTransaction = new javax.swing.JButton();
-        btnViewInvoice = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
         txtQty = new javax.swing.JTextField();
         txtDiscount = new javax.swing.JTextField();
@@ -312,9 +313,6 @@ public class Sales extends javax.swing.JFrame {
             }
         });
 
-        btnViewInvoice.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnViewInvoice.setText("View Invoice");
-
         btnRemove.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRemove.setText("Remove Selected Item");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
@@ -440,8 +438,7 @@ public class Sales extends javax.swing.JFrame {
                                 .addComponent(btnAddTransaction)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCancelTransaction)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnViewInvoice))
+                                .addGap(109, 109, 109))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnRemove)
                                 .addGap(18, 18, 18)
@@ -527,8 +524,7 @@ public class Sales extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddTransaction)
-                    .addComponent(btnCancelTransaction)
-                    .addComponent(btnViewInvoice))
+                    .addComponent(btnCancelTransaction))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -571,12 +567,24 @@ public class Sales extends javax.swing.JFrame {
         DatePicker datePicker = new DatePicker(jPanel1);
         txtExpiryDate.setText(datePicker.setPickedDate());
     }//GEN-LAST:event_txtExpiryDateMouseClicked
-
+    private double getStockQty(String productCode) {
+        List<Stock> stocks = inventoryService.getStockByProduct(productCode);
+        double stockqty = 0.0d;
+        if (stocks != null) {
+            for (Stock stock : stocks) {
+                stockqty = stockqty + stock.getQuantity();
+            }
+        }
+        return stockqty;
+    }
     private void cmbProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductNameActionPerformed
         if (cmbProductName.getSelectedIndex() != 0) {
             Product product = (Product) cmbProductName.getSelectedItem();
             txtProductCode.setText(product.getProductCode());
             txtCategory.setText(product.getCategory());
+
+            txtStockBalance.setText("" + getStockQty(product.getProductCode()));
+
         } else {
             txtProductCode.setText(null);
             txtCategory.setText(null);
@@ -592,14 +600,21 @@ public class Sales extends javax.swing.JFrame {
         txtQty.setText(null);
         txtDiscount.setText(null);
     }
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (cmbProductName.getSelectedIndex() == 0 || txtUnitPrice.getText().trim().equals("") || txtQty.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Add Purchase Details", 2);
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Add Sales Details", 2);
             return;
         } else {
             Double x = Double.parseDouble(txtQty.getText());
             Double y = Double.parseDouble(txtUnitPrice.getText());
             Double z = 0.0d;
+
+            if (getStockQty(txtProductCode.getText()) < x) {
+                JOptionPane.showMessageDialog(null, "Inventory does not have enough quantity to issue the requested quantity!", "Add Sales Details", 2);
+                return;
+            }
+
             Double discountAmount = 0.0d;
             if (txtDiscount.getText() != null && txtDiscount.getText() != "") {
                 try {
@@ -651,8 +666,6 @@ public class Sales extends javax.swing.JFrame {
         if (txtTransactionId.getText() == null || txtTransactionId.getText().equals("")) {
             flag = false;
         }
-
-        
 
         if (ftxtDate.getText() == null || ftxtDate.getText().equals("")) {
             flag = false;
@@ -771,7 +784,6 @@ public class Sales extends javax.swing.JFrame {
         txtQty.setText(null);
         txtStockBalance.setText(null);
         txtDiscount.setText(null);
-        
 
         resetTable();
 
@@ -833,7 +845,6 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnNetValue;
     private javax.swing.JButton btnRemove;
-    private javax.swing.JButton btnViewInvoice;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cmbCustomerName;
     private javax.swing.JComboBox cmbProductName;
