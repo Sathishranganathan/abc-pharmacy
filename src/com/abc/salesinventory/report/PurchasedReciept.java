@@ -64,7 +64,7 @@ public class PurchasedReciept extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Supplier ID");
+        jLabel3.setText("Supplier Name");
 
         txtSupplierId.setEditable(false);
 

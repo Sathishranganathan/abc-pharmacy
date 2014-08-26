@@ -68,4 +68,5 @@ public interface MasterService {
 
     public Set<Transaction> getAllPurchaseTransactions();
 
+    public Set<Transaction> getAllSalesTransactions();
 }

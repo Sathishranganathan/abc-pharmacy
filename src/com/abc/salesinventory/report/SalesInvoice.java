@@ -8,6 +8,7 @@ package com.abc.salesinventory.report;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
+import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.ReportViewer;
@@ -27,9 +28,9 @@ public class SalesInvoice extends javax.swing.JFrame {
     public SalesInvoice() {
         initComponents();
         
-        Set<Customer> customers = masterService.getAllCustomers();
-        for (Customer customer : customers) {
-            cmbCustomer.addItem(customer);
+          Set<Transaction> transactions = masterService.getAllSalesTransactions();
+        for (Transaction transaction : transactions) {
+            cmbTransaction.addItem(transaction);
     }
     }
 
@@ -44,25 +45,30 @@ public class SalesInvoice extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cmbCustomer = new javax.swing.JComboBox();
+        cmbTransaction = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         btnInvoice = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtCustomer = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Sales Invoice");
 
-        jLabel2.setText("Customer Name");
+        jLabel2.setText("Transaction Number");
 
-        cmbCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Customer--" }));
+        cmbTransaction.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Transaction number--" }));
+        cmbTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTransactionActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Invoice Date");
+        jLabel3.setText("Transaction Date");
 
-        jLabel4.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel4.setText("eg: yyyy-mm-dd");
+        txtDate.setEditable(false);
 
         btnInvoice.setText("View Invoice");
         btnInvoice.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +76,10 @@ public class SalesInvoice extends javax.swing.JFrame {
                 btnInvoiceActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Customer Name");
+
+        txtCustomer.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,20 +93,18 @@ public class SalesInvoice extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbCustomer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDate))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbTransaction, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(btnInvoice)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addComponent(btnInvoice))
+                            .addComponent(txtCustomer, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,28 +114,41 @@ public class SalesInvoice extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cmbTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(56, 56, 56)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnInvoice)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvoiceActionPerformed
-        HashMap map = new HashMap();
-        String cusid = ((Customer) cmbCustomer.getSelectedItem()).getId();
+         HashMap map = new HashMap();
+        String transactionid = ((Transaction) cmbTransaction.getSelectedItem()).getTransactionId();
         
-        map.put("customerid", cusid);
-        map.put("date", txtDate.getText().trim());
+       map.put("txnId", transactionid);
         ReportViewer reportViewer = new ReportViewer("SalesInvoice.jrxml", map);
     }//GEN-LAST:event_btnInvoiceActionPerformed
+
+    private void cmbTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTransactionActionPerformed
+        if (cmbTransaction.getSelectedItem() != null && cmbTransaction.getSelectedItem() instanceof Transaction) {
+            Transaction transaction = (Transaction) cmbTransaction.getSelectedItem();
+            txtCustomer.setText(transaction.getCustomer().getName());
+            txtDate.setText(transaction.getDate().toString());
+        } else {
+            txtCustomer.setText(null);
+            txtDate.setText(null);
+        }
+    }//GEN-LAST:event_cmbTransactionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,11 +187,12 @@ public class SalesInvoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInvoice;
-    private javax.swing.JComboBox cmbCustomer;
+    private javax.swing.JComboBox cmbTransaction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtCustomer;
     private javax.swing.JTextField txtDate;
     // End of variables declaration//GEN-END:variables
 }
