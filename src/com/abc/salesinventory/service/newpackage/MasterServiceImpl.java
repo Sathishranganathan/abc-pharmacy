@@ -6,15 +6,21 @@
 package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.RolePermission;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
+import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.prefs.Preferences;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -179,7 +185,7 @@ public class MasterServiceImpl implements MasterService {
         }
         return products;
     }
-    
+
     //
     @Override
     public String getPreference(String key) {
@@ -192,9 +198,8 @@ public class MasterServiceImpl implements MasterService {
         Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
         prefs.put(key, value);
     }
-    
+
     //Stock
-    
     @Override
     public String saveOrUpdateStock(Stock stock) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -245,11 +250,8 @@ public class MasterServiceImpl implements MasterService {
         }
         return stocks;
     }
-    
-    
-    
+
     //Transaction
-    
     @Override
     public Transaction getTransactions(String transactionId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -281,8 +283,26 @@ public class MasterServiceImpl implements MasterService {
         }
         return transactions;
     }
-    
-    
-    
-    
+
+    public Set<Transaction> getAllPurchaseTransactions() {
+        Set<Transaction> transactions = new HashSet<Transaction>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Transaction t where t.transactionType = 'PURCHASE'";
+        Query q = session.createQuery(hql);
+        List<Transaction> resultList = q.list();
+
+        for (Transaction transaction : resultList) {
+            Hibernate.initialize(transaction.getSupplier());
+        }
+
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            transactions.addAll(resultList);
+        }
+        return transactions;
+    }
+
 }
