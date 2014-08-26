@@ -85,10 +85,7 @@ public class Sales extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        txtInvoiceNo = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
         txtTransactionId = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -144,13 +141,6 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setText("Transaction ID");
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel23.setText("Invoice No");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel26.setText("*");
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 0, 0));
@@ -383,16 +373,11 @@ public class Sales extends javax.swing.JFrame {
                                     .addComponent(jLabel24))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtTransactionId, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(116, 116, 116)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtInvoiceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(192, 192, 192)
                                         .addComponent(jLabel25)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel15)
@@ -477,9 +462,6 @@ public class Sales extends javax.swing.JFrame {
                     .addComponent(jLabel22)
                     .addComponent(txtTransactionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
-                    .addComponent(jLabel26)
-                    .addComponent(txtInvoiceNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
                     .addComponent(jLabel15)
                     .addComponent(jLabel25)
                     .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -611,7 +593,7 @@ public class Sales extends javax.swing.JFrame {
         txtDiscount.setText(null);
     }
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if (cmbProductName.getSelectedIndex() == 0 || txtUnitPrice.getText().trim().equals("") || txtExpiryDate.getText().trim().equals("") || txtQty.getText().trim().equals("")) {
+        if (cmbProductName.getSelectedIndex() == 0 || txtUnitPrice.getText().trim().equals("") || txtQty.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Add Purchase Details", 2);
             return;
         } else {
@@ -670,9 +652,7 @@ public class Sales extends javax.swing.JFrame {
             flag = false;
         }
 
-        if (txtInvoiceNo.getText() == null || txtInvoiceNo.getText().equals("")) {
-            flag = false;
-        }
+        
 
         if (ftxtDate.getText() == null || ftxtDate.getText().equals("")) {
             flag = false;
@@ -791,7 +771,7 @@ public class Sales extends javax.swing.JFrame {
         txtQty.setText(null);
         txtStockBalance.setText(null);
         txtDiscount.setText(null);
-        txtInvoiceNo.setText(null);
+        
 
         resetTable();
 
@@ -867,10 +847,8 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -892,7 +870,6 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerId;
     private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtExpiryDate;
-    private javax.swing.JTextField txtInvoiceNo;
     private javax.swing.JTextField txtNetValue;
     private javax.swing.JTextField txtProductCode;
     private javax.swing.JTextField txtQty;
