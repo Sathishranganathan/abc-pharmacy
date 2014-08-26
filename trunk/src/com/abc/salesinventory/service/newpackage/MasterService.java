@@ -9,6 +9,7 @@ import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
 import com.abc.salesinventory.model.newpackage.Stock;
+import com.abc.salesinventory.model.newpackage.Transaction;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -59,6 +60,14 @@ public interface MasterService {
     public String saveOrUpdateStock(Stock stock) throws HibernateException;
 
     public void removeStock(Stock stock);
+    
+//Transaction
+    
+    public Transaction getTransactions(String transactionId);
+
+    public Set<Transaction> getAllTransactions();
+    
+    
     
 
 }

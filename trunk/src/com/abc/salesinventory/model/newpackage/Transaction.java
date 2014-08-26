@@ -23,6 +23,15 @@ public class Transaction  implements java.io.Serializable {
 
     public Transaction() {
     }
+    
+    @Override
+    public String toString() {
+        return transactionId;
+    }
+    
+    public Transaction(String transactionId)
+    { this.transactionId=transactionId;
+    }
 
 	
     public Transaction(String transactionId, Date date, double total, String transactionType, String paymentMethod) {

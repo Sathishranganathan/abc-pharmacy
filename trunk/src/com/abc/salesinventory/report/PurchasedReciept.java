@@ -7,6 +7,7 @@
 package com.abc.salesinventory.report;
 
 import com.abc.salesinventory.model.newpackage.Supplier;
+import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.ReportViewer;
@@ -25,9 +26,9 @@ public class PurchasedReciept extends javax.swing.JFrame {
     public PurchasedReciept() {
         initComponents();
         
-        Set<Supplier> suppliers = masterService.getAllSuppliers();
-        for (Supplier supplier : suppliers) {
-            cmbSupplier.addItem(supplier);
+        Set<Transaction> transactions = masterService.getAllTransactions();
+        for (Transaction transaction : transactions) {
+            cmbTransaction.addItem(transaction);
     }
     }
 
@@ -42,25 +43,30 @@ public class PurchasedReciept extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cmbSupplier = new javax.swing.JComboBox();
+        cmbTransaction = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        txtSupplierId = new javax.swing.JTextField();
         btnView = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Purchased Receipt");
 
-        jLabel2.setText("Supplier ID");
+        jLabel2.setText("Transaction ID");
 
-        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Select a Supplier --" }));
+        cmbTransaction.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Select a Transaction ID --" }));
+        cmbTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTransactionActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Date");
+        jLabel3.setText("Supplier ID");
 
-        jLabel4.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel4.setText("eg: yyyy-mm-dd");
+        txtSupplierId.setEditable(false);
 
         btnView.setText("View Receipt");
         btnView.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +74,10 @@ public class PurchasedReciept extends javax.swing.JFrame {
                 btnViewActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Date");
+
+        txtDate.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,14 +92,14 @@ public class PurchasedReciept extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                            .addComponent(cmbTransaction, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSupplierId)
+                            .addComponent(txtDate))))
+                .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnView)
@@ -103,15 +113,18 @@ public class PurchasedReciept extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(38, 38, 38)
+                    .addComponent(txtSupplierId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(btnView)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,12 +132,23 @@ public class PurchasedReciept extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
          HashMap map = new HashMap();
-        String supid = ((Supplier) cmbSupplier.getSelectedItem()).getId();
+        String transactionid = ((Transaction) cmbTransaction.getSelectedItem()).getTransactionId();
         
-        map.put("supplierid", supid);
-        map.put("date", txtDate.getText().trim());
+        map.put("transactionid", transactionid);
+        
         ReportViewer reportViewer = new ReportViewer("PurchasedReceipt.jrxml", map);
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void cmbTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTransactionActionPerformed
+         if (cmbTransaction.getSelectedItem() != null && cmbTransaction.getSelectedItem() instanceof Transaction) {
+            Transaction transaction = (Transaction) cmbTransaction.getSelectedItem();
+           txtSupplierId.setText(transaction.getSupplier());
+            txtDate.setText(transaction.getDate());
+        } else {
+            txtSupplierId.setText(null);
+            txtDate.setText(null);
+        }
+    }//GEN-LAST:event_cmbTransactionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,11 +187,12 @@ public class PurchasedReciept extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnView;
-    private javax.swing.JComboBox cmbSupplier;
+    private javax.swing.JComboBox cmbTransaction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtSupplierId;
     // End of variables declaration//GEN-END:variables
 }
