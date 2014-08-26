@@ -130,7 +130,6 @@ public class Purchases extends javax.swing.JFrame {
         btnRemove = new javax.swing.JButton();
         btnAddTransaction = new javax.swing.JButton();
         btnCancelTransaction = new javax.swing.JButton();
-        btnViewReciept = new javax.swing.JButton();
         txtQty = new javax.swing.JTextField();
         btnCash = new javax.swing.JRadioButton();
         btnCredit = new javax.swing.JRadioButton();
@@ -340,9 +339,6 @@ public class Purchases extends javax.swing.JFrame {
             }
         });
 
-        btnViewReciept.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnViewReciept.setText("View Purchased Reciept");
-
         btnCash.setText("Cash");
         btnCash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,8 +480,7 @@ public class Purchases extends javax.swing.JFrame {
                                         .addComponent(btnAddTransaction)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnCancelTransaction)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnViewReciept))
+                                        .addGap(177, 177, 177))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(317, 317, 317))
@@ -593,7 +588,6 @@ public class Purchases extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddTransaction)
-                    .addComponent(btnViewReciept)
                     .addComponent(btnCancelTransaction))
                 .addGap(31, 31, 31))
         );
@@ -895,7 +889,6 @@ public class Purchases extends javax.swing.JFrame {
     private javax.swing.JButton btnNewMedicine;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnTotal;
-    private javax.swing.JButton btnViewReciept;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cmbProductName;
     private javax.swing.JComboBox cmbSupplierName;
