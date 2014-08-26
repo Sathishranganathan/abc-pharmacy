@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.report;
 
-import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.ReportViewer;
 import java.util.HashMap;
 import java.util.Set;
+
 /**
  *
  * @author Manuri
  */
 public class PurchasedReciept extends javax.swing.JFrame {
+
     MasterService masterService = new MasterServiceImpl();
 
     /**
@@ -25,11 +25,11 @@ public class PurchasedReciept extends javax.swing.JFrame {
      */
     public PurchasedReciept() {
         initComponents();
-        
-        Set<Transaction> transactions = masterService.getAllTransactions();
+
+        Set<Transaction> transactions = masterService.getAllPurchaseTransactions();
         for (Transaction transaction : transactions) {
             cmbTransaction.addItem(transaction);
-    }
+        }
     }
 
     /**
@@ -131,19 +131,19 @@ public class PurchasedReciept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-         HashMap map = new HashMap();
+        HashMap map = new HashMap();
         String transactionid = ((Transaction) cmbTransaction.getSelectedItem()).getTransactionId();
-        
-        map.put("transactionid", transactionid);
-        
+
+        map.put("txnId", transactionid);
+
         ReportViewer reportViewer = new ReportViewer("PurchasedReceipt.jrxml", map);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void cmbTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTransactionActionPerformed
-         if (cmbTransaction.getSelectedItem() != null && cmbTransaction.getSelectedItem() instanceof Transaction) {
+        if (cmbTransaction.getSelectedItem() != null && cmbTransaction.getSelectedItem() instanceof Transaction) {
             Transaction transaction = (Transaction) cmbTransaction.getSelectedItem();
-           txtSupplierId.setText(transaction.getSupplier());
-            txtDate.setText(transaction.getDate());
+            txtSupplierId.setText(transaction.getSupplier().getName());
+            txtDate.setText(transaction.getDate().toString());
         } else {
             txtSupplierId.setText(null);
             txtDate.setText(null);

@@ -51,7 +51,7 @@ public interface MasterService {
     public String saveOrUpdateProduct(Product product) throws HibernateException;
 
     public void removeProduct(Product product);
-    
+
     //Stock
     public Stock getStock(String stockId);
 
@@ -60,14 +60,12 @@ public interface MasterService {
     public String saveOrUpdateStock(Stock stock) throws HibernateException;
 
     public void removeStock(Stock stock);
-    
+
 //Transaction
-    
     public Transaction getTransactions(String transactionId);
 
     public Set<Transaction> getAllTransactions();
-    
-    
-    
+
+    public Set<Transaction> getAllPurchaseTransactions();
 
 }
