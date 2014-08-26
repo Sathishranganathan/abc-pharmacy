@@ -9,6 +9,7 @@ import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
 import com.abc.salesinventory.model.newpackage.Stock;
+import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
@@ -244,4 +245,44 @@ public class MasterServiceImpl implements MasterService {
         }
         return stocks;
     }
+    
+    
+    
+    //Transaction
+    
+    @Override
+    public Transaction getTransactions(String transactionId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Transaction t where t.transactionId='" + transactionId + "' ";
+        Query q = session.createQuery(hql);
+        List<Transaction> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Set<Transaction> getAllTransactions() {
+        Set<Transaction> transactions = new HashSet<Transaction>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Transaction";
+        Query q = session.createQuery(hql);
+        List<Transaction> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            transactions.addAll(resultList);
+        }
+        return transactions;
+    }
+    
+    
+    
+    
 }
