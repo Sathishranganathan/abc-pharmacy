@@ -316,6 +316,11 @@ public class Sales extends javax.swing.JFrame {
 
         btnCancelTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCancelTransaction.setText("Cancel");
+        btnCancelTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelTransactionActionPerformed(evt);
+            }
+        });
 
         btnViewInvoice.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnViewInvoice.setText("View Invoice");
@@ -627,7 +632,7 @@ public class Sales extends javax.swing.JFrame {
             oneRow.add(txtQty.getText());
             if (discountAmount > 0) {
                 oneRow.add(txtDiscount.getText() + "%");
-            }else{
+            } else {
                 oneRow.add("0%");
             }
             oneRow.add(txtUnitPrice.getText());
@@ -748,8 +753,12 @@ public class Sales extends javax.swing.JFrame {
             detail.setTransactionDetailId(UUID.randomUUID().toString());
 
             Double uprice = Double.parseDouble((String) v.get(5));
+            String discountStr = (String) v.get(4);
+            Double discount = Double.parseDouble(discountStr.substring(0, discountStr.length() - 1));
             detail.setUnitPrice(uprice);
-            total = total + (qty * uprice);
+            detail.setDiscount(discount);
+
+            total = total + (qty * uprice) * discount / 100;
             Date expDate = null;
             try {
                 expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
@@ -757,7 +766,6 @@ public class Sales extends javax.swing.JFrame {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }
             detail.setExpDate(expDate);
-
             transactionDetails.add(detail);
 
         }
@@ -791,6 +799,13 @@ public class Sales extends javax.swing.JFrame {
         DatePicker datePicker = new DatePicker(jPanel1);
         ftxtDate.setText(datePicker.setPickedDate());
     }//GEN-LAST:event_ftxtDateMouseClicked
+
+    private void btnCancelTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelTransactionActionPerformed
+        int reply = JOptionPane.showConfirmDialog(null, "This will cancel currentlt entered sales details. Do you want to continue?", "Warning", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_btnCancelTransactionActionPerformed
 
     /**
      * @param args the command line arguments
