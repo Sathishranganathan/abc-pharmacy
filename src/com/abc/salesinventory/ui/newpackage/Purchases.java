@@ -700,7 +700,7 @@ public class Purchases extends javax.swing.JFrame {
         Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
         transaction.setSupplier(supplier);
 
-        transaction.setTransactionId(UUID.randomUUID().toString());
+        transaction.setTransactionId(txtTransactionId.getText());
         transaction.setTransactionType("PURCHASE");
 
         Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();

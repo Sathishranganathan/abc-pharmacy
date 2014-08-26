@@ -7,16 +7,24 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
 import com.abc.salesinventory.model.newpackage.Product;
-import com.abc.salesinventory.model.newpackage.Supplier;
+import com.abc.salesinventory.model.newpackage.Transaction;
+import com.abc.salesinventory.model.newpackage.TransactionDetail;
 import com.abc.salesinventory.service.newpackage.InventoryService;
 import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.DatePicker;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -83,7 +91,6 @@ public class Sales extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        ftxtDate = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -125,6 +132,7 @@ public class Sales extends javax.swing.JFrame {
         btnRemove = new javax.swing.JButton();
         txtQty = new javax.swing.JTextField();
         txtDiscount = new javax.swing.JTextField();
+        ftxtDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sales");
@@ -152,18 +160,6 @@ public class Sales extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 0, 0));
         jLabel24.setText("*");
 
-        ftxtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        ftxtDate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ftxtDateMouseClicked(evt);
-            }
-        });
-        ftxtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxtDateActionPerformed(evt);
-            }
-        });
-
         jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel15.setText("Date");
 
@@ -185,6 +181,7 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel5.setText("Customer ID");
 
+        txtCustomerId.setEditable(false);
         txtCustomerId.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txtCustomerId.setName(""); // NOI18N
 
@@ -206,6 +203,8 @@ public class Sales extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Item Details");
 
+        txtCategory.setEditable(false);
+
         cmbProductName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Product--" }));
         cmbProductName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +219,8 @@ public class Sales extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 0, 0));
         jLabel30.setText("*");
+
+        txtProductCode.setEditable(false);
 
         jLabel8.setText("Product Name");
 
@@ -251,6 +252,11 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         tableProductAmount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,6 +308,11 @@ public class Sales extends javax.swing.JFrame {
 
         btnAddTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAddTransaction.setText("Save");
+        btnAddTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTransactionActionPerformed(evt);
+            }
+        });
 
         btnCancelTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCancelTransaction.setText("Cancel");
@@ -317,15 +328,9 @@ public class Sales extends javax.swing.JFrame {
             }
         });
 
-        txtQty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQtyActionPerformed(evt);
-            }
-        });
-
-        txtDiscount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDiscountActionPerformed(evt);
+        ftxtDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ftxtDateMouseClicked(evt);
             }
         });
 
@@ -386,8 +391,8 @@ public class Sales extends javax.swing.JFrame {
                                         .addComponent(jLabel25)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel30)
@@ -468,8 +473,8 @@ public class Sales extends javax.swing.JFrame {
                     .addComponent(txtInvoiceNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
                     .addComponent(jLabel15)
-                    .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25))
+                    .addComponent(jLabel25)
+                    .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -563,11 +568,6 @@ public class Sales extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbCustomerNameActionPerformed
 
-    private void ftxtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtDateActionPerformed
-        DatePicker datePicker = new DatePicker(jPanel1);
-        ftxtDate.setText(datePicker.setPickedDate());
-    }//GEN-LAST:event_ftxtDateActionPerformed
-
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         DefaultTableModel model = (DefaultTableModel) tableProductAmount.getModel();
         int selectedRow = tableProductAmount.getSelectedRow();
@@ -575,11 +575,6 @@ public class Sales extends javax.swing.JFrame {
             model.removeRow(selectedRow);
         }
     }//GEN-LAST:event_btnRemoveActionPerformed
-
-    private void ftxtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ftxtDateMouseClicked
-        DatePicker datePicker = new DatePicker(jPanel1);
-        ftxtDate.setText(datePicker.setPickedDate());
-    }//GEN-LAST:event_ftxtDateMouseClicked
 
     private void txtExpiryDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExpiryDateMouseClicked
         DatePicker datePicker = new DatePicker(jPanel1);
@@ -604,7 +599,7 @@ public class Sales extends javax.swing.JFrame {
         txtUnitPrice.setText(null);
         txtStockBalance.setText(null);
         txtQty.setText(null);
-
+        txtDiscount.setText(null);
     }
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (cmbProductName.getSelectedIndex() == 0 || txtUnitPrice.getText().trim().equals("") || txtExpiryDate.getText().trim().equals("") || txtQty.getText().trim().equals("")) {
@@ -613,16 +608,28 @@ public class Sales extends javax.swing.JFrame {
         } else {
             Double x = Double.parseDouble(txtQty.getText());
             Double y = Double.parseDouble(txtUnitPrice.getText());
-            Double z = Double.parseDouble(txtDiscount.getText());
+            Double z = 0.0d;
+            Double discountAmount = 0.0d;
+            if (txtDiscount.getText() != null && txtDiscount.getText() != "") {
+                try {
+                    z = Double.parseDouble(txtDiscount.getText());
+                    discountAmount = (x * y) * z / 100;
+                } catch (NumberFormatException e) {
+
+                }
+            }
             Double result = (x * y);
-            Double discountAmount = (x * y) * z / 100;
 
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
             oneRow.add(txtExpiryDate.getText());
             oneRow.add(txtQty.getText());
-            oneRow.add(txtDiscount.getText()+"%");
+            if (discountAmount > 0) {
+                oneRow.add(txtDiscount.getText() + "%");
+            }else{
+                oneRow.add("0%");
+            }
             oneRow.add(txtUnitPrice.getText());
             oneRow.add(result - discountAmount);
 
@@ -631,14 +638,6 @@ public class Sales extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQtyActionPerformed
-
-    private void txtDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiscountActionPerformed
 
     private void btnNetValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetValueActionPerformed
         DefaultTableModel model = (DefaultTableModel) tableProductAmount.getModel();
@@ -651,6 +650,147 @@ public class Sales extends javax.swing.JFrame {
         }
         txtNetValue.setText("" + total);
     }//GEN-LAST:event_btnNetValueActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        Clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private boolean validateSales() {
+        boolean flag = true;
+        if (txtTransactionId.getText() == null || txtTransactionId.getText().equals("")) {
+            flag = false;
+        }
+
+        if (txtInvoiceNo.getText() == null || txtInvoiceNo.getText().equals("")) {
+            flag = false;
+        }
+
+        if (ftxtDate.getText() == null || ftxtDate.getText().equals("")) {
+            flag = false;
+        }
+
+        if (txtCustomerId.getText() == null || txtCustomerId.getText().equals("")) {
+            flag = false;
+        }
+
+        boolean radioFlag = false;
+        if (rbtnCash.isSelected()) {
+            radioFlag = true;
+        } else if (rbtnCheque.isSelected()) {
+            radioFlag = true;
+        }
+
+        if (!radioFlag) {
+            flag = false;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tableProductAmount.getModel();
+        Vector dataModel = model.getDataVector();
+
+        if (dataModel == null || model.getRowCount() == 0) {
+            flag = false;
+        }
+
+        if (flag == false) {
+            JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Purchase Details", 2);
+        }
+
+        return flag;
+    }
+
+    private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
+
+        if (!validateSales()) {
+            return;
+        }
+
+        Transaction transaction = new Transaction();
+
+        Date txnDate = null;
+        try {
+            txnDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(ftxtDate.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        transaction.setDate(txnDate);
+        if (rbtnCash.isSelected()) {
+            transaction.setPaymentMethod("CASH");
+        } else if (rbtnCheque.isSelected()) {
+            transaction.setPaymentMethod("CHEQUE");
+        }
+
+        Customer customer = ((Customer) cmbCustomerName.getSelectedItem());
+        transaction.setCustomer(customer);
+
+        transaction.setTransactionId(txtTransactionId.getText());
+        transaction.setTransactionType("SALES");
+
+        Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
+
+        DefaultTableModel model = (DefaultTableModel) tableProductAmount.getModel();
+        Vector dataModel = model.getDataVector();
+        Iterator it = dataModel.iterator();
+        double total = 0.0d;
+        int x = 0;
+        while (it.hasNext()) {
+            Vector v = (Vector) it.next();
+
+            TransactionDetail detail = new TransactionDetail();
+
+            String productCode = (String) v.get(0);
+            Product product = masterService.getProduct(productCode);
+            detail.setProduct(product);
+
+            Integer qty = Integer.parseInt((String) v.get(3));
+            detail.setQuantity(qty);
+
+            detail.setTransaction(transaction);
+            detail.setTransactionDetailId(UUID.randomUUID().toString());
+
+            Double uprice = Double.parseDouble((String) v.get(5));
+            detail.setUnitPrice(uprice);
+            total = total + (qty * uprice);
+            Date expDate = null;
+            try {
+                expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
+            } catch (ParseException ex) {
+                Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            detail.setExpDate(expDate);
+
+            transactionDetails.add(detail);
+
+        }
+
+        transaction.setTotal(total);
+
+        transaction.setTransactionDetails(transactionDetails);
+        inventoryService.saveTransaction(transaction);
+
+        JOptionPane.showMessageDialog(null, "Sale successfully saved.", "Sales", 1);
+
+        ftxtDate.setText(null);
+        cmbCustomerName.setSelectedIndex(0);
+        rbtnCash.setSelected(false);
+        rbtnCheque.setSelected(false);
+        cmbProductName.setSelectedIndex(0);
+        txtUnitPrice.setText(null);
+        txtExpiryDate.setText(null);
+        txtQty.setText(null);
+        txtStockBalance.setText(null);
+        txtDiscount.setText(null);
+        txtInvoiceNo.setText(null);
+
+        resetTable();
+
+        txtNetValue.setText(null);
+        txtTransactionId.setText(UUID.randomUUID().toString());
+    }//GEN-LAST:event_btnAddTransactionActionPerformed
+
+    private void ftxtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ftxtDateMouseClicked
+        DatePicker datePicker = new DatePicker(jPanel1);
+        ftxtDate.setText(datePicker.setPickedDate());
+    }//GEN-LAST:event_ftxtDateMouseClicked
 
     /**
      * @param args the command line arguments
@@ -698,7 +838,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cmbCustomerName;
     private javax.swing.JComboBox cmbProductName;
-    private javax.swing.JFormattedTextField ftxtDate;
+    private javax.swing.JTextField ftxtDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
