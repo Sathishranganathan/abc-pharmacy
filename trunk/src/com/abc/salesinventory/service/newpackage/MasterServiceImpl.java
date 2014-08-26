@@ -304,5 +304,26 @@ public class MasterServiceImpl implements MasterService {
         }
         return transactions;
     }
+    
+     public Set<Transaction> getAllSalesTransactions() {
+        Set<Transaction> transactions = new HashSet<Transaction>();
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Transaction t where t.transactionType = 'SALES'";
+        Query q = session.createQuery(hql);
+        List<Transaction> resultList = q.list();
+
+        for (Transaction transaction : resultList) {
+            Hibernate.initialize(transaction.getCustomer());
+        }
+
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            transactions.addAll(resultList);
+        }
+        return transactions;
+    }
 
 }

@@ -749,7 +749,7 @@ public class Sales extends javax.swing.JFrame {
             detail.setUnitPrice(uprice);
             detail.setDiscount(discount);
 
-            total = total + (qty * uprice) * discount / 100;
+            total = total + (qty * uprice -(qty * uprice) * discount / 100);
 //            Date expDate = null;
 //            try {
 //                expDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse((String) v.get(2));
