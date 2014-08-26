@@ -21,6 +21,20 @@ import org.hibernate.Session;
  */
 public class InventoryServiceImpl implements InventoryService {
 
+    public List<Stock> getStockByProduct(String productCode) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Stock s where s.product.productCode='" + productCode + "' order by expDate desc";
+        Query q = session.createQuery(hql);
+        List<Stock> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            return resultList;
+        }
+        return null;
+    }
+
     @Override
     public String saveStock(Stock stock) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
