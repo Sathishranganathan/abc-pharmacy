@@ -7,10 +7,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="supplierid" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="date" class="java.lang.String">
+	<parameter name="txnId" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -48,7 +45,7 @@ FROM
 
 WHERE
 
-transaction.supplier_id=$P{supplierid} AND date(transaction.date)=$P{date}]]>
+transaction.`transaction_id`=$P{txnId}]]>
 	</queryString>
 	<field name="product_product_code" class="java.lang.String"/>
 	<field name="product_product_name" class="java.lang.String"/>
@@ -73,7 +70,7 @@ transaction.supplier_id=$P{supplierid} AND date(transaction.date)=$P{date}]]>
 	<field name="transaction_detail_product_code" class="java.lang.String"/>
 	<field name="transaction_detail_transaction_id" class="java.lang.String"/>
 	<field name="transaction_detail_unit_price" class="java.lang.Double"/>
-	<field name="transaction_detail_discount" class="java.lang.Integer"/>
+	<field name="transaction_detail_discount" class="java.lang.Double"/>
 	<field name="transaction_detail_exp_date" class="java.sql.Timestamp"/>
 	<field name="transaction_detail_quantity" class="java.lang.Integer"/>
 	<background>

@@ -14,7 +14,7 @@ public class TransactionDetail  implements java.io.Serializable {
      private Product product;
      private Transaction transaction;
      private Double unitPrice;
-     private Integer discount;
+     private Double discount;
      private Date expDate;
      private Integer quantity;
 
@@ -25,7 +25,7 @@ public class TransactionDetail  implements java.io.Serializable {
     public TransactionDetail(String transactionDetailId) {
         this.transactionDetailId = transactionDetailId;
     }
-    public TransactionDetail(String transactionDetailId, Product product, Transaction transaction, Double unitPrice, Integer discount, Date expDate, Integer quantity) {
+    public TransactionDetail(String transactionDetailId, Product product, Transaction transaction, Double unitPrice, Double discount, Date expDate, Integer quantity) {
        this.transactionDetailId = transactionDetailId;
        this.product = product;
        this.transaction = transaction;
@@ -63,11 +63,11 @@ public class TransactionDetail  implements java.io.Serializable {
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
-    public Integer getDiscount() {
+    public Double getDiscount() {
         return this.discount;
     }
     
-    public void setDiscount(Integer discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
     public Date getExpDate() {

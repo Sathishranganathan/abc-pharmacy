@@ -7,6 +7,7 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
+import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.model.newpackage.TransactionDetail;
@@ -17,9 +18,11 @@ import java.util.UUID;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.DatePicker;
+import com.abc.salesinventory.util.ReportViewer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
@@ -71,7 +74,6 @@ public class Purchases extends javax.swing.JFrame {
         buttonGroup1.add(btnCash);
         buttonGroup1.add(btnCredit);
         buttonGroup1.add(btnCheque);
-              
 
     }
 
@@ -756,6 +758,13 @@ public class Purchases extends javax.swing.JFrame {
         inventoryService.saveTransaction(transaction);
 
         JOptionPane.showMessageDialog(null, "Purchase successfully saved.", "Purchase", 1);
+
+        int reply = JOptionPane.showConfirmDialog(null, "Do you want to view Purchase receipt?", "Purchase", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            HashMap map = new HashMap();
+            map.put("txnId", txtTransactionId.getText());
+            ReportViewer reportViewer = new ReportViewer("PurchasedReceipt.jrxml", map);
+        }
 
         txtDate.setText(null);
         cmbSupplierName.setSelectedIndex(0);
