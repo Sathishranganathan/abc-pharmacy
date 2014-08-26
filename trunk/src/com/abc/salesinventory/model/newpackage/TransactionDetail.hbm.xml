@@ -23,7 +23,7 @@
         <property name="expDate" type="timestamp">
             <column name="exp_date" length="19" />
         </property>
-        <property name="quantity" type="java.lang.Integer">
+        <property name="quantity" type="java.lang.Double">
             <column name="quantity" />
         </property>
     </class>

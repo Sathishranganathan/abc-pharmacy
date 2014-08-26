@@ -743,7 +743,7 @@ public class Sales extends javax.swing.JFrame {
             Product product = masterService.getProduct(productCode);
             detail.setProduct(product);
 
-            Integer qty = Integer.parseInt((String) v.get(3));
+            Double qty = Double.parseDouble((String) v.get(3));
             detail.setQuantity(qty);
 
             detail.setTransaction(transaction);
@@ -764,6 +764,27 @@ public class Sales extends javax.swing.JFrame {
             }
             detail.setExpDate(expDate);
             transactionDetails.add(detail);
+
+            if (getStockQty(productCode) < qty) {
+                JOptionPane.showMessageDialog(null, "Inventory does not have enough quantity to issue the " + productCode + " quantity!", "Save Sales", 2);
+                return;
+            }
+
+            double tempQty = qty;
+            List<Stock> stocks = inventoryService.getStockByProduct(productCode);
+            for (Stock stock : stocks) {
+                if (tempQty > 0) {
+                    if (tempQty >= stock.getQuantity()) {
+                        masterService.removeStock(stock);
+                    } else {
+                        stock.setQuantity(stock.getQuantity() - tempQty);
+                        masterService.saveOrUpdateStock(stock);
+                    }
+                    tempQty = tempQty - stock.getQuantity();
+                } else {
+                    break;
+                }
+            }
 
         }
 
