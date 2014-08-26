@@ -7,7 +7,6 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
-import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
 import com.abc.salesinventory.model.newpackage.TransactionDetail;
@@ -25,6 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -37,16 +37,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Manuri
  */
 public class Purchases extends javax.swing.JFrame {
-
+    
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
-
+    
     DefaultTableModel model = null;
-
+    
     private void resetTable() {
         model = new DefaultTableModel();
         jTable1.setModel(model);
-
+        
         model.addColumn("Product Code");
         model.addColumn("Product Name");
         model.addColumn("Expiry Date");
@@ -70,11 +70,11 @@ public class Purchases extends javax.swing.JFrame {
         for (Product product : products) {
             cmbProductName.addItem(product);
         }
-
+        
         buttonGroup1.add(btnCash);
         buttonGroup1.add(btnCredit);
         buttonGroup1.add(btnCheque);
-
+        
     }
 
     /**
@@ -224,6 +224,8 @@ public class Purchases extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 0, 0));
         jLabel26.setText("*");
+
+        txtStockBalance.setEditable(false);
 
         jLabel12.setText("Category");
 
@@ -619,6 +621,15 @@ public class Purchases extends javax.swing.JFrame {
             Product product = (Product) cmbProductName.getSelectedItem();
             txtProductCode.setText(product.getProductCode());
             txtCategory.setText(product.getCategory());
+            List<Stock> stocks = inventoryService.getStockByProduct(product.getProductCode());
+            double stockqty = 0.0d;
+            if (stocks != null) {
+                for (Stock stock : stocks) {
+                    stockqty = stockqty + stock.getQuantity();
+                }                
+            }
+            txtStockBalance.setText(""+stockqty);
+            
         } else {
             txtProductCode.setText(null);
             txtCategory.setText(null);
@@ -656,7 +667,7 @@ public class Purchases extends javax.swing.JFrame {
             Double x = Double.parseDouble(txtQty.getText());
             Double y = Double.parseDouble(txtUniPrice.getText());
             Double result = x * y;
-
+            
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(txtProductCode.getText());
             oneRow.add(cmbProductName.getSelectedItem());
@@ -664,10 +675,10 @@ public class Purchases extends javax.swing.JFrame {
             oneRow.add(txtQty.getText());
             oneRow.add(txtUniPrice.getText());
             oneRow.add(result);
-
+            
             model.addRow(oneRow);
             Clear();
-
+            
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -677,13 +688,13 @@ public class Purchases extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExpDateKeyPressed
 
     private void btnAddTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTransactionActionPerformed
-
+        
         if (!validatePurchase()) {
             return;
         }
-
+        
         Transaction transaction = new Transaction();
-
+        
         Date txnDate = null;
         try {
             txnDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(txtDate.getText());
@@ -698,15 +709,15 @@ public class Purchases extends javax.swing.JFrame {
         } else if (btnCredit.isSelected()) {
             transaction.setPaymentMethod("CREDIT");
         }
-
+        
         Supplier supplier = ((Supplier) cmbSupplierName.getSelectedItem());
         transaction.setSupplier(supplier);
-
+        
         transaction.setTransactionId(txtTransactionId.getText());
         transaction.setTransactionType("PURCHASE");
-
+        
         Set<TransactionDetail> transactionDetails = new HashSet<TransactionDetail>();
-
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Vector dataModel = model.getDataVector();
         Iterator it = dataModel.iterator();
@@ -714,19 +725,19 @@ public class Purchases extends javax.swing.JFrame {
         int x = 0;
         while (it.hasNext()) {
             Vector v = (Vector) it.next();
-
+            
             TransactionDetail detail = new TransactionDetail();
-
+            
             String productCode = (String) v.get(0);
             Product product = masterService.getProduct(productCode);
             detail.setProduct(product);
-
+            
             Integer qty = Integer.parseInt((String) v.get(3));
             detail.setQuantity(qty);
-
+            
             detail.setTransaction(transaction);
             detail.setTransactionDetailId(UUID.randomUUID().toString());
-
+            
             Double uprice = Double.parseDouble((String) v.get(4));
             detail.setUnitPrice(uprice);
             total = total + (qty * uprice);
@@ -737,9 +748,9 @@ public class Purchases extends javax.swing.JFrame {
                 Logger.getLogger(Purchases.class.getName()).log(Level.SEVERE, null, ex);
             }
             detail.setExpDate(expDate);
-
+            
             transactionDetails.add(detail);
-
+            
             Stock stock = new Stock();
             stock.setExpDate(txnDate);
             stock.setProduct(product);
@@ -747,25 +758,25 @@ public class Purchases extends javax.swing.JFrame {
             stock.setQuantity(qty);
             stock.setStockId(UUID.randomUUID().toString());
             stock.setSupplier(supplier);
-
+            
             inventoryService.saveStock(stock);
-
+            
         }
-
+        
         transaction.setTotal(total);
-
+        
         transaction.setTransactionDetails(transactionDetails);
         inventoryService.saveTransaction(transaction);
-
+        
         JOptionPane.showMessageDialog(null, "Purchase successfully saved.", "Purchase", 1);
-
+        
         int reply = JOptionPane.showConfirmDialog(null, "Do you want to view Purchase receipt?", "Purchase", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
             HashMap map = new HashMap();
             map.put("txnId", txtTransactionId.getText());
             ReportViewer reportViewer = new ReportViewer("PurchasedReceipt.jrxml", map);
         }
-
+        
         txtDate.setText(null);
         cmbSupplierName.setSelectedIndex(0);
         btnCredit.setSelected(false);
@@ -776,9 +787,9 @@ public class Purchases extends javax.swing.JFrame {
         txtExpDate.setText(null);
         txtQty.setText(null);
         txtStockBalance.setText(null);
-
+        
         resetTable();
-
+        
         txtTotal.setText(null);
         txtTransactionId.setText(UUID.randomUUID().toString());
 
@@ -821,7 +832,7 @@ public class Purchases extends javax.swing.JFrame {
             model.removeRow(selectedRow);
         }
     }//GEN-LAST:event_btnRemoveActionPerformed
-
+    
     private void Clear() {
         cmbProductName.setSelectedIndex(0);
         txtProductCode.setText(null);
@@ -830,7 +841,7 @@ public class Purchases extends javax.swing.JFrame {
         txtUniPrice.setText(null);
         txtStockBalance.setText(null);
         txtQty.setText(null);
-
+        
     }
 
     /**
@@ -847,7 +858,7 @@ public class Purchases extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -934,15 +945,15 @@ public class Purchases extends javax.swing.JFrame {
         if (txtTransactionId.getText() == null || txtTransactionId.getText().equals("")) {
             flag = false;
         }
-
+        
         if (txtDate.getText() == null || txtDate.getText().equals("")) {
             flag = false;
         }
-
+        
         if (txtSupplierId.getText() == null || txtSupplierId.getText().equals("")) {
             flag = false;
         }
-
+        
         boolean radioFlag = false;
         if (btnCash.isSelected()) {
             radioFlag = true;
@@ -951,22 +962,22 @@ public class Purchases extends javax.swing.JFrame {
         } else if (btnCredit.isSelected()) {
             radioFlag = true;
         }
-
+        
         if (!radioFlag) {
             flag = false;
         }
-
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Vector dataModel = model.getDataVector();
-
+        
         if (dataModel == null || model.getRowCount() == 0) {
             flag = false;
         }
-
+        
         if (flag == false) {
             JOptionPane.showMessageDialog(null, "One or more Required Fields are Empty !", "Purchase Details", 2);
         }
-
+        
         return flag;
     }
 }
