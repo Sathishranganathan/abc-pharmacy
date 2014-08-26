@@ -726,7 +726,7 @@ public class Purchases extends javax.swing.JFrame {
             Product product = masterService.getProduct(productCode);
             detail.setProduct(product);
             
-            Integer qty = Integer.parseInt((String) v.get(3));
+            Double qty = Double.parseDouble((String) v.get(3));
             detail.setQuantity(qty);
             
             detail.setTransaction(transaction);

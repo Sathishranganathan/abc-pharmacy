@@ -21,6 +21,7 @@ import org.hibernate.Session;
  */
 public class InventoryServiceImpl implements InventoryService {
 
+    @Override
     public List<Stock> getStockByProduct(String productCode) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
