@@ -9,6 +9,9 @@ import com.abc.salesinventory.report.CustomerDetailsReport;
 import com.abc.salesinventory.report.ProductDetailsReport;
 import com.abc.salesinventory.report.StockDetailsReport;
 import com.abc.salesinventory.report.SupplierDetailsReport;
+import com.abc.salesinventory.report.ProductBasedOnExpire;
+import com.abc.salesinventory.report.CustomerWiseSalesReport;
+import com.abc.salesinventory.report.SupplierWisePurchasedAnalysisReport;
 import com.abc.salesinventory.service.newpackage.SecurityService;
 import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
 import javax.swing.JOptionPane;
@@ -517,7 +520,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miProductReportActionPerformed
 
     private void miExpiredReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExpiredReportActionPerformed
-       
+       if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new ProductBasedOnExpire().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miExpiredReportActionPerformed
 
     private void miStockValueAnlysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStockValueAnlysisActionPerformed
@@ -545,7 +552,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miStockReportActionPerformed
 
     private void miSupWisePurchasedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSupWisePurchasedActionPerformed
-       
+       if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new SupplierWisePurchasedAnalysisReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSupWisePurchasedActionPerformed
 
     /**
