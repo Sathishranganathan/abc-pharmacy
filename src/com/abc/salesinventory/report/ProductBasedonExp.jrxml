@@ -51,8 +51,8 @@ year(stock.exp_date) = $P{year}]]>
 				<text><![CDATA[Eraj Pharamecuticals]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="139" y="46" width="245" height="22" uuid="7f2c56da-b5e3-4592-8c98-b28ab13e15c4"/>
-				<text><![CDATA[Product Base on Expired Date]]></text>
+				<reportElement style="SubTitle" x="129" y="46" width="272" height="22" uuid="7f2c56da-b5e3-4592-8c98-b28ab13e15c4"/>
+				<text><![CDATA[Products Based on Expired Date]]></text>
 			</staticText>
 		</band>
 	</title>
