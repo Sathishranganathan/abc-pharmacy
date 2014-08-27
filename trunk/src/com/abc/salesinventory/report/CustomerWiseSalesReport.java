@@ -113,9 +113,10 @@ public class CustomerWiseSalesReport extends javax.swing.JFrame {
 
     private void btnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReportActionPerformed
         HashMap map = new HashMap();
-        String name = ((Customer) cmbCustomer.getSelectedItem()).getName();
+        String name = ((Customer) cmbCustomer.getSelectedItem()).getId();
+        
         map.put("customer_id", name);
-
+        map.put("year", cmbYear.getSelectedItem());
         ReportViewer reportViewer = new ReportViewer("CustomerWiseSalesReport.jrxml", map);
     }//GEN-LAST:event_btnViewReportActionPerformed
 
