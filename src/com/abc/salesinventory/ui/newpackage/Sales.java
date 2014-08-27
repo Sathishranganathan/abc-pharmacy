@@ -318,6 +318,7 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btnViewStock.setText("View Stock Details");
+        btnViewStock.setEnabled(false);
         btnViewStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewStockActionPerformed(evt);
@@ -348,9 +349,11 @@ public class Sales extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnViewStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(ftxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnViewStock, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -580,10 +583,12 @@ public class Sales extends javax.swing.JFrame {
             txtCategory.setText(product.getCategory());
 
             txtStockBalance.setText("" + getStockQty(product.getProductCode()));
+            btnViewStock.setEnabled(true);
 
         } else {
             txtProductCode.setText(null);
             txtCategory.setText(null);
+            btnViewStock.setEnabled(false);
         }
     }//GEN-LAST:event_cmbProductNameActionPerformed
     private void Clear() {
@@ -818,7 +823,8 @@ public class Sales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelTransactionActionPerformed
 
     private void btnViewStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStockActionPerformed
-        // TODO add your handling code here:
+        StockDetailsPopup popup = new StockDetailsPopup(this, true, txtProductCode.getText());
+        popup.setVisible(true);
     }//GEN-LAST:event_btnViewStockActionPerformed
 
     /**

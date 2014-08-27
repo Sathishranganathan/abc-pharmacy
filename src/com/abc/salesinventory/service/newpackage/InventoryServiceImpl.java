@@ -5,12 +5,15 @@
  */
 package com.abc.salesinventory.service.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
+import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,6 +31,11 @@ public class InventoryServiceImpl implements InventoryService {
         String hql = "from Stock s where s.product.productCode='" + productCode + "' order by expDate desc";
         Query q = session.createQuery(hql);
         List<Stock> resultList = q.list();
+        
+        for (Stock stock : resultList) {
+            Hibernate.initialize(stock.getSupplier());
+            Hibernate.initialize(stock.getProduct());
+        }
         session.getTransaction().commit();
         session.close();
         if (resultList != null && resultList.size() > 0) {

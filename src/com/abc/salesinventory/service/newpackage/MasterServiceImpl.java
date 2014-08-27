@@ -6,15 +6,10 @@
 package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
-import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
-import com.abc.salesinventory.model.newpackage.Role;
-import com.abc.salesinventory.model.newpackage.RolePermission;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
-import com.abc.salesinventory.model.newpackage.User;
-import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
