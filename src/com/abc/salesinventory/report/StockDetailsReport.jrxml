@@ -77,7 +77,7 @@ FROM
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="e390bd4b-c4aa-407f-be53-16ff1eac30e4"/>
-				<text><![CDATA[Purchased Unit Price]]></text>
+				<text><![CDATA[Unit Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="1f7ca9a0-a447-4208-ae68-7c4029d5f7e6"/>
