@@ -7,13 +7,17 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
-import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.model.newpackage.RolePermission;
 import com.abc.salesinventory.service.newpackage.SecurityService;
 import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,9 +58,9 @@ public class EditUserRole extends javax.swing.JFrame {
         while (it.hasNext()) {
             Permission listPermission = new Permission();
             Vector vector = (Vector) it.next();
-            listPermission.setId((String)vector.get(0));
-            
-            if(permissions.contains(listPermission)) {
+            listPermission.setId((String) vector.get(0));
+
+            if (permissions.contains(listPermission)) {
                 selectionModel.addSelectionInterval(x, x);
             }
             x++;
@@ -125,6 +129,11 @@ public class EditUserRole extends javax.swing.JFrame {
         jLabel4.setText("Description");
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -252,14 +261,96 @@ public class EditUserRole extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void cmbRoleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoleNameActionPerformed
-        Role role1 = (Role) cmbRoleName.getSelectedItem();
-        Role role = securityService.getRole(role1.getId());
+        if (cmbRoleName.getSelectedItem() instanceof String) {
 
-        txtDescription.setText(role.getDescription());
+        } else if (cmbRoleName.getSelectedItem() instanceof Role) {
+            Role role1 = (Role) cmbRoleName.getSelectedItem();
+            Role role = securityService.getRole(role1.getId());
 
-        selectPermissions(role);
+            txtDescription.setText(role.getDescription());
+
+            selectPermissions(role);
+        }
 
     }//GEN-LAST:event_cmbRoleNameActionPerformed
+
+    private Set<String> getPermissions() {
+
+        Set<String> permissions = new HashSet<String>();
+        int[] rows = jPermissionTable.getSelectedRows();
+
+        DefaultTableModel model = (DefaultTableModel) jPermissionTable.getModel();
+
+        if (rows != null) {
+            for (int i : rows) {
+                Vector dataModel = model.getDataVector();
+                Iterator it = dataModel.iterator();
+                int x = 0;
+                while (it.hasNext()) {
+                    Vector v = (Vector) it.next();
+                    if (x == i) {
+                        permissions.add((String) v.get(0));
+                    }
+                    x++;
+                }
+            }
+        }
+
+        return permissions;
+
+    }
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Role role = null;
+        try {
+            role = securityService.getRoleByName(((Role) cmbRoleName.getSelectedItem()).getName());
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "Error Occured !" + x.getMessage(), "Edit Role Details", 2);
+            return;
+        }
+
+        role.setDescription(txtDescription.getText().trim());
+
+        Set<String> permissions = getPermissions();
+        Set<RolePermission> rolePermissions = new HashSet<RolePermission>();
+        if (permissions != null) {
+
+            for (String permissionId : permissions) {
+                RolePermission rolePermission = new RolePermission();
+                rolePermission.setId(UUID.randomUUID().toString());
+                Permission permission = new Permission();
+                permission.setId(permissionId);
+                rolePermission.setPermission(permission);
+                rolePermissions.add(rolePermission);
+                rolePermission.setRole(role);
+            }
+
+        }
+        Set<RolePermission> removeList = new HashSet<RolePermission>();
+        Set<RolePermission> rolePermissions1 = role.getRolePermissions();
+        for(RolePermission rolePermission: rolePermissions1){
+            removeList.add(rolePermission);
+        }
+        
+        rolePermissions1.removeAll(removeList);
+        rolePermissions1.addAll(rolePermissions);
+        try {
+            securityService.saveOrUpdateRole(role);
+            JOptionPane.showMessageDialog(null, "Successfully Added", "Save Role Details", 2);
+            clear();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void clear() {
+
+        cmbRoleName.setSelectedIndex(0);
+        txtDescription.setText(null);
+        jPermissionTable.clearSelection();
+        cmbRoleName.requestFocus();
+
+    }
 
     /**
      * @param args the command line arguments

@@ -14,7 +14,7 @@
         <property name="description" type="string">
             <column name="description" length="100" />
         </property>
-        <set name="rolePermissions" table="role_permission" inverse="true" lazy="true" cascade="save-update" fetch="select">
+        <set name="rolePermissions" table="role_permission" inverse="true" lazy="true" cascade="all,delete-orphan" fetch="select">
             <key>
                 <column name="role_id" length="45" not-null="true" />
             </key>
