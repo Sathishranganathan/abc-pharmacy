@@ -1,6 +1,9 @@
 package com.abc.salesinventory.model.newpackage;
 // Generated Aug 11, 2014 2:22:10 PM by Hibernate Tools 3.6.0
 
+import java.util.Objects;
+
+
 
 
 /**
@@ -42,6 +45,28 @@ public class RolePermission  implements java.io.Serializable {
     
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RolePermission other = (RolePermission) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
 

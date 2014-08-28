@@ -235,6 +235,17 @@ public class SecurityServiceImpl implements SecurityService {
         String hql = "from Role c where c.name='" + roleName + "' ";
         Query q = session.createQuery(hql);
         List<Role> resultList = q.list();
+        
+        
+        for (Role role : resultList) {
+            Hibernate.initialize(role.getRolePermissions());
+            Set<RolePermission> rolePermissions = role.getRolePermissions();
+            for (RolePermission rolePermission : rolePermissions) {
+                Permission permission = rolePermission.getPermission();
+               
+            }
+        }
+        
         session.getTransaction().commit();
         session.close();
         if (resultList != null && resultList.size() == 1) {
@@ -252,6 +263,18 @@ public class SecurityServiceImpl implements SecurityService {
         String hql = "from Role";
         Query q = session.createQuery(hql);
         List<Role> resultList = q.list();
+        
+        
+        for (Role role : resultList) {
+            Hibernate.initialize(role.getRolePermissions());
+            Set<RolePermission> rolePermissions = role.getRolePermissions();
+            for (RolePermission rolePermission : rolePermissions) {
+                Permission permission = rolePermission.getPermission();
+               
+            }
+        }
+        
+        
         session.getTransaction().commit();
         session.close();
         if (resultList != null && resultList.size() > 0) {
