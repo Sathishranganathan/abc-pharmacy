@@ -3,8 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
+
+import com.abc.salesinventory.model.newpackage.Permission;
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.service.newpackage.SecurityService;
+import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +23,66 @@ package com.abc.salesinventory.ui.newpackage;
  */
 public class EditUserRole extends javax.swing.JFrame {
 
+    SecurityService securityService = new SecurityServiceImpl();
+
     /**
      * Creates new form EditUserRole
      */
     public EditUserRole() {
         initComponents();
+
+        Set<Role> roles = securityService.getAllRoles();
+        for (Role role : roles) {
+            cmbRoleName.addItem(role);
+        }
+
+        loadAllPermissions();
+
+    }
+
+    private void selectPermissions(Role role) {
+
+        List<Permission> permissions = securityService.getPermissionsByRole(role.getId());
+        DefaultTableModel model = (DefaultTableModel) jPermissionTable.getModel();
+        Vector dataModel = model.getDataVector();
+
+        ListSelectionModel selectionModel = jPermissionTable.getSelectionModel();
+        selectionModel.clearSelection();
+
+        Iterator it = dataModel.iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Permission listPermission = new Permission();
+            Vector vector = (Vector) it.next();
+            listPermission.setId((String)vector.get(0));
+            
+            if(permissions.contains(listPermission)) {
+                selectionModel.addSelectionInterval(x, x);
+            }
+            x++;
+        }
+    }
+
+    private void loadAllPermissions() {
+        Set<Permission> permissions = securityService.getAllPermissions();
+        Vector<String> tableHeaders = new Vector<String>();
+        tableHeaders.add("ID");
+        tableHeaders.add("Name");
+        tableHeaders.add("Code");
+        tableHeaders.add("Description");
+
+        Vector tableData = new Vector();
+        for (Permission p : permissions) {
+
+            Permission permission = (Permission) p;
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(permission.getId());
+            oneRow.add(permission.getName());
+            oneRow.add(permission.getCode());
+            oneRow.add(permission.getDescription());
+            tableData.add(oneRow);
+        }
+        jPermissionTable.setModel(new DefaultTableModel(tableData, tableHeaders));
     }
 
     /**
@@ -40,6 +106,9 @@ public class EditUserRole extends javax.swing.JFrame {
         txtDescription = new javax.swing.JTextArea();
         cmbRoleName = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPermissionTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit User Role");
@@ -74,33 +143,58 @@ public class EditUserRole extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtDescription);
 
         cmbRoleName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select a Role Name--" }));
+        cmbRoleName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRoleNameActionPerformed(evt);
+            }
+        });
 
         jLabel12.setForeground(new java.awt.Color(204, 0, 0));
         jLabel12.setText("*");
+
+        jPermissionTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jPermissionTable);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setText("Permissions");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(168, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(169, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUpdate)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancel)
+                .addGap(82, 82, 82))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancel)
-                        .addGap(51, 51, 51))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -127,12 +221,16 @@ public class EditUserRole extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addComponent(jLabel12))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnCancel)
                     .addComponent(btnDelete))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,8 +248,18 @@ public class EditUserRole extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void cmbRoleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoleNameActionPerformed
+        Role role1 = (Role) cmbRoleName.getSelectedItem();
+        Role role = securityService.getRole(role1.getId());
+
+        txtDescription.setText(role.getDescription());
+
+        selectPermissions(role);
+
+    }//GEN-LAST:event_cmbRoleNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,8 +306,11 @@ public class EditUserRole extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable jPermissionTable;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 }
