@@ -10,6 +10,7 @@ import com.abc.salesinventory.report.ProductDetailsReport;
 import com.abc.salesinventory.report.StockDetailsReport;
 import com.abc.salesinventory.report.SupplierDetailsReport;
 import com.abc.salesinventory.report.ProductBasedOnExpire;
+import com.abc.salesinventory.report.UserReport;
 import com.abc.salesinventory.report.CustomerWiseSalesReport;
 import com.abc.salesinventory.report.SupplierWisePurchasedAnalysisReport;
 import com.abc.salesinventory.report.StockValueAnalysisReport;
@@ -81,6 +82,7 @@ public class MainScreen extends javax.swing.JFrame {
         miSupplierReport = new javax.swing.JMenuItem();
         miProductReport = new javax.swing.JMenuItem();
         miStockReport = new javax.swing.JMenuItem();
+        miUserReport = new javax.swing.JMenuItem();
         miExpiredReport = new javax.swing.JMenuItem();
         miSupWisePurchased = new javax.swing.JMenuItem();
         miCusWiseSales = new javax.swing.JMenuItem();
@@ -311,6 +313,14 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         menuReport.add(miStockReport);
+
+        miUserReport.setText("User Report");
+        miUserReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miUserReportActionPerformed(evt);
+            }
+        });
+        menuReport.add(miUserReport);
 
         miExpiredReport.setText("Expired Products Detail Report");
         miExpiredReport.addActionListener(new java.awt.event.ActionListener() {
@@ -677,6 +687,15 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void miUserReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUserReportActionPerformed
+       if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new UserReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    
+    }//GEN-LAST:event_miUserReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -760,5 +779,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miStockValueAnlysis;
     private javax.swing.JMenuItem miSupWisePurchased;
     private javax.swing.JMenuItem miSupplierReport;
+    private javax.swing.JMenuItem miUserReport;
     // End of variables declaration//GEN-END:variables
 }

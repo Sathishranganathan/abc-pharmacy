@@ -180,6 +180,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miStockReportActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miUserReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="User Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miUserReportActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miExpiredReport">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Expired Products Detail Report"/>
