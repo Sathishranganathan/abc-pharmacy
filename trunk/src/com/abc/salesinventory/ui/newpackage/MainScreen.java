@@ -12,6 +12,13 @@ import com.abc.salesinventory.report.SupplierDetailsReport;
 import com.abc.salesinventory.report.ProductBasedOnExpire;
 import com.abc.salesinventory.report.CustomerWiseSalesReport;
 import com.abc.salesinventory.report.SupplierWisePurchasedAnalysisReport;
+import com.abc.salesinventory.report.StockValueAnalysisReport;
+import com.abc.salesinventory.report.DailySalesReport;
+import com.abc.salesinventory.report.MonthlySalesReport;
+import com.abc.salesinventory.report.FastMovingItems;
+import com.abc.salesinventory.report.SlowMovingItemsReport;
+import com.abc.salesinventory.report.PurchasedReciept;
+import com.abc.salesinventory.report.SalesInvoice;
 import com.abc.salesinventory.service.newpackage.SecurityService;
 import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
 import javax.swing.JOptionPane;
@@ -54,6 +61,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         miExit = new javax.swing.JMenuItem();
         menuCustomer = new javax.swing.JMenu();
         miAddCus = new javax.swing.JMenuItem();
@@ -77,13 +85,15 @@ public class MainScreen extends javax.swing.JFrame {
         miSupWisePurchased = new javax.swing.JMenuItem();
         miCusWiseSales = new javax.swing.JMenuItem();
         miStockValueAnlysis = new javax.swing.JMenuItem();
+        miSalesInvoices = new javax.swing.JMenuItem();
+        miPurchasedReceipts = new javax.swing.JMenuItem();
         miDailySalesReport = new javax.swing.JMenuItem();
         miMonthlySalesReport = new javax.swing.JMenuItem();
         miSlow = new javax.swing.JMenuItem();
         miFast = new javax.swing.JMenuItem();
         menuAccount = new javax.swing.JMenu();
         miCreateAcc = new javax.swing.JMenuItem();
-        miEditAcc = new javax.swing.JMenuItem();
+        miSearchUser = new javax.swing.JMenuItem();
         menuUserRole = new javax.swing.JMenu();
         miChangeRole = new javax.swing.JMenuItem();
         miEditRole = new javax.swing.JMenuItem();
@@ -165,6 +175,14 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         menuFile.add(miChangePassword);
+
+        jMenuItem1.setText("Preferences");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuFile.add(jMenuItem1);
 
         miExit.setText("Exit");
         miExit.addActionListener(new java.awt.event.ActionListener() {
@@ -311,6 +329,11 @@ public class MainScreen extends javax.swing.JFrame {
         menuReport.add(miSupWisePurchased);
 
         miCusWiseSales.setText("Customer Wise Sales Report");
+        miCusWiseSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCusWiseSalesActionPerformed(evt);
+            }
+        });
         menuReport.add(miCusWiseSales);
 
         miStockValueAnlysis.setText("Stock Value Analysis Report");
@@ -321,10 +344,36 @@ public class MainScreen extends javax.swing.JFrame {
         });
         menuReport.add(miStockValueAnlysis);
 
+        miSalesInvoices.setText("Sales Invoices");
+        miSalesInvoices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSalesInvoicesActionPerformed(evt);
+            }
+        });
+        menuReport.add(miSalesInvoices);
+
+        miPurchasedReceipts.setText("Purchased Receipts");
+        miPurchasedReceipts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPurchasedReceiptsActionPerformed(evt);
+            }
+        });
+        menuReport.add(miPurchasedReceipts);
+
         miDailySalesReport.setText("Daily Sales Report");
+        miDailySalesReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDailySalesReportActionPerformed(evt);
+            }
+        });
         menuReport.add(miDailySalesReport);
 
         miMonthlySalesReport.setText("Monthly Sales Report");
+        miMonthlySalesReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miMonthlySalesReportActionPerformed(evt);
+            }
+        });
         menuReport.add(miMonthlySalesReport);
 
         miSlow.setText("Slow Moving Items");
@@ -336,6 +385,11 @@ public class MainScreen extends javax.swing.JFrame {
         menuReport.add(miSlow);
 
         miFast.setText("Fast Moving Items");
+        miFast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miFastActionPerformed(evt);
+            }
+        });
         menuReport.add(miFast);
 
         jMenuBar1.add(menuReport);
@@ -350,13 +404,13 @@ public class MainScreen extends javax.swing.JFrame {
         });
         menuAccount.add(miCreateAcc);
 
-        miEditAcc.setText("Edit User Account");
-        miEditAcc.addActionListener(new java.awt.event.ActionListener() {
+        miSearchUser.setText("Search User");
+        miSearchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miEditAccActionPerformed(evt);
+                miSearchUserActionPerformed(evt);
             }
         });
-        menuAccount.add(miEditAcc);
+        menuAccount.add(miSearchUser);
 
         jMenuBar1.add(menuAccount);
 
@@ -463,13 +517,13 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_miCreateAccActionPerformed
 
-    private void miEditAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditAccActionPerformed
+    private void miSearchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchUserActionPerformed
         if (securityService.hasPermission("MANAGE_USERS", this.userId)) {
-            new EditUser().setVisible(true);
+            new SearchUser().setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
-    }//GEN-LAST:event_miEditAccActionPerformed
+    }//GEN-LAST:event_miSearchUserActionPerformed
 
     private void miChangeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangeRoleActionPerformed
         if (securityService.hasPermission("MANAGE_ROLES", this.userId)) {
@@ -528,11 +582,19 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miExpiredReportActionPerformed
 
     private void miStockValueAnlysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStockValueAnlysisActionPerformed
-        // TODO add your handling code here:
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new StockValueAnalysisReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miStockValueAnlysisActionPerformed
 
     private void miSlowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSlowActionPerformed
-        // TODO add your handling code here:
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new SlowMovingItemsReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
     }//GEN-LAST:event_miSlowActionPerformed
 
     private void miCustomerReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerReportActionPerformed
@@ -558,6 +620,62 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
     }//GEN-LAST:event_miSupWisePurchasedActionPerformed
+
+    private void miCusWiseSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCusWiseSalesActionPerformed
+       if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new CustomerWiseSalesReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miCusWiseSalesActionPerformed
+
+    private void miDailySalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDailySalesReportActionPerformed
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new DailySalesReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miDailySalesReportActionPerformed
+
+    private void miMonthlySalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMonthlySalesReportActionPerformed
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new MonthlySalesReport().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miMonthlySalesReportActionPerformed
+
+    private void miFastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miFastActionPerformed
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new FastMovingItems().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miFastActionPerformed
+
+    private void miPurchasedReceiptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPurchasedReceiptsActionPerformed
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new PurchasedReciept().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miPurchasedReceiptsActionPerformed
+
+    private void miSalesInvoicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesInvoicesActionPerformed
+        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new SalesInvoice().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miSalesInvoicesActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+            new Preferences().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -603,6 +721,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuAccount;
     private javax.swing.JMenu menuCustomer;
@@ -622,7 +741,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miCusWiseSales;
     private javax.swing.JMenuItem miCustomerReport;
     private javax.swing.JMenuItem miDailySalesReport;
-    private javax.swing.JMenuItem miEditAcc;
     private javax.swing.JMenuItem miEditRole;
     private javax.swing.JMenuItem miExit;
     private javax.swing.JMenuItem miExpiredReport;
@@ -630,10 +748,13 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miMonthlySalesReport;
     private javax.swing.JMenuItem miProductReport;
     private javax.swing.JMenuItem miPurchase;
+    private javax.swing.JMenuItem miPurchasedReceipts;
     private javax.swing.JMenuItem miSales;
+    private javax.swing.JMenuItem miSalesInvoices;
     private javax.swing.JMenuItem miSearchCus;
     private javax.swing.JMenuItem miSearchProduct;
     private javax.swing.JMenuItem miSearchSup;
+    private javax.swing.JMenuItem miSearchUser;
     private javax.swing.JMenuItem miSlow;
     private javax.swing.JMenuItem miStockReport;
     private javax.swing.JMenuItem miStockValueAnlysis;

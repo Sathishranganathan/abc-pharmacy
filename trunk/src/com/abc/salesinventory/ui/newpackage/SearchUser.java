@@ -99,6 +99,7 @@ public class SearchUser extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
         btnEditSupplier = new javax.swing.JButton();
         btnDeleteSupplier = new javax.swing.JButton();
+        btnChangePassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search Supplier");
@@ -158,6 +159,8 @@ public class SearchUser extends javax.swing.JFrame {
             }
         });
 
+        btnChangePassword.setText("Change Password");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -179,13 +182,15 @@ public class SearchUser extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(btnEditSupplier)
-                        .addGap(115, 115, 115)
-                        .addComponent(btnDeleteSupplier))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(257, 257, 257)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(btnEditSupplier)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnDeleteSupplier)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnChangePassword)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -205,7 +210,8 @@ public class SearchUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditSupplier)
-                    .addComponent(btnDeleteSupplier))
+                    .addComponent(btnDeleteSupplier)
+                    .addComponent(btnChangePassword))
                 .addGap(23, 23, 23))
         );
 
@@ -344,6 +350,7 @@ public class SearchUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnDeleteSupplier;
     private javax.swing.JButton btnEditSupplier;
     private javax.swing.JButton btnSearch;
