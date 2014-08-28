@@ -3,20 +3,58 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
+
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.model.newpackage.UserRole;
+import com.abc.salesinventory.service.newpackage.SecurityService;
+import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Manuri
+ * @author rdjayawe
  */
-public class EditUser extends javax.swing.JFrame {
+public class EditUser extends javax.swing.JDialog {
+
+    SecurityService securityService = new SecurityServiceImpl();
+    private User user = null;
 
     /**
-     * Creates new form EditUser
+     * Creates new form EditUser1
      */
-    public EditUser() {
+    public EditUser(java.awt.Frame parent, boolean modal, String userId) {
+        super(parent, modal);
         initComponents();
+        this.user = securityService.getUserByUserName(userId);
+        txtID.setText(user.getId());
+        txtUserName.setText(user.getUserid());
+        txtFirstName.setText(user.getFirstName());
+        txtLastName.setText(user.getLastName());
+        txtEmail.setText(user.getEmail());
+
+        Set<UserRole> userRoles = user.getUserRoles();
+        Role role = null;
+        for (UserRole userRole : userRoles) {
+            role = userRole.getRole();
+        }
+        int index = 0;
+        Set<Role> roles = securityService.getAllRoles();
+        int x = 1;
+        for (Role role1 : roles) {
+            cmbUserRole.addItem(role1);
+            if (role.getId().equals(role1.getId())) {
+                index = x;
+            }
+            x++;
+        }
+        
+        cmbUserRole.setSelectedIndex(index);
+
     }
 
     /**
@@ -46,7 +84,6 @@ public class EditUser extends javax.swing.JFrame {
         cmbUserRole = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Edit User Account");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,36 +132,36 @@ public class EditUser extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtFirstName)
-                        .addComponent(txtLastName)
-                        .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(txtUserName)
-                        .addComponent(cmbUserRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(btnUpdate)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnCancel)))
+                .addGap(89, 89, 89)
+                .addComponent(btnUpdate)
+                .addGap(44, 44, 44)
+                .addComponent(btnCancel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtFirstName)
+                                .addComponent(txtLastName)
+                                .addComponent(txtID)
+                                .addComponent(txtUserName)
+                                .addComponent(cmbUserRole, 0, 173, Short.MAX_VALUE))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(97, 97, 97))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,11 +192,11 @@ public class EditUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnCancel))
-                .addGap(105, 105, 105))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,21 +207,50 @@ public class EditUser extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        if (cmbUserRole.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Role can not be empty!", "Edit User Details", 2);
+            return;
+        }
+
+        try {
+            this.user = securityService.getUserByUserName(txtUserName.getText().trim());
+
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "Error Occured !", "Edit User Details", 2);
+            return;
+        }
+
+        user.setFirstName(txtFirstName.getText());
+        user.setLastName(txtLastName.getText());
+        user.setEmail(txtEmail.getText());
+
+        Role role = (Role) cmbUserRole.getSelectedItem();
+
+        UserRole userRole = new UserRole(UUID.randomUUID().toString(), user, role);
+        Set<UserRole> userRoles = new HashSet<UserRole>();
+        userRoles.add(userRole);
+        user.setUserRoles(userRoles);
+
+        try {
+            securityService.saveOrUpdateUser(user);
+            JOptionPane.showMessageDialog(null, "Successfully Updated", "Edit User Details", 2);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,10 +279,17 @@ public class EditUser extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditUser().setVisible(true);
+//                EditUser dialog = new EditUser(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
             }
         });
     }
