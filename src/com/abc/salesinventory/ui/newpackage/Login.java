@@ -69,6 +69,11 @@ public class Login extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Clear");
@@ -158,16 +163,24 @@ public class Login extends javax.swing.JFrame {
         if (txtUserName.getText().trim().equals("") || txtPassword.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Username or Password fields cannot be empty", "Error", 2);
         } else {
-            SecurityService securityService = new SecurityServiceImpl();
-            boolean isPasswordCorrect = securityService.isPasswordCorrect(new String(txtPassword.getPassword()), txtUserName.getText());
-            if(isPasswordCorrect){
-                new MainScreen(txtUserName.getText().trim()).setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Error", 2);
+            try {
+                SecurityService securityService = new SecurityServiceImpl();
+                boolean isPasswordCorrect = securityService.isPasswordCorrect(new String(txtPassword.getPassword()), txtUserName.getText());
+                if (isPasswordCorrect) {
+                    new MainScreen(txtUserName.getText().trim()).setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Error", 2);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Internal error has occured - " + e.getMessage(), "Error", 0);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
