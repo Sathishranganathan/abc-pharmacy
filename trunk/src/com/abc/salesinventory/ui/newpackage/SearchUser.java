@@ -5,6 +5,7 @@
  */
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.User;
 import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.service.newpackage.SecurityService;
@@ -76,7 +77,14 @@ public class SearchUser extends javax.swing.JFrame {
             oneRow.add(user.getFirstName() + " " + user.getLastName());
             oneRow.add(user.getUserid());
             oneRow.add(user.getEmail());
-            oneRow.add(user.getUserRoles());
+
+            Set<UserRole> userRoles = user.getUserRoles();
+            Role role = null;
+            for (UserRole userRole : userRoles) {
+                role = userRole.getRole();
+            }
+
+            oneRow.add(role.getName());
             tableData.add(oneRow);
         }
         resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
@@ -160,6 +168,11 @@ public class SearchUser extends javax.swing.JFrame {
         });
 
         btnChangePassword.setText("Change Password");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -302,6 +315,25 @@ public class SearchUser extends javax.swing.JFrame {
 //        EditUser es = new EditUser(user);
 //        es.setVisible(true);
     }//GEN-LAST:event_btnEditSupplierActionPerformed
+
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        int row = resultTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        Vector dataModel = model.getDataVector();
+        User user = new User();
+        Iterator it = dataModel.iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Vector vector = (Vector) it.next();
+            if (x == row) {
+                user = securityService.getUserByUserName((String) vector.get(2));
+                break;
+            }
+            x++;
+        }
+        ChangeUserPassword changeUserPassword = new ChangeUserPassword(this, true, user.getUserid());
+        changeUserPassword.setVisible(true);
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
     public void search() {
         if (!txtUserName.getText().trim().equals("") && txtEmail.getText().trim().equals("")) {
             searchUser(QUERY_BASED_ON_NAME + txtUserName.getText() + "%'");
