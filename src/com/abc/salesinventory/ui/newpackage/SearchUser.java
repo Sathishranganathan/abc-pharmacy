@@ -304,16 +304,15 @@ public class SearchUser extends javax.swing.JFrame {
             if (x == row) {
                 user.setId((String) vector.get(0));
                 user.setFirstName((String) vector.get(1));
-//                user.setLastName((String) vector.get(2));
+                user.setLastName((String) vector.get(2));
                 user.setUserid((String) vector.get(2));
                 user.setEmail((String) vector.get(3));
-                user.setUserRoles((Set<UserRole>) vector.get(4));
                 break;
             }
             x++;
         }
-//        EditUser es = new EditUser(user);
-//        es.setVisible(true);
+        EditUser es = new EditUser(this, true, user.getUserid());
+        es.setVisible(true);
     }//GEN-LAST:event_btnEditSupplierActionPerformed
 
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
