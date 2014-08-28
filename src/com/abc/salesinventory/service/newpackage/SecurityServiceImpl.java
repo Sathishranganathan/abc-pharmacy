@@ -30,6 +30,23 @@ import org.hibernate.Session;
 public class SecurityServiceImpl implements SecurityService {
 
     @Override
+    public List<Permission> getPermissionsByRole(String roleId) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "select p from Permission p join p.rolePermissions rolePer join rolePer.role role where role.id='" + roleId + "' ";
+        Query q = session.createQuery(hql);
+        List<Permission> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null) {
+            return resultList;
+        }
+        return null;
+
+    }
+
+    @Override
     public boolean hasPermission(String permissionCode, String userId) {
         boolean hasPermission = false;
 
@@ -76,10 +93,10 @@ public class SecurityServiceImpl implements SecurityService {
         try {
             User user = getUserByUserName(userId);
 
-            if(user == null){
+            if (user == null) {
                 return false;
             }
-            
+
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(plainTextPassword.getBytes("UTF-8"));
             byte[] bytes = md.digest();

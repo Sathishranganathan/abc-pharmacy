@@ -8,6 +8,7 @@ package com.abc.salesinventory.service.newpackage;
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.User;
+import java.util.List;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -52,5 +53,7 @@ public interface SecurityService {
     public void removePermission(Permission permission);
 
     public Permission getPermissionByName(String permissionName);
+    
+    public List<Permission> getPermissionsByRole(String roleId);
 
 }
