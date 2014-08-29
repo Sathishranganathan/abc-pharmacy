@@ -8,7 +8,7 @@ package Exception;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class SecurityException extends Exception {
 

@@ -18,7 +18,7 @@ import static org.apache.log4j.NDC.clear;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class ChangeUserPassword extends javax.swing.JDialog {
 

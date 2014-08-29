@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class StockDetailsPopup extends javax.swing.JDialog {
 
