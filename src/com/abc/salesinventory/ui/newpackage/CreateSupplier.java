@@ -390,7 +390,7 @@ public class CreateSupplier extends javax.swing.JFrame {
 
     //close button
     private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
-        System.exit(1);
+       dispose();
     }//GEN-LAST:event_btnSupplierCloseActionPerformed
 
     private void txtSupplierIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSupplierIdKeyTyped

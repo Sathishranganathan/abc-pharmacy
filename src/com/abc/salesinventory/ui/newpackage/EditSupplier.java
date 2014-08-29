@@ -370,7 +370,7 @@ public class EditSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupplierUpdateActionPerformed
 
     private void btnSupplierCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierCloseActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnSupplierCloseActionPerformed
 
     /**

@@ -15,9 +15,11 @@ import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import com.abc.salesinventory.util.DatePicker;
+import com.abc.salesinventory.util.ReportViewer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -797,6 +799,13 @@ public class Sales extends javax.swing.JFrame {
         inventoryService.saveTransaction(transaction);
 
         JOptionPane.showMessageDialog(null, "Sale successfully saved.", "Sales", 1);
+        
+        int reply = JOptionPane.showConfirmDialog(null, "Do you want to view Sales Invoice?", "Sales", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            HashMap map = new HashMap();
+            map.put("txnId", txtTransactionId.getText());
+            ReportViewer reportViewer = new ReportViewer("SalesInvoice.jrxml", map);
+        }
 
         ftxtDate.setText(null);
         cmbCustomerName.setSelectedIndex(0);

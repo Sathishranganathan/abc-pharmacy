@@ -135,7 +135,7 @@ public class EditProduct extends javax.swing.JFrame {
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Category--", "Tablet", "Capsule", "Syrup", "Liquid", "Powder", "Vaccine", "Gel", "Cream", "Other" }));
         cmbCategory.setName("cmbCategory"); // NOI18N
 
-        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Unit--", "g", "ml", "packet" }));
+        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Unit--", "Cards", "Packet", "Box", "Bottle" }));
         cmbUnit.setName("cmbUnit"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -263,7 +263,7 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||txtReOrderLeve
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
