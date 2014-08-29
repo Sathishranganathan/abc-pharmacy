@@ -83,8 +83,9 @@ public class SearchUser extends javax.swing.JFrame {
             for (UserRole userRole : userRoles) {
                 role = userRole.getRole();
             }
-
-            oneRow.add(role.getName());
+            if (role != null) {
+                oneRow.add(role.getName());
+            }
             tableData.add(oneRow);
         }
         resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));

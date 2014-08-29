@@ -8,6 +8,7 @@ package com.abc.salesinventory.ui.newpackage;
 import com.abc.salesinventory.model.newpackage.Permission;
 import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.RolePermission;
+import com.abc.salesinventory.model.newpackage.User;
 import com.abc.salesinventory.service.newpackage.SecurityService;
 import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
 import java.util.Collections;
@@ -333,10 +334,10 @@ public class EditUserRole extends javax.swing.JFrame {
         }
         Set<RolePermission> removeList = new HashSet<RolePermission>();
         Set<RolePermission> rolePermissions1 = role.getRolePermissions();
-        for(RolePermission rolePermission: rolePermissions1){
+        for (RolePermission rolePermission : rolePermissions1) {
             removeList.add(rolePermission);
         }
-        
+
         rolePermissions1.removeAll(removeList);
         rolePermissions1.addAll(rolePermissions);
         try {
@@ -349,7 +350,32 @@ public class EditUserRole extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        int row = jPermissionTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jPermissionTable.getModel();
+        Vector dataModel = model.getDataVector();
+        Role role = new Role();
+        Iterator it = dataModel.iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Vector vector = (Vector) it.next();
+            if (x == row) {
+                role = securityService.getRoleByName((String) vector.get(1));
+                break;
+            }
+            x++;
+        }
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to Delete this selected Role?", "Warning", dialogButton);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            try {
+                securityService.removeRole(role);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Delete role failed. - " + e.getMessage(), "Delete Role", 0);
+                return;
+            }
+            clear();
+            JOptionPane.showMessageDialog(null, "Selected Role is Deleted !", "Delete Role", 2);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void clear() {
