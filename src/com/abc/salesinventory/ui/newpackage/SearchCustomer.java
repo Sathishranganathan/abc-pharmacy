@@ -299,6 +299,9 @@ public class SearchCustomer extends javax.swing.JFrame {
     private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
 
         int row = resultTable.getSelectedRow();
+        if(row==-1){
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
         Vector dataModel = model.getDataVector();
         Customer customer = new Customer();
