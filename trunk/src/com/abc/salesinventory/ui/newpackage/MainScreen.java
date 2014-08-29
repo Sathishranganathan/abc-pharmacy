@@ -124,6 +124,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel3.setText("Importers, Wholesale Dealers & Distributors of Pharmaceuticals & Surgical Products");
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -695,6 +700,11 @@ public class MainScreen extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_miUserReportActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+      this.dispose();
+      new Login().setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
