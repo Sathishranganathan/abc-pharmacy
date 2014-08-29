@@ -73,6 +73,7 @@ public class MainScreen extends javax.swing.JFrame {
         menuStock = new javax.swing.JMenu();
         miAddproduct = new javax.swing.JMenuItem();
         miSearchProduct = new javax.swing.JMenuItem();
+        miSearchStock = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
         miSales = new javax.swing.JMenuItem();
         menuPurchases = new javax.swing.JMenu();
@@ -258,6 +259,14 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         menuStock.add(miSearchProduct);
+
+        miSearchStock.setText("Search Stock");
+        miSearchStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSearchStockActionPerformed(evt);
+            }
+        });
+        menuStock.add(miSearchStock);
 
         jMenuBar1.add(menuStock);
 
@@ -569,7 +578,11 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miSearchProductActionPerformed
 
     private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
-        System.exit(0);
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to Exit?", "Warning", dialogButton);
+        if (dialogResult == JOptionPane.YES_OPTION) { System.exit(0);}
+       
+                
     }//GEN-LAST:event_miExitActionPerformed
 
     private void miSupplierReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSupplierReportActionPerformed
@@ -706,6 +719,14 @@ public class MainScreen extends javax.swing.JFrame {
       new Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void miSearchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchStockActionPerformed
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new SearchStock().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miSearchStockActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -782,6 +803,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSalesInvoices;
     private javax.swing.JMenuItem miSearchCus;
     private javax.swing.JMenuItem miSearchProduct;
+    private javax.swing.JMenuItem miSearchStock;
     private javax.swing.JMenuItem miSearchSup;
     private javax.swing.JMenuItem miSearchUser;
     private javax.swing.JMenuItem miSlow;
