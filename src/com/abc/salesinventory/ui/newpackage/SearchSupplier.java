@@ -265,6 +265,9 @@ private static String QUERY_BASED_ON_NAME = "from Supplier s where s.name like '
 
     private void btnEditSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSupplierActionPerformed
         int row = resultTable.getSelectedRow();
+        if(row==-1){
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
         Vector dataModel = model.getDataVector();
         Supplier supplier = new Supplier();
