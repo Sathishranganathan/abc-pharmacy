@@ -74,6 +74,7 @@ public class MainScreen extends javax.swing.JFrame {
         miAddproduct = new javax.swing.JMenuItem();
         miSearchProduct = new javax.swing.JMenuItem();
         miSearchStock = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
         miSales = new javax.swing.JMenuItem();
         menuPurchases = new javax.swing.JMenu();
@@ -105,6 +106,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sales & Inventory Management System - Eraj Pharmaceuticals");
+        setExtendedState(1);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -267,6 +269,14 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         menuStock.add(miSearchStock);
+
+        jMenuItem2.setText("Re-order Product List");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuStock.add(jMenuItem2);
 
         jMenuBar1.add(menuStock);
 
@@ -727,6 +737,14 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_miSearchStockActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
+            new ReorederProducts().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -772,6 +790,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuAccount;
     private javax.swing.JMenu menuCustomer;
