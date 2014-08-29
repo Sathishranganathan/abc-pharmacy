@@ -16,6 +16,9 @@ import org.hibernate.HibernateException;
  * @author Manuri
  */
 public interface InventoryService {
+    
+    public List<Object> getReorderStock();
+            
     public List<Stock> getStockByProduct(String productCode);
     
     public String saveStock(Stock stock) throws HibernateException;
