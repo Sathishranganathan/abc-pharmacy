@@ -98,7 +98,7 @@ public class AddNewProduct extends javax.swing.JFrame {
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Category--", "Tablet", "Capsule", "Syrup", "Liquid", "Powder", "Vaccine", "Gel", "Cream", "Other" }));
         cmbCategory.setName("cmbCategory"); // NOI18N
 
-        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Unit--", "g", "ml", "packet" }));
+        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Unit--", "Cards", "Packet", "Box", "Bottle" }));
         cmbUnit.setName("cmbUnit"); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -279,7 +279,7 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
     }//GEN-LAST:event_btnProductClearActionPerformed
 
     private void btnProductCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductCloseActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnProductCloseActionPerformed
 
     

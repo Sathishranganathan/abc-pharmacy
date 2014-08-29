@@ -308,7 +308,7 @@ public class CreateRole extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**

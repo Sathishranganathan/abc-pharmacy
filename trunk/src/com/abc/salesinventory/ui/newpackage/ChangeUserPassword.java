@@ -187,7 +187,7 @@ public class ChangeUserPassword extends javax.swing.JDialog {
         try {
             securityService.saveOrUpdateUser(user);
             JOptionPane.showMessageDialog(null, "Password successfully saved", "Password change", 2);
-            clear();
+            Clear();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
@@ -251,4 +251,10 @@ public class ChangeUserPassword extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    private void Clear() {
+        txtUserName.setText(null);
+        txtNewPassword.setText(null);
+        txtConfirmPassword.setText(null);
+    }
 }

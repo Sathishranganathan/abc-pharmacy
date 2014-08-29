@@ -382,7 +382,7 @@ public class CreateCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCustomerClearActionPerformed
 
     private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
-        System.exit(1);//click close button,exit from the window
+        dispose();//click close button,exit from the window
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
 
     private void txtCustomerIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyTyped

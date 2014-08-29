@@ -310,11 +310,12 @@
         <Component class="javax.swing.JComboBox" name="cmbUnit">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="5">
                 <StringItem index="0" value="--Select Unit--"/>
-                <StringItem index="1" value="g"/>
-                <StringItem index="2" value="ml"/>
-                <StringItem index="3" value="packet"/>
+                <StringItem index="1" value="Cards"/>
+                <StringItem index="2" value="Packet"/>
+                <StringItem index="3" value="Box"/>
+                <StringItem index="4" value="Bottle"/>
               </StringArray>
             </Property>
             <Property name="name" type="java.lang.String" value="cmbUnit" noResource="true"/>

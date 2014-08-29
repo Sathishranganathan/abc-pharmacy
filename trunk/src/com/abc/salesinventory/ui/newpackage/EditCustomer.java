@@ -369,7 +369,7 @@ public class EditCustomer extends javax.swing.JFrame {
 
     //Close button
     private void btnCustomerCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerCloseActionPerformed
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_btnCustomerCloseActionPerformed
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
