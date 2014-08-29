@@ -5,10 +5,8 @@
  */
 package com.abc.salesinventory.service.newpackage;
 
-import com.abc.salesinventory.model.newpackage.Role;
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
-import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.util.HibernateUtil;
 import java.util.HashSet;
 import java.util.List;
@@ -25,13 +23,33 @@ import org.hibernate.Session;
 public class InventoryServiceImpl implements InventoryService {
 
     @Override
+    public List<Object> getReorderStock() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query query = session.createSQLQuery(
+                "SELECT s.product_code, SUM(s.quantity) as 'qty', p.product_name,p.reorder_level FROM pharmacy.stock s\n"
+                + "join pharmacy.product p on s.product_code=p.product_code\n"
+                + "group by s.product_code, p.product_name, p.reorder_level\n"
+                + "having qty < (select p.reorder_level from product p where p.product_code=s.product_code)");
+
+        List<Object> resultList = query.list();        
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() > 0) {
+            return resultList;
+        }
+        return null;
+    }
+
+    @Override
     public List<Stock> getStockByProduct(String productCode) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         String hql = "from Stock s where s.product.productCode='" + productCode + "' order by expDate desc";
         Query q = session.createQuery(hql);
         List<Stock> resultList = q.list();
-        
+
         for (Stock stock : resultList) {
             Hibernate.initialize(stock.getSupplier());
             Hibernate.initialize(stock.getProduct());

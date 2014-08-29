@@ -3,8 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
+
+import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.User;
+import com.abc.salesinventory.model.newpackage.UserRole;
+import com.abc.salesinventory.service.newpackage.InventoryService;
+import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +22,44 @@ package com.abc.salesinventory.ui.newpackage;
  */
 public class ReorederProducts extends javax.swing.JFrame {
 
+    InventoryService inventoryService = new InventoryServiceImpl();
+
     /**
      * Creates new form ReorederProducts
      */
     public ReorederProducts() {
         initComponents();
+        List list = inventoryService.getReorderStock();
+        if (list != null) {
+            displayResult(list);
+        }
+    }
+
+    private void displayResult(List resultList) {
+
+        Vector<String> tableHeaders = new Vector<String>();
+        tableHeaders.add("Product Code");
+        tableHeaders.add("Product Name");
+        tableHeaders.add("Remaining Qty");
+        tableHeaders.add("Re Order Level");
+
+        Vector tableData = new Vector();
+        Iterator it = resultList.iterator();
+        while (it.hasNext()) {
+
+            Object row[] = (Object[]) it.next();
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(row[0]);
+            oneRow.add(row[2]);
+            oneRow.add(row[1]);
+            oneRow.add(row[3]);
+
+
+            
+            tableData.add(oneRow);
+        }
+        jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+
     }
 
     /**
