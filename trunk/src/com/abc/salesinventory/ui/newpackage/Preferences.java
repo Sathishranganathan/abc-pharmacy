@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class Preferences extends javax.swing.JFrame {
 

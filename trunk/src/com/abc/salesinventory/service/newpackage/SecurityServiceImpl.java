@@ -25,7 +25,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class SecurityServiceImpl implements SecurityService {
 

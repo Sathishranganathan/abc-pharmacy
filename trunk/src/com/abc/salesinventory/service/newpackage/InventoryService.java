@@ -13,7 +13,7 @@ import org.hibernate.HibernateException;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public interface InventoryService {
     public List<Stock> getStockByProduct(String productCode);

@@ -14,7 +14,7 @@ import org.hibernate.HibernateException;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public interface SecurityService {
     

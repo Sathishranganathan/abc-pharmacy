@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class EditUser extends javax.swing.JDialog {
 

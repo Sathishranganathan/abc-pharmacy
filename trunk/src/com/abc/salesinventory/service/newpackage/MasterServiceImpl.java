@@ -22,7 +22,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author rdjayawe
+ * @author Manuri
  */
 public class MasterServiceImpl implements MasterService {
 
