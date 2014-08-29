@@ -6,6 +6,7 @@
 package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Role;
+import com.abc.salesinventory.model.newpackage.RolePermission;
 import com.abc.salesinventory.model.newpackage.User;
 import com.abc.salesinventory.model.newpackage.UserRole;
 import com.abc.salesinventory.service.newpackage.SecurityService;
@@ -42,18 +43,26 @@ public class EditUser extends javax.swing.JDialog {
         for (UserRole userRole : userRoles) {
             role = userRole.getRole();
         }
-        int index = 0;
-        Set<Role> roles = securityService.getAllRoles();
-        int x = 1;
-        for (Role role1 : roles) {
-            cmbUserRole.addItem(role1);
-            if (role.getId().equals(role1.getId())) {
-                index = x;
+        if (role != null) {
+            int index = 0;
+            Set<Role> roles = securityService.getAllRoles();
+            int x = 1;
+            for (Role role1 : roles) {
+                cmbUserRole.addItem(role1);
+                if (role.getId().equals(role1.getId())) {
+                    index = x;
+                }
+                x++;
             }
-            x++;
+            cmbUserRole.setSelectedIndex(index);
+
+        } else {
+            Set<Role> roles = securityService.getAllRoles();
+            for (Role role1 : roles) {
+                cmbUserRole.addItem(role1);
+            }
+            cmbUserRole.setSelectedIndex(0);
         }
-        
-        cmbUserRole.setSelectedIndex(index);
 
     }
 
@@ -219,11 +228,10 @@ public class EditUser extends javax.swing.JDialog {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-        if (cmbUserRole.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Role can not be empty!", "Edit User Details", 2);
-            return;
-        }
-
+//        if (cmbUserRole.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(null, "Role can not be empty!", "Edit User Details", 2);
+//            return;
+//        }
         try {
             this.user = securityService.getUserByUserName(txtUserName.getText().trim());
 
@@ -236,12 +244,24 @@ public class EditUser extends javax.swing.JDialog {
         user.setLastName(txtLastName.getText());
         user.setEmail(txtEmail.getText());
 
-        Role role = (Role) cmbUserRole.getSelectedItem();
+        if (cmbUserRole.getSelectedItem() instanceof Role) {
+            Role role = (Role) cmbUserRole.getSelectedItem();
 
-        UserRole userRole = new UserRole(UUID.randomUUID().toString(), user, role);
-        Set<UserRole> userRoles = new HashSet<UserRole>();
-        userRoles.add(userRole);
-        user.setUserRoles(userRoles);
+            UserRole userRole = new UserRole(UUID.randomUUID().toString(), user, role);
+            Set<UserRole> userRoles = new HashSet<UserRole>();
+            userRoles.add(userRole);
+            user.setUserRoles(userRoles);
+        } else {
+
+            Set<UserRole> removeList = new HashSet<UserRole>();
+            Set<UserRole> userRoles = user.getUserRoles();
+            for (UserRole userRole : userRoles) {
+                removeList.add(userRole);
+            }
+
+            user.getUserRoles().removeAll(removeList);
+            user.setUserRoles(userRoles);
+        }
 
         try {
             securityService.saveOrUpdateUser(user);
