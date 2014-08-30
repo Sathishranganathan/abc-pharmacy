@@ -350,20 +350,7 @@ public class EditUserRole extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int row = jPermissionTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jPermissionTable.getModel();
-        Vector dataModel = model.getDataVector();
-        Role role = new Role();
-        Iterator it = dataModel.iterator();
-        int x = 0;
-        while (it.hasNext()) {
-            Vector vector = (Vector) it.next();
-            if (x == row) {
-                role = securityService.getRoleByName((String) vector.get(1));
-                break;
-            }
-            x++;
-        }
+        Role role = securityService.getRoleByName(((Role) cmbRoleName.getSelectedItem()).getName());
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to Delete this selected Role?", "Warning", dialogButton);
         if (dialogResult == JOptionPane.YES_OPTION) {
@@ -376,6 +363,14 @@ public class EditUserRole extends javax.swing.JFrame {
             clear();
             JOptionPane.showMessageDialog(null, "Selected Role is Deleted !", "Delete Role", 2);
         }
+
+        cmbRoleName.removeAllItems();
+        cmbRoleName.addItem("--Select a Role Name--");
+        Set<Role> roles = securityService.getAllRoles();
+        for (Role role1 : roles) {
+            cmbRoleName.addItem(role1);
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void clear() {
