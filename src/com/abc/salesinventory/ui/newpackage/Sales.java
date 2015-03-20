@@ -292,7 +292,7 @@ public class Sales extends javax.swing.JFrame {
         txtNetValue.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         btnAddTransaction.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnAddTransaction.setText("Save");
+        btnAddTransaction.setText("Print");
         btnAddTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddTransactionActionPerformed(evt);

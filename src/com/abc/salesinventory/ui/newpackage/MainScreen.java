@@ -628,19 +628,19 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miStockValueAnlysisActionPerformed
 
     private void miSlowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSlowActionPerformed
-        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+        //if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
             new SlowMovingItemsReport().setVisible(true);
-        }else {
-            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
-        }
+       // }else {
+           // JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+       // }
     }//GEN-LAST:event_miSlowActionPerformed
 
     private void miCustomerReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerReportActionPerformed
-        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
+       // if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
             new CustomerDetailsReport().setVisible(true);
-        }else {
-            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
-        }
+       // }else {
+       //     JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+       // }
     }//GEN-LAST:event_miCustomerReportActionPerformed
 
     private void miStockReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStockReportActionPerformed
