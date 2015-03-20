@@ -360,8 +360,9 @@ public class EditUserRole extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Delete role failed. - " + e.getMessage(), "Delete Role", 0);
                 return;
             }
-            clear();
+            
             JOptionPane.showMessageDialog(null, "Selected Role is Deleted !", "Delete Role", 2);
+            clear();
         }
 
         cmbRoleName.removeAllItems();
