@@ -28,4 +28,6 @@ public interface InventoryService {
     public Transaction getTransaction(String transactionId);
 
     public Set<Transaction> getAllTransactions();
+    
+    public List<Object> getReorderStockWithSupplier();
 }

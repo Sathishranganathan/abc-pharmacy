@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
+
+import com.abc.salesinventory.service.newpackage.InventoryService;
+import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +18,48 @@ package com.abc.salesinventory.ui.newpackage;
  */
 public class AutomaticReorderPopup extends javax.swing.JFrame {
 
+    InventoryService inventoryService = new InventoryServiceImpl();
+
     /**
      * Creates new form AutomaticReorderPopup
      */
     public AutomaticReorderPopup() {
         initComponents();
+
+        List list = inventoryService.getReorderStockWithSupplier();
+        if (list != null) {
+            displayResult(list);
+        }
+    }
+
+    private void displayResult(List resultList) {
+
+        Vector<String> tableHeaders = new Vector<String>();
+        tableHeaders.add("Product Code");
+        tableHeaders.add("Product Name");
+        tableHeaders.add("Product Unit");
+        tableHeaders.add("Supplier Id");
+        tableHeaders.add("Supplier Name");
+        tableHeaders.add("Contact No");
+        tableHeaders.add("Re-Order Qty");
+
+        Vector tableData = new Vector();
+        Iterator it = resultList.iterator();
+        while (it.hasNext()) {
+
+            Object row[] = (Object[]) it.next();
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(row[0]);
+            oneRow.add(row[1]);
+            oneRow.add(row[2]);
+            oneRow.add(row[3]);
+            oneRow.add(row[4]);
+            oneRow.add(row[5]);
+            oneRow.add(row[6]);
+            tableData.add(oneRow);
+        }
+        tblReOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
+
     }
 
     /**
