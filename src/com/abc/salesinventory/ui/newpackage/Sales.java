@@ -806,6 +806,12 @@ public class Sales extends javax.swing.JFrame {
             map.put("txnId", txtTransactionId.getText());
             ReportViewer reportViewer = new ReportViewer("SalesInvoice.jrxml", map);
         }
+        
+        
+        List list = inventoryService.getReorderStock();
+        if (list != null) {
+            new AutomaticReorderPopup().setVisible(true);
+        }
 
         ftxtDate.setText(null);
         cmbCustomerName.setSelectedIndex(0);
