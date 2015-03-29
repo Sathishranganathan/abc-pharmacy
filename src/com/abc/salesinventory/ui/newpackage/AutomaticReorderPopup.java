@@ -7,10 +7,17 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.service.newpackage.InventoryService;
 import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
+import com.abc.salesinventory.service.sms.SMSMessageEngine;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.smslib.GatewayException;
+import org.smslib.TimeoutException;
 
 /**
  *
@@ -19,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class AutomaticReorderPopup extends javax.swing.JFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
+    Object[] value = new Object[7];
 
     /**
      * Creates new form AutomaticReorderPopup
@@ -101,6 +109,11 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
                 "Product Code", "Product Name", "Product Unit", "Supplier ID", "Supplier Name", "Mobile Number", "Re-Order Qty"
             }
         ));
+        tblReOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblReOrderMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblReOrder);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -109,9 +122,12 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 0, 51));
         jLabel4.setText("Select Product to show the message");
 
-        lblMessage.setText("default_message");
-
         btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,6 +187,35 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        try {
+            // TODO code application logic here
+            SMSMessageEngine engine = new SMSMessageEngine();
+            engine.init();
+            engine.sendSMSMessage((String)value[5], lblMessage.getText());
+            engine.stop();
+        } catch (InterruptedException | TimeoutException | GatewayException | IOException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error Occured !", ex.getMessage(), 2);
+        }
+    }//GEN-LAST:event_btnSendActionPerformed
+
+    private void tblReOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReOrderMouseClicked
+
+        int[] selRows;
+        selRows = tblReOrder.getSelectedRows();
+
+        if (selRows.length > 0) {
+            for (int i = 0; i < 6; i++) {
+                // get Table data
+                TableModel tm = tblReOrder.getModel();
+                value[i] = tm.getValueAt(selRows[0], i);
+
+            }
+        }
+        lblMessage.setText("Hello Mr. :" + value[0] + " " + value[1] + " " + value[2] + " " + value[3] + " " + value[4] + " " + value[5] + " " + value[6]);
+    }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**
      * @param args the command line arguments

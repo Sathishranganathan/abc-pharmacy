@@ -168,6 +168,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblReOrderMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -188,14 +191,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMessage">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="default_message"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSend">
           <Properties>
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSendActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
