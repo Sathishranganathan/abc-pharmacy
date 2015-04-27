@@ -26,7 +26,7 @@ import org.smslib.TimeoutException;
 public class AutomaticReorderPopup extends javax.swing.JFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
-    Object[] value = new Object[7];
+    Object[] value = new Object[8];
 
     /**
      * Creates new form AutomaticReorderPopup
@@ -50,6 +50,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         tableHeaders.add("Supplier Name");
         tableHeaders.add("Contact No");
         tableHeaders.add("Re-Order Qty");
+        tableHeaders.add("Standard Re-Order Qty");
 
         Vector tableData = new Vector();
         Iterator it = resultList.iterator();
@@ -64,6 +65,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
             oneRow.add(row[4]);
             oneRow.add(row[5]);
             oneRow.add(row[6]);
+            oneRow.add(row[7]);
             tableData.add(oneRow);
         }
         tblReOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
@@ -207,14 +209,14 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         selRows = tblReOrder.getSelectedRows();
 
         if (selRows.length > 0) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 7; i++) {
                 // get Table data
                 TableModel tm = tblReOrder.getModel();
                 value[i] = tm.getValueAt(selRows[0], i);
 
             }
         }
-        lblMessage.setText("Hello Mr. :" + value[0] + " " + value[1] + " " + value[2] + " " + value[3] + " " + value[4] + " " + value[5] + " " + value[6]);
+        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[6] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") " );
     }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**
