@@ -14,6 +14,7 @@ public class Product  implements java.io.Serializable {
      private String category;
      private String unit;
      private int reOrderLevel;
+     private int standardReOrderLevel;
 
     public Product() {
     }
@@ -32,6 +33,7 @@ public class Product  implements java.io.Serializable {
        this.category = category;
        this.unit = unit;
        this.reOrderLevel = reOrderLevel;
+       this.standardReOrderLevel = standardReOrderLevel;
     }
    
     public String getProductCode() {
@@ -62,12 +64,21 @@ public class Product  implements java.io.Serializable {
     public void setUnit(String unit) {
         this.unit = unit;
     }
+    
     public int getReOrderLevel() {
         return this.reOrderLevel;
     }
     
     public void setReOrderLevel(int reOrderLevel) {
         this.reOrderLevel = reOrderLevel;
+    }
+    
+    public int getstandardReOrderLevel(){
+    return this.standardReOrderLevel;
+            }
+            
+    public void setStandardReOrderLevel(int standardReOrderLevel) {
+        this.standardReOrderLevel = standardReOrderLevel;
     }
 
 

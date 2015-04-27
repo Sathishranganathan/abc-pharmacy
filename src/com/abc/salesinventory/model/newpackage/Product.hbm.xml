@@ -20,5 +20,8 @@
         <property name="reOrderLevel" type="int">
             <column name="reorder_level" length="15" />
         </property>
+        <property name="standardReOrderLevel" type="int">
+            <column name="standard_reorder_level" length="15" />
+        </property>
     </class>
 </hibernate-mapping>
