@@ -214,7 +214,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
             }
         }
-        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[6] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") " + value[7] );
+        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[7] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") "  );
     }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**
