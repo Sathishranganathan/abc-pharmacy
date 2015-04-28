@@ -49,10 +49,10 @@ public class InventoryServiceImpl implements InventoryService {
 
         Query query = session.createSQLQuery(
                 "SELECT s.product_code, p.product_name, p.unit, sup.id, sup.name, "
-                        + "sup.mobile, p.reorder_level,SUM(s.quantity) as 'qty' FROM pharmacy.stock s "
+                        + "sup.mobile, p.reorder_level,SUM(s.quantity) as 'qty', p.standard_reorder_level FROM pharmacy.stock s "
                         + "join pharmacy.product p on s.product_code=p.product_code "
                         + "join pharmacy.supplier sup on sup.id=s.supplier_id "
-                        + "group by s.product_code, p.product_name, p.reorder_level "
+                        + "group by s.product_code, p.product_name, p.reorder_level, p.standard_reorder_level "
                         + "having qty < (select p.reorder_level from product p where p.product_code=s.product_code)");
 
         List<Object> resultList = query.list();

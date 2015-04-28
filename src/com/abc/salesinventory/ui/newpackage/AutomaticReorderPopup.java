@@ -65,7 +65,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
             oneRow.add(row[4]);
             oneRow.add(row[5]);
             oneRow.add(row[6]);
-            oneRow.add(row[7]);
+            oneRow.add(row[8]);
             tableData.add(oneRow);
         }
         tblReOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
@@ -100,15 +100,15 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
         tblReOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product Code", "Product Name", "Product Unit", "Supplier ID", "Supplier Name", "Mobile Number", "Re-Order Qty"
+                "Product Code", "Product Name", "Product Unit", "Supplier ID", "Supplier Name", "Mobile Number", "Re-Order Qty", "Standard Reorder Level"
             }
         ));
         tblReOrder.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,7 +145,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
                         .addComponent(lblMessage)
                         .addGap(330, 330, 330)
                         .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 331, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,9 +178,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,14 +207,14 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         selRows = tblReOrder.getSelectedRows();
 
         if (selRows.length > 0) {
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 8; i++) {
                 // get Table data
                 TableModel tm = tblReOrder.getModel();
                 value[i] = tm.getValueAt(selRows[0], i);
 
             }
         }
-        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[6] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") " );
+        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[6] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") " + value[7] );
     }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**
