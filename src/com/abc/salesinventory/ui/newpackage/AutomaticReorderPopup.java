@@ -50,7 +50,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         tableHeaders.add("Supplier Name");
         tableHeaders.add("Contact No");
         tableHeaders.add("Re-Order Qty");
-        tableHeaders.add("Standard Re-Order Qty");
+        tableHeaders.add("Standard Re-Order Level");
 
         Vector tableData = new Vector();
         Iterator it = resultList.iterator();
@@ -110,7 +110,15 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
             new String [] {
                 "Product Code", "Product Name", "Product Unit", "Supplier ID", "Supplier Name", "Mobile Number", "Re-Order Qty", "Standard Reorder Level"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblReOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblReOrderMouseClicked(evt);
@@ -214,7 +222,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
             }
         }
-        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[7] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + ") "  );
+        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[7] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + "). Please be kind to send the confirmation with your suplier ID & the product code. Thank you. Eraj Pharmaceuticals "  );
     }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**
