@@ -7,6 +7,10 @@ import org.smslib.TimeoutException;
 import org.smslib.modem.SerialModemGateway;
 
 import java.io.IOException;
+import org.smslib.AGateway;
+import org.smslib.IInboundMessageNotification;
+import org.smslib.InboundMessage;
+import org.smslib.Message;
 
 public class SMSMessageEngine {
 
@@ -21,7 +25,10 @@ public class SMSMessageEngine {
             SerialModemGateway gateway = new SerialModemGateway("", comPort, baudRate.intValue(), "", "");
             gateway.setInbound(true);
             gateway.setOutbound(true);
+            gateway.setSmscNumber("+947100003");
+            InboundNotification inboundNotification = new InboundNotification();
             messageService = Service.getInstance();
+            messageService.setInboundMessageNotification(inboundNotification);
             messageService.addGateway(gateway);
             messageService.startService();
         } catch (Exception e) {
@@ -46,6 +53,21 @@ public class SMSMessageEngine {
             status = OutboundMessage.MessageStatuses.FAILED;
         }
         return status;
+    }
+
+    private class InboundNotification implements IInboundMessageNotification {
+
+        @Override
+        public void process(AGateway gateway, Message.MessageTypes messageTypes, InboundMessage inboundMessage) {
+
+            System.out.println("SMS message received: " + inboundMessage.getText());
+            String content = inboundMessage.getText();
+            try {
+                gateway.deleteMessage(inboundMessage);
+            } catch (Exception e) {
+                System.out.println("Incoming message read after delete failure " + e);
+            }
+        }
     }
 
     public Integer getBaudRate() {
