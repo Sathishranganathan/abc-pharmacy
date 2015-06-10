@@ -27,13 +27,14 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
     Object[] value = new Object[8];
+    SMSMessageEngine engine = new SMSMessageEngine();
 
     /**
      * Creates new form AutomaticReorderPopup
      */
     public AutomaticReorderPopup() {
         initComponents();
-
+        engine.init();
         List list = inventoryService.getReorderStockWithSupplier();
         if (list != null) {
             displayResult(list);
@@ -199,9 +200,8 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         try {
             // TODO code application logic here
-            SMSMessageEngine engine = new SMSMessageEngine();
-            engine.init();
-            engine.sendSMSMessage((String)value[5], lblMessage.getText());
+
+            engine.sendSMSMessage((String) value[5], lblMessage.getText());
             engine.stop();
         } catch (InterruptedException | TimeoutException | GatewayException | IOException ex) {
             System.out.println(ex.getMessage());
@@ -222,7 +222,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
             }
         }
-        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[7] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + "). Please be kind to send the confirmation with your suplier ID & the product code. Thank you. Eraj Pharmaceuticals "  );
+        lblMessage.setText("Hello Mr. :" + value[4] + "(Supplier ID " + value[3] + "). We would like to order " + value[7] + " " + value[1] + " " + value[2] + "(Product Code " + value[0] + "). Please be kind to send the confirmation with your suplier ID & the product code. Thank you. Eraj Pharmaceuticals ");
     }//GEN-LAST:event_tblReOrderMouseClicked
 
     /**

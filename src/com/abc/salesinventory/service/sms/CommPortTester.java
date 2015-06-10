@@ -22,7 +22,7 @@ public class CommPortTester {
     private final static Formatter _formatter = new Formatter(System.out);
     static CommPortIdentifier portId;
     static Enumeration<CommPortIdentifier> portList;
-    static int bauds[] = {9600, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200};
+    static int bauds[] = {9600};//, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200};
 
     /**
      * Wrapper around {@link CommPortIdentifier#getPortIdentifiers()} to be
