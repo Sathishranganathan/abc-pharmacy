@@ -27,14 +27,15 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
     Object[] value = new Object[8];
-    SMSMessageEngine engine = new SMSMessageEngine();
+    SMSMessageEngine engine = null;
+    
 
     /**
      * Creates new form AutomaticReorderPopup
      */
-    public AutomaticReorderPopup() {
+    public AutomaticReorderPopup(SMSMessageEngine engine) {
         initComponents();
-        engine.init();
+        this.engine = engine;
         List list = inventoryService.getReorderStockWithSupplier();
         if (list != null) {
             displayResult(list);
@@ -199,10 +200,9 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         try {
-            // TODO code application logic here
 
             engine.sendSMSMessage((String) value[5], lblMessage.getText());
-            engine.stop();
+
         } catch (InterruptedException | TimeoutException | GatewayException | IOException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Error Occured !", ex.getMessage(), 2);
@@ -255,7 +255,9 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AutomaticReorderPopup().setVisible(true);
+                SMSMessageEngine engine = new SMSMessageEngine();
+                engine.init();
+                new AutomaticReorderPopup(engine).setVisible(true);
             }
         });
     }

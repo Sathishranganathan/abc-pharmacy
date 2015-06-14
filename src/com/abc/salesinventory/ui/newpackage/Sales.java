@@ -14,6 +14,7 @@ import com.abc.salesinventory.service.newpackage.InventoryService;
 import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
+import com.abc.salesinventory.service.sms.SMSMessageEngine;
 import com.abc.salesinventory.util.DatePicker;
 import com.abc.salesinventory.util.ReportViewer;
 import java.text.ParseException;
@@ -42,6 +43,7 @@ public class Sales extends javax.swing.JFrame {
 
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
+    SMSMessageEngine engine = null;
 
     DefaultTableModel model = null;
 
@@ -60,8 +62,9 @@ public class Sales extends javax.swing.JFrame {
     /**
      * Creates new form Sale
      */
-    public Sales() {
+    public Sales(SMSMessageEngine engine) {
         initComponents();
+        this.engine = engine;
         resetTable();
         txtTransactionId.setText(UUID.randomUUID().toString());
         Set<Customer> customers = masterService.getAllCustomers();
@@ -822,7 +825,7 @@ public class Sales extends javax.swing.JFrame {
         
         List list = inventoryService.getReorderStock();
         if (list != null) {
-            new AutomaticReorderPopup().setVisible(true);
+            new AutomaticReorderPopup(engine).setVisible(true);
         }
 
         ftxtDate.setText(null);
@@ -888,7 +891,9 @@ public class Sales extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sales().setVisible(true);
+                SMSMessageEngine engine = new SMSMessageEngine();
+                engine.init();
+                new Sales(engine).setVisible(true);
             }
         });
     }

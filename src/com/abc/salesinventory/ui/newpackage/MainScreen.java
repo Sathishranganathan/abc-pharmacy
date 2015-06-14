@@ -22,6 +22,7 @@ import com.abc.salesinventory.report.PurchasedReciept;
 import com.abc.salesinventory.report.SalesInvoice;
 import com.abc.salesinventory.service.newpackage.SecurityService;
 import com.abc.salesinventory.service.newpackage.SecurityServiceImpl;
+import com.abc.salesinventory.service.sms.SMSMessageEngine;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +33,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private String userId;
     private SecurityService securityService = new SecurityServiceImpl();
+    SMSMessageEngine engine = new SMSMessageEngine();
 
     /**
      * Creates new form MainScreen
@@ -39,6 +41,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     public MainScreen(String userId) {
         initComponents();
+        this.engine.init();
         this.userId = userId;
     }
 
@@ -529,7 +532,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesActionPerformed
         if (securityService.hasPermission("DO_SALES", this.userId)) {
-            new Sales().setVisible(true);
+            new Sales(engine).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
