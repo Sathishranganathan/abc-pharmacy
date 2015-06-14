@@ -1,5 +1,9 @@
 package com.abc.salesinventory.service.sms;
 
+import com.abc.salesinventory.service.newpackage.InventoryService;
+import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
+import com.abc.salesinventory.service.newpackage.MasterService;
+import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import org.smslib.GatewayException;
 import org.smslib.OutboundMessage;
 import org.smslib.Service;
@@ -7,6 +11,7 @@ import org.smslib.TimeoutException;
 import org.smslib.modem.SerialModemGateway;
 
 import java.io.IOException;
+import java.util.Date;
 import org.smslib.AGateway;
 import org.smslib.IInboundMessageNotification;
 import org.smslib.InboundMessage;
@@ -15,6 +20,7 @@ import org.smslib.Message;
 public class SMSMessageEngine {
 
     private static Service messageService;
+    MasterService masterService = new MasterServiceImpl();
 
     private String comPort = CommPortTester.getConnectedPort();
     private Integer baudRate = 9600;
@@ -60,12 +66,21 @@ public class SMSMessageEngine {
         @Override
         public void process(AGateway gateway, Message.MessageTypes messageTypes, InboundMessage inboundMessage) {
 
-            System.out.println("SMS message received: " + inboundMessage.getText());
-            String content = inboundMessage.getText();
             try {
+                System.out.println("SMS message received: " + inboundMessage.getText());
+
+                String content = inboundMessage.getText();
+                com.abc.salesinventory.model.newpackage.Message message = new com.abc.salesinventory.model.newpackage.Message();
+                message.setId(inboundMessage.getId());
+                message.setMessage(content);
+                message.setMessageType("Incoming");
+                message.setMsgDate(new Date());
+                message.setContactNumber(inboundMessage.getOriginator());
+                masterService.saveMessage(message);
+
                 gateway.deleteMessage(inboundMessage);
             } catch (Exception e) {
-                System.out.println("Incoming message read after delete failure " + e);
+                System.out.println("Failure in processing incoming message : " + e);
             }
         }
     }

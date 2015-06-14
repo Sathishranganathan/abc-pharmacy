@@ -6,6 +6,7 @@
 package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Message;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
 import com.abc.salesinventory.model.newpackage.Stock;
@@ -69,4 +70,6 @@ public interface MasterService {
     public Set<Transaction> getAllPurchaseTransactions();
 
     public Set<Transaction> getAllSalesTransactions();
+    
+    public String saveMessage(Message message) throws HibernateException;
 }

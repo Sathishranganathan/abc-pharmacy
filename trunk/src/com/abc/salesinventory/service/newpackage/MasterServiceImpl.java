@@ -6,6 +6,7 @@
 package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Customer;
+import com.abc.salesinventory.model.newpackage.Message;
 import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.model.newpackage.Product;
 import com.abc.salesinventory.model.newpackage.Stock;
@@ -19,6 +20,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 
 /**
  *
@@ -34,6 +36,16 @@ public class MasterServiceImpl implements MasterService {
         session.getTransaction().commit();
         session.close();
         return customer.getId();
+    }
+    
+        @Override
+    public String saveMessage(Message message) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(message);
+        session.getTransaction().commit();
+        session.close();
+        return message.getId();
     }
 
     @Override

@@ -10,10 +10,10 @@
         </id>
         
         <many-to-one name="product" class="com.abc.salesinventory.model.newpackage.Product" fetch="select">
-            <column name="product_code" length="45" not-null="true" />
+            <column name="product_code" length="45" not-null="false" />
         </many-to-one>
         <many-to-one name="supplier" class="com.abc.salesinventory.model.newpackage.Supplier" fetch="select">
-            <column name="supplier_id" length="45" not-null="true" />
+            <column name="supplier_id" length="45" not-null="false" />
         </many-to-one>
         
         <property name="message" type="string">
