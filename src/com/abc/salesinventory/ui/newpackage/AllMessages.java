@@ -6,17 +6,109 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.service.newpackage.MessageService;
+import com.abc.salesinventory.service.newpackage.MessageServiceImpl;
+import com.abc.salesinventory.util.HibernateUtil;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 /**
  *
  * @author Manuri
  */
 public class AllMessages extends javax.swing.JFrame {
+    
+    MessageService MessageService = new MessageServiceImpl();
 
     /**
      * Creates new form AllMessages
      */
     public AllMessages() {
         initComponents();
+        txtSupId.requestFocus();
+        search();
+        
+        List list = MessageService.getSupplierNameWithMessage();
+        if (list != null) {
+            displayResult(list);
+        }
+        
+    }
+    
+    //Query for search supplier    
+    private static String QUERY_BASED_ON_ID = "from Message a where a.supplier like '";
+    private static String QUERY_BASED_ON_CONTACTNUM = "from Message a where a.contactNumber like '";
+    private static String QUERY_ALL = "from Message";
+    
+    
+    private void searchSupId(String hql) {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery(hql);
+            List resultList = q.list();
+            displayResult(resultList);
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+    }
+    
+     private void displayResult(List resultList) {
+
+        Vector<String> tableHeaders = new Vector<String>();
+        tableHeaders.add("Date");
+        tableHeaders.add("Supplier ID");
+        tableHeaders.add("Supplier Name");
+        tableHeaders.add("Contact Number");
+        tableHeaders.add("Message");
+        tableHeaders.add("Type");
+
+        Vector tableData = new Vector();
+        Iterator it = resultList.iterator();
+        while (it.hasNext()) {
+
+            Object row[] = (Object[]) it.next();
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(row[0]);
+            oneRow.add(row[2]);
+            oneRow.add(row[1]);
+            oneRow.add(row[3]);
+            oneRow.add(row[4]);
+            oneRow.add(row[5]);
+
+
+            
+            tableData.add(oneRow);
+        }
+        tblAllMessage.setModel(new DefaultTableModel(tableData, tableHeaders));
+
+    }
+     
+     //Search customer details
+    public void search() {
+        //Search by supplier id
+        if (!txtSupId.getText().trim().equals("") && txtContactNumber.getText().trim().equals("")) {
+            searchSupId(QUERY_BASED_ON_ID + txtSupId.getText() + "%'");
+        }
+        //Search by mobile number
+        else if (txtSupId.getText().trim().equals("") && !txtContactNumber.getText().trim().equals("")) {
+            searchSupId(QUERY_BASED_ON_CONTACTNUM + txtContactNumber.getText() + "%'");
+        }
+        //search by supplier id and mobile number
+        else if (!txtSupId.getText().trim().equals("") && !txtContactNumber.getText().trim().equals("")) {
+            searchSupId("from Message a where a.supplier like '" + txtSupId.getText().trim() + "%' and a.contactNumber like '" + txtContactNumber.getText().trim() + "%'");
+        } 
+        //get all data
+        else if (txtSupId.getText().trim().equals("") && txtContactNumber.getText().trim().equals("")) {
+            searchSupId(QUERY_ALL);
+        }
     }
 
     /**
@@ -44,28 +136,28 @@ public class AllMessages extends javax.swing.JFrame {
 
         tblAllMessage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Date", "Suplier Name", "Suplier ID", "Message"
+                "Date", "Suplier Name", "Suplier ID", "Contact Number", "Message", "Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -82,6 +174,11 @@ public class AllMessages extends javax.swing.JFrame {
         jLabel3.setText("Contact Number");
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,6 +237,10 @@ public class AllMessages extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        search();
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments

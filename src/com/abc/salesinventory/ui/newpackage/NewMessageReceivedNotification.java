@@ -10,7 +10,7 @@ package com.abc.salesinventory.ui.newpackage;
  *
  * @author Manuri
  */
-public class NewMessageReceivedNotification extends javax.swing.JFrame {
+public class NewMessageReceivedNotification extends  javax.swing.JFrame {
 
     /**
      * Creates new form MessagereceivedNotification

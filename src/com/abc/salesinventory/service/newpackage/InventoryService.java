@@ -7,6 +7,7 @@ package com.abc.salesinventory.service.newpackage;
 
 import com.abc.salesinventory.model.newpackage.Stock;
 import com.abc.salesinventory.model.newpackage.Transaction;
+import com.abc.salesinventory.model.newpackage.Message;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.HibernateException;
@@ -30,4 +31,6 @@ public interface InventoryService {
     public Set<Transaction> getAllTransactions();
     
     public List<Object> getReorderStockWithSupplier();
+    
+//    public List<Object> getSupplierNameWithMessage();
 }
