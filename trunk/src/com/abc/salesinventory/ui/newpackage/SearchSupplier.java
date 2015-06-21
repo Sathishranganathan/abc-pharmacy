@@ -296,7 +296,7 @@ private static String QUERY_BASED_ON_NAME = "from Supplier s where s.name like '
         } else if (txtSupplierName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
             searchSupplier(QUERY_BASED_ON_MOBILE + txtMobileNumber.getText() + "%'");
         } else if (!txtSupplierName.getText().trim().equals("") && !txtMobileNumber.getText().trim().equals("")) {
-            searchSupplier("from Customer a where a.name like '" + txtSupplierName.getText().trim() + "%' and a.mobile like '" + txtMobileNumber.getText().trim() + "%'");
+            searchSupplier("from Supplier a where a.name like '" + txtSupplierName.getText().trim() + "%' and a.mobile like '" + txtMobileNumber.getText().trim() + "%'");
         } else if (txtSupplierName.getText().trim().equals("") && txtMobileNumber.getText().trim().equals("")) {
             searchSupplier(QUERY_ALL);
         }
