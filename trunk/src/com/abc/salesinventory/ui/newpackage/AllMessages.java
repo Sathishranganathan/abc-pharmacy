@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Message;
 import com.abc.salesinventory.service.newpackage.MessageService;
 import com.abc.salesinventory.service.newpackage.MessageServiceImpl;
 import com.abc.salesinventory.util.HibernateUtil;
@@ -23,7 +23,7 @@ import org.hibernate.Session;
  * @author Manuri
  */
 public class AllMessages extends javax.swing.JFrame {
-    
+
     MessageService MessageService = new MessageServiceImpl();
 
     /**
@@ -33,20 +33,19 @@ public class AllMessages extends javax.swing.JFrame {
         initComponents();
         txtSupId.requestFocus();
         search();
-        
-        List list = MessageService.getSupplierNameWithMessage();
-        if (list != null) {
-            displayResult(list);
-        }
-        
+
+//        List list = MessageService.getSupplierNameWithMessage();
+//        if (list != null) {
+//            displayResult(list);
+//        }
+
     }
-    
+
     //Query for search supplier    
     private static String QUERY_BASED_ON_ID = "from Message a where a.supplier like '";
     private static String QUERY_BASED_ON_CONTACTNUM = "from Message a where a.contactNumber like '";
     private static String QUERY_ALL = "from Message";
-    
-    
+
     private void searchSupId(String hql) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,8 +58,8 @@ public class AllMessages extends javax.swing.JFrame {
             he.printStackTrace();
         }
     }
-    
-     private void displayResult(List resultList) {
+
+    private void displayResult(List resultList) {
 
         Vector<String> tableHeaders = new Vector<String>();
         tableHeaders.add("Date");
@@ -71,41 +70,35 @@ public class AllMessages extends javax.swing.JFrame {
         tableHeaders.add("Type");
 
         Vector tableData = new Vector();
-        Iterator it = resultList.iterator();
-        while (it.hasNext()) {
+        for (Object o : resultList) {
 
-            Object row[] = (Object[]) it.next();
+            Message message = (Message) o;
             Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(row[0]);
-            oneRow.add(row[2]);
-            oneRow.add(row[1]);
-            oneRow.add(row[3]);
-            oneRow.add(row[4]);
-            oneRow.add(row[5]);
+            oneRow.add(message.getMsgDate());
+            oneRow.add(message.getSupplier().getId());
+            oneRow.add(message.getSupplier().getName());
+            oneRow.add(message.getContactNumber());
+            oneRow.add(message.getMessage());
+            oneRow.add(message.getMessageType());
 
-
-            
             tableData.add(oneRow);
         }
         tblAllMessage.setModel(new DefaultTableModel(tableData, tableHeaders));
 
     }
-     
-     //Search customer details
+
+    //Search customer details
     public void search() {
         //Search by supplier id
         if (!txtSupId.getText().trim().equals("") && txtContactNumber.getText().trim().equals("")) {
             searchSupId(QUERY_BASED_ON_ID + txtSupId.getText() + "%'");
-        }
-        //Search by mobile number
+        } //Search by mobile number
         else if (txtSupId.getText().trim().equals("") && !txtContactNumber.getText().trim().equals("")) {
             searchSupId(QUERY_BASED_ON_CONTACTNUM + txtContactNumber.getText() + "%'");
-        }
-        //search by supplier id and mobile number
+        } //search by supplier id and mobile number
         else if (!txtSupId.getText().trim().equals("") && !txtContactNumber.getText().trim().equals("")) {
             searchSupId("from Message a where a.supplier like '" + txtSupId.getText().trim() + "%' and a.contactNumber like '" + txtContactNumber.getText().trim() + "%'");
-        } 
-        //get all data
+        } //get all data
         else if (txtSupId.getText().trim().equals("") && txtContactNumber.getText().trim().equals("")) {
             searchSupId(QUERY_ALL);
         }
