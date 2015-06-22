@@ -17,6 +17,6 @@ import org.hibernate.HibernateException;
  */
 public interface MessageService {
     
-    public List<Object> getSupplierNameWithMessage();
+    public List<Message> getSupplierNameWithMessage();
     
 }

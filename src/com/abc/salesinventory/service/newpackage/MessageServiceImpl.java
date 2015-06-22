@@ -23,15 +23,14 @@ import org.hibernate.Session;
 public class MessageServiceImpl implements MessageService {
     
     @Override
-    public List<Object> getSupplierNameWithMessage() {
+    public List<Message> getSupplierNameWithMessage() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createSQLQuery(
-                "SELECT m.supplier_id, s.name, m.message, m.msg_date, m.message_type, m.contact_number\n" +
-"FROM pharmacy.message m join pharmacy.supplier s on m.supplier_id=s.id");
+                "SELECT m.supplier_id, s.name, m.message, m.msg_date, m.message_type, m.contact_number FROM pharmacy.message m join pharmacy.supplier s on m.supplier_id=s.id");
 
-        List<Object> resultList = query.list();
+        List<Message> resultList = query.list();
         session.getTransaction().commit();
         session.close();
         if (resultList != null && resultList.size() > 0) {
