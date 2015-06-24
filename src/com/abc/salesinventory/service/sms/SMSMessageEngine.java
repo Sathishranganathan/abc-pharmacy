@@ -12,6 +12,7 @@ import org.smslib.modem.SerialModemGateway;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 import org.smslib.AGateway;
 import org.smslib.IInboundMessageNotification;
 import org.smslib.InboundMessage;
@@ -71,7 +72,8 @@ public class SMSMessageEngine {
 
                 String content = inboundMessage.getText();
                 com.abc.salesinventory.model.newpackage.Message message = new com.abc.salesinventory.model.newpackage.Message();
-                message.setId(inboundMessage.getId());
+                message.setId(UUID.randomUUID().toString());
+                message.setSupplier(null);
                 message.setMessage(content);
                 message.setMessageType("Incoming");
                 message.setMsgDate(new Date());

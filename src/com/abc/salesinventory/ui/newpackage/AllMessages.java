@@ -38,7 +38,6 @@ public class AllMessages extends javax.swing.JFrame {
 //        if (list != null) {
 //            displayResult(list);
 //        }
-
     }
 
     //Query for search supplier    
@@ -74,12 +73,18 @@ public class AllMessages extends javax.swing.JFrame {
 
             Message message = (Message) o;
             Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(message.getMsgDate());
-            oneRow.add(message.getSupplier().getId());
-            oneRow.add(message.getSupplier().getName());
-            oneRow.add(message.getContactNumber());
-            oneRow.add(message.getMessage());
-            oneRow.add(message.getMessageType());
+            oneRow.add(0,message.getMsgDate());
+            if (message.getSupplier() != null) {
+                oneRow.add(1,message.getSupplier().getId());
+                oneRow.add(2,message.getSupplier().getName());
+            }else{
+                oneRow.add(1,"");
+                oneRow.add(2,"");
+            }
+
+            oneRow.add(3,message.getContactNumber());
+            oneRow.add(4,message.getMessage());
+            oneRow.add(5,message.getMessageType());
 
             tableData.add(oneRow);
         }
