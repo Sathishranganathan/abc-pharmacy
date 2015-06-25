@@ -6,6 +6,8 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Message;
+
 /**
  *
  * @author Manuri
@@ -15,8 +17,13 @@ public class NewMessage extends javax.swing.JFrame {
     /**
      * Creates new form NewMessage
      */
-    public NewMessage() {
+    public NewMessage(Message message) {
         initComponents();
+        txtDateTime.setText(message.getMsgDate().toString());
+        txtContactNumber.setText(message.getContactNumber());
+        txtMessage.setText(message.getMessage());
+        txtName.setText((message.getSupplier() != null ? message.getSupplier().getName():""));
+        
     }
 
     /**
@@ -152,11 +159,11 @@ public class NewMessage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewMessage().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new NewMessage().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

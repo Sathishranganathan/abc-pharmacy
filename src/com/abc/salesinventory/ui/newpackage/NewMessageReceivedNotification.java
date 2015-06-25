@@ -6,17 +6,21 @@
 
 package com.abc.salesinventory.ui.newpackage;
 
+import com.abc.salesinventory.model.newpackage.Message;
+
 /**
  *
  * @author Manuri
  */
 public class NewMessageReceivedNotification extends  javax.swing.JFrame {
 
+    private Message message;
     /**
      * Creates new form MessagereceivedNotification
      */
-    public NewMessageReceivedNotification() {
+    public NewMessageReceivedNotification(Message message) {
         initComponents();
+        this.message = message;
     }
 
     /**
@@ -45,6 +49,11 @@ public class NewMessageReceivedNotification extends  javax.swing.JFrame {
         jLabel2.setText("Do You Want to Open It?");
 
         btnYes.setText("Yes");
+        btnYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnYesActionPerformed(evt);
+            }
+        });
 
         btnNo.setText("No");
 
@@ -96,6 +105,11 @@ public class NewMessageReceivedNotification extends  javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
+        new NewMessage(message).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnYesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -124,11 +138,11 @@ public class NewMessageReceivedNotification extends  javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewMessageReceivedNotification().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new NewMessageReceivedNotification().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
