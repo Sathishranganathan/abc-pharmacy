@@ -4,6 +4,7 @@ import com.abc.salesinventory.service.newpackage.InventoryService;
 import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
+import com.abc.salesinventory.ui.newpackage.NewMessageReceivedNotification;
 import org.smslib.GatewayException;
 import org.smslib.OutboundMessage;
 import org.smslib.Service;
@@ -80,6 +81,8 @@ public class SMSMessageEngine {
                 message.setContactNumber(inboundMessage.getOriginator());
                 masterService.saveMessage(message);
 
+                new NewMessageReceivedNotification(message).setVisible(true);
+                
                 gateway.deleteMessage(inboundMessage);
             } catch (Exception e) {
                 System.out.println("Failure in processing incoming message : " + e);
