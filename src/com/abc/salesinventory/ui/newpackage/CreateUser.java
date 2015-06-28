@@ -325,7 +325,7 @@ public class CreateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-       dispose();
+       this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**

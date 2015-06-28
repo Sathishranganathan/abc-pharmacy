@@ -72,6 +72,7 @@ private static String QUERY_ALL = "from Product";
         tableHeaders.add("Category");
         tableHeaders.add("Re-Order Level");
         tableHeaders.add("Unit");
+        tableHeaders.add("Standard Re-Order Level");
         
 
         Vector tableData = new Vector();
@@ -84,6 +85,7 @@ private static String QUERY_ALL = "from Product";
             oneRow.add(product.getCategory());
             oneRow.add(product.getReOrderLevel());
             oneRow.add(product.getUnit());
+            oneRow.add(product.getstandardReOrderLevel());
             
             tableData.add(oneRow);
         }
@@ -290,6 +292,7 @@ private static String QUERY_ALL = "from Product";
                 product.setCategory((String) vector.get(2));
                 product.setReOrderLevel((int) vector.get(3));
                 product.setUnit((String) vector.get(4));
+                product.setStandardReOrderLevel((int) vector.get(5));
                 
                 break;
             }

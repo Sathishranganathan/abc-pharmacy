@@ -75,9 +75,9 @@ public class MainScreen extends javax.swing.JFrame {
         miSearchSup = new javax.swing.JMenuItem();
         menuStock = new javax.swing.JMenu();
         miAddproduct = new javax.swing.JMenuItem();
+        miReOrderProduct = new javax.swing.JMenuItem();
         miSearchProduct = new javax.swing.JMenuItem();
         miSearchStock = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         menuSales = new javax.swing.JMenu();
         miSales = new javax.swing.JMenuItem();
         menuPurchases = new javax.swing.JMenu();
@@ -104,6 +104,8 @@ public class MainScreen extends javax.swing.JFrame {
         menuUserRole = new javax.swing.JMenu();
         miChangeRole = new javax.swing.JMenuItem();
         miEditRole = new javax.swing.JMenuItem();
+        menuMessage = new javax.swing.JMenu();
+        miViewMessages = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -249,13 +251,21 @@ public class MainScreen extends javax.swing.JFrame {
 
         menuStock.setText("Stock");
 
-        miAddproduct.setText("Add New Products");
+        miAddproduct.setText("Create New Products");
         miAddproduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miAddproductActionPerformed(evt);
             }
         });
         menuStock.add(miAddproduct);
+
+        miReOrderProduct.setText("Re-order Product List");
+        miReOrderProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miReOrderProductActionPerformed(evt);
+            }
+        });
+        menuStock.add(miReOrderProduct);
 
         miSearchProduct.setText("Search Product");
         miSearchProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -273,19 +283,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
         menuStock.add(miSearchStock);
 
-        jMenuItem2.setText("Re-order Product List");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        menuStock.add(jMenuItem2);
-
         jMenuBar1.add(menuStock);
 
         menuSales.setText("Sales");
 
-        miSales.setText("Sales");
+        miSales.setText("Create Sales");
         miSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miSalesActionPerformed(evt);
@@ -297,7 +299,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         menuPurchases.setText("Purchases");
 
-        miPurchase.setText("Purchase");
+        miPurchase.setText("Create Purchase");
         miPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miPurchaseActionPerformed(evt);
@@ -470,6 +472,18 @@ public class MainScreen extends javax.swing.JFrame {
         menuUserRole.add(miEditRole);
 
         jMenuBar1.add(menuUserRole);
+
+        menuMessage.setText("Message");
+
+        miViewMessages.setText("View Messages");
+        miViewMessages.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miViewMessagesActionPerformed(evt);
+            }
+        });
+        menuMessage.add(miViewMessages);
+
+        jMenuBar1.add(menuMessage);
 
         setJMenuBar(jMenuBar1);
 
@@ -740,13 +754,21 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_miSearchStockActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void miReOrderProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miReOrderProductActionPerformed
         if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
             new ReorederProducts().setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_miReOrderProductActionPerformed
+
+    private void miViewMessagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miViewMessagesActionPerformed
+        if (securityService.hasPermission("SEND_MESSAGES", this.userId)) {
+            new AllMessages().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
+        }
+    }//GEN-LAST:event_miViewMessagesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -793,11 +815,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuAccount;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuFile;
+    private javax.swing.JMenu menuMessage;
     private javax.swing.JMenu menuPurchases;
     private javax.swing.JMenu menuReport;
     private javax.swing.JMenu menuSales;
@@ -821,6 +843,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miProductReport;
     private javax.swing.JMenuItem miPurchase;
     private javax.swing.JMenuItem miPurchasedReceipts;
+    private javax.swing.JMenuItem miReOrderProduct;
     private javax.swing.JMenuItem miSales;
     private javax.swing.JMenuItem miSalesInvoices;
     private javax.swing.JMenuItem miSearchCus;
@@ -834,5 +857,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSupWisePurchased;
     private javax.swing.JMenuItem miSupplierReport;
     private javax.swing.JMenuItem miUserReport;
+    private javax.swing.JMenuItem miViewMessages;
     // End of variables declaration//GEN-END:variables
 }

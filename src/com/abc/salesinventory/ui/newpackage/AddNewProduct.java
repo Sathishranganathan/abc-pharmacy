@@ -377,6 +377,7 @@ cmbCategory.getSelectedIndex()==0||cmbUnit.getSelectedIndex()==0||ftxtReorderLev
         cmbCategory.setSelectedIndex(0);
         cmbUnit.setSelectedIndex(0);
         ftxtReorderLevel.setText(null);
+        ftxtStandardReorderLevel.setText(null);
         }
     
 }

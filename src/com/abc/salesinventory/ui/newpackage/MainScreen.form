@@ -97,10 +97,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miAddproduct">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add New Products"/>
+                <Property name="text" type="java.lang.String" value="Create New Products"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miAddproductActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miReOrderProduct">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Re-order Product List"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miReOrderProductActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miSearchProduct">
@@ -119,14 +127,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSearchStockActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Re-order Product List"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuSales">
@@ -136,7 +136,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miSales">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sales"/>
+                <Property name="text" type="java.lang.String" value="Create Sales"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miSalesActionPerformed"/>
@@ -151,7 +151,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miPurchase">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Purchase"/>
+                <Property name="text" type="java.lang.String" value="Create Purchase"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPurchaseActionPerformed"/>
@@ -328,6 +328,21 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miEditRoleActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuMessage">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Message"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miViewMessages">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View Messages"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miViewMessagesActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
