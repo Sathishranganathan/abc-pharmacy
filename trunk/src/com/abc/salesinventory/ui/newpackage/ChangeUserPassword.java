@@ -194,7 +194,7 @@ public class ChangeUserPassword extends javax.swing.JDialog {
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
