@@ -56,6 +56,11 @@ public class NewMessageReceivedNotification extends  javax.swing.JFrame {
         });
 
         btnNo.setText("No");
+        btnNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,6 +114,10 @@ public class NewMessageReceivedNotification extends  javax.swing.JFrame {
         new NewMessage(message).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnYesActionPerformed
+
+    private void btnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnNoActionPerformed
 
     /**
      * @param args the command line arguments
