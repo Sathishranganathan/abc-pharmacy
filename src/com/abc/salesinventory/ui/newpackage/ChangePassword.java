@@ -209,7 +209,7 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        System.exit(1);//click close button,exit from the window
+        dispose();//click close button,exit from the window
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
