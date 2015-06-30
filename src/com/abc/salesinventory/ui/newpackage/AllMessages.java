@@ -22,7 +22,7 @@ import org.hibernate.Session;
  *
  * @author Manuri
  */
-public class AllMessages extends javax.swing.JFrame {
+public class AllMessages extends javax.swing.JInternalFrame {
 
     MessageService MessageService = new MessageServiceImpl();
 
@@ -128,7 +128,7 @@ public class AllMessages extends javax.swing.JFrame {
         txtContactNumber = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
