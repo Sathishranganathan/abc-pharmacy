@@ -56,7 +56,7 @@ public class NewStock extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnClear.setBackground(new java.awt.Color(255, 255, 255));
 
