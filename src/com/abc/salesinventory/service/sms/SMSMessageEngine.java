@@ -1,5 +1,6 @@
 package com.abc.salesinventory.service.sms;
 
+import com.abc.salesinventory.model.newpackage.Supplier;
 import com.abc.salesinventory.service.newpackage.InventoryService;
 import com.abc.salesinventory.service.newpackage.InventoryServiceImpl;
 import com.abc.salesinventory.service.newpackage.MasterService;
@@ -60,6 +61,18 @@ public class SMSMessageEngine {
         if (msg.getMessageStatus() != OutboundMessage.MessageStatuses.SENT) {
             status = OutboundMessage.MessageStatuses.FAILED;
         }
+        
+        com.abc.salesinventory.model.newpackage.Message message = new com.abc.salesinventory.model.newpackage.Message();
+        message.setId(UUID.randomUUID().toString());
+        message.setMessage(msgText);
+        message.setMessageType("Outgoing");
+        message.setMsgDate(new Date());
+        message.setContactNumber(recipient);
+
+        Supplier supplier = masterService.getSupplierByMobile(recipient);
+        message.setSupplier(supplier);
+        masterService.saveMessage(message);
+
         return status;
     }
 
@@ -74,15 +87,17 @@ public class SMSMessageEngine {
                 String content = inboundMessage.getText();
                 com.abc.salesinventory.model.newpackage.Message message = new com.abc.salesinventory.model.newpackage.Message();
                 message.setId(UUID.randomUUID().toString());
-                message.setSupplier(null);
                 message.setMessage(content);
                 message.setMessageType("Incoming");
                 message.setMsgDate(new Date());
                 message.setContactNumber(inboundMessage.getOriginator());
+
+                Supplier supplier = masterService.getSupplierByMobile(inboundMessage.getOriginator());
+                message.setSupplier(supplier);
                 masterService.saveMessage(message);
 
                 new NewMessageReceivedNotification(message).setVisible(true);
-                
+
                 gateway.deleteMessage(inboundMessage);
             } catch (Exception e) {
                 System.out.println("Failure in processing incoming message : " + e);
