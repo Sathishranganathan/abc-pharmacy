@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Manuri
  */
-public class CreateCustomer extends javax.swing.JFrame {
+public class CreateCustomer extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();

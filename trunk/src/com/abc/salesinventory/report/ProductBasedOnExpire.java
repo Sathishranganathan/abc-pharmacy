@@ -13,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Manuri
  */
-public class ProductBasedOnExpire extends javax.swing.JFrame {
+public class ProductBasedOnExpire extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ProductBasedOnExpire

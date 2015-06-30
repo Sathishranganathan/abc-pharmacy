@@ -23,7 +23,7 @@ import org.hibernate.Session;
  *
  * @author Manuri
  */
-public class SearchSupplier extends javax.swing.JFrame {
+public class SearchSupplier extends javax.swing.JInternalFrame {
 
      MasterService masterService = new MasterServiceImpl();
     /**

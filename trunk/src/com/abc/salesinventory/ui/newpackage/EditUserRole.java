@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuri
  */
-public class EditUserRole extends javax.swing.JFrame {
+public class EditUserRole extends javax.swing.JInternalFrame {
 
     SecurityService securityService = new SecurityServiceImpl();
 

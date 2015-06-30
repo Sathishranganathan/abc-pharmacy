@@ -41,6 +41,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     public MainScreen(String userId) {
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         this.engine.init();
         this.userId = userId;
     }
@@ -55,13 +56,8 @@ public class MainScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnLogout = new javax.swing.JButton();
+        jDesktopPane1 = new com.abc.salesinventory.ui.newpackage.CustomDesktopPane();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         miChangePassword = new javax.swing.JMenuItem();
@@ -113,73 +109,30 @@ public class MainScreen extends javax.swing.JFrame {
         setTitle("Sales & Inventory Management System - Eraj Pharmaceuticals");
         setExtendedState(1);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Serif", 0, 20)); // NOI18N
-        jLabel2.setText("SALES AND INVENTORY MANAGEMENT SYSTEM");
-
-        jLabel1.setFont(new java.awt.Font("Plantagenet Cherokee", 1, 24)); // NOI18N
-        jLabel1.setText("WELCOME");
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/abc/salesinventory/ui/resource/logo_icon.jpg"))); // NOI18N
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setText("Eraj Pharmaceuticals");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Importers, Wholesale Dealers & Distributors of Pharmaceuticals & Surgical Products");
-
-        btnLogout.setText("Logout");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(165, 165, 165)
-                        .addComponent(btnLogout)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(134, 134, 134))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(186, 186, 186))))
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(555, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(22, 22, 22))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnLogout))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addContainerGap(522, Short.MAX_VALUE))
         );
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menuFile.setText("File");
 
@@ -491,14 +444,11 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -506,7 +456,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miAddCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddCusActionPerformed
         if (securityService.hasPermission("MANAGE_CUSTOMERS", this.userId)) {
-            new CreateCustomer().setVisible(true);
+            jDesktopPane1.add(new CreateCustomer()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -514,7 +464,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSearchCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchCusActionPerformed
         if (securityService.hasPermission("MANAGE_CUSTOMERS", this.userId)) {
-            new SearchCustomer().setVisible(true);
+            jDesktopPane1.add(new SearchCustomer()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -522,7 +472,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miAddSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddSuppActionPerformed
         if (securityService.hasPermission("MANAGE_SUPPLIERS", this.userId)) {
-            new CreateSupplier().setVisible(true);
+            jDesktopPane1.add(new CreateSupplier()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -530,7 +480,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSearchSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchSupActionPerformed
        if (securityService.hasPermission("MANAGE_SUPPLIERS", this.userId)) {
-            new SearchSupplier().setVisible(true);
+            jDesktopPane1.add(new SearchSupplier()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -538,7 +488,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miAddproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddproductActionPerformed
         if (securityService.hasPermission("MANAGE_PRODUCTS", this.userId)) {
-            new AddNewProduct().setVisible(true);
+            jDesktopPane1.add(new AddNewProduct()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -546,7 +496,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesActionPerformed
         if (securityService.hasPermission("DO_SALES", this.userId)) {
-            new Sales(engine).setVisible(true);
+            jDesktopPane1.add(new Sales(engine)).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -562,7 +512,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateAccActionPerformed
        if (securityService.hasPermission("MANAGE_USERS", this.userId)) {
-            new CreateUser().setVisible(true);
+            jDesktopPane1.add(new CreateUser()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -586,7 +536,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miEditRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEditRoleActionPerformed
         if (securityService.hasPermission("MANAGE_ROLES", this.userId)) {
-            new EditUserRole().setVisible(true);
+            jDesktopPane1.add(new EditUserRole()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -614,7 +564,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSupplierReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSupplierReportActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new SupplierDetailsReport().setVisible(true);
+            jDesktopPane1.add(new SupplierDetailsReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -622,7 +572,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miProductReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miProductReportActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new ProductDetailsReport().setVisible(true);
+            jDesktopPane1.add(new ProductDetailsReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -630,7 +580,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miExpiredReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExpiredReportActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new ProductBasedOnExpire().setVisible(true);
+            jDesktopPane1.add(new ProductBasedOnExpire()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -638,7 +588,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miStockValueAnlysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStockValueAnlysisActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new StockValueAnalysisReport().setVisible(true);
+            jDesktopPane1.add(new StockValueAnalysisReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -662,7 +612,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miStockReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStockReportActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new StockDetailsReport().setVisible(true);
+            jDesktopPane1.add(new StockDetailsReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -670,7 +620,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSupWisePurchasedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSupWisePurchasedActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new SupplierWisePurchasedAnalysisReport().setVisible(true);
+            jDesktopPane1.add(new SupplierWisePurchasedAnalysisReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -678,7 +628,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miCusWiseSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCusWiseSalesActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new CustomerWiseSalesReport().setVisible(true);
+            jDesktopPane1.add(new CustomerWiseSalesReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -686,7 +636,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miDailySalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDailySalesReportActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new DailySalesReport().setVisible(true);
+            jDesktopPane1.add(new DailySalesReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -694,7 +644,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miMonthlySalesReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMonthlySalesReportActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new MonthlySalesReport().setVisible(true);
+            jDesktopPane1.add(new MonthlySalesReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -702,7 +652,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miFastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miFastActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new FastMovingItems().setVisible(true);
+            jDesktopPane1.add(new FastMovingItems()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -710,7 +660,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miPurchasedReceiptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPurchasedReceiptsActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new PurchasedReciept().setVisible(true);
+            jDesktopPane1.add(new PurchasedReciept()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -718,7 +668,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miSalesInvoicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalesInvoicesActionPerformed
         if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new SalesInvoice().setVisible(true);
+            jDesktopPane1.add(new SalesInvoice()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -726,7 +676,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new Preferences().setVisible(true);
+            jDesktopPane1.add(new Preferences()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -734,21 +684,16 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miUserReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUserReportActionPerformed
        if (securityService.hasPermission("GENERATE_REPORTs", this.userId)) {
-            new UserReport().setVisible(true);
+            jDesktopPane1.add(new UserReport()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
     
     }//GEN-LAST:event_miUserReportActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-      this.dispose();
-      new Login().setVisible(true);
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
     private void miSearchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchStockActionPerformed
         if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
-            new SearchStock().setVisible(true);
+            jDesktopPane1.add(new SearchStock()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -756,7 +701,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miReOrderProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miReOrderProductActionPerformed
         if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
-            new ReorederProducts().setVisible(true);
+            jDesktopPane1.add(new ReorederProducts()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -764,11 +709,16 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miViewMessagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miViewMessagesActionPerformed
         if (securityService.hasPermission("SEND_MESSAGES", this.userId)) {
-            new AllMessages().setVisible(true);
+            jDesktopPane1.add(new AllMessages()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
     }//GEN-LAST:event_miViewMessagesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      this.dispose();
+      new Login().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -806,16 +756,11 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogout;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton jButton1;
+    private com.abc.salesinventory.ui.newpackage.CustomDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuAccount;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuFile;

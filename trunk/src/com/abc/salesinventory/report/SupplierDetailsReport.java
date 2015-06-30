@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class SupplierDetailsReport extends javax.swing.JFrame {
+public class SupplierDetailsReport extends javax.swing.JInternalFrame {
 
     SecurityService securityService = new SecurityServiceImpl();
     /**

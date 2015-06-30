@@ -15,7 +15,7 @@ import java.util.HashMap;
  *
  * @author Manuri
  */
-public class DailySalesReport extends javax.swing.JFrame {
+public class DailySalesReport extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form DailySalesReport

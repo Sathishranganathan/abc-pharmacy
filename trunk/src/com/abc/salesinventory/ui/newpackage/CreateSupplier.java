@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Manuri
  */
-public class CreateSupplier extends javax.swing.JFrame {
+public class CreateSupplier extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CreateSupplier

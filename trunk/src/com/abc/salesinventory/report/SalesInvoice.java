@@ -19,7 +19,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class SalesInvoice extends javax.swing.JFrame {
+public class SalesInvoice extends javax.swing.JInternalFrame {
     MasterService masterService = new MasterServiceImpl();
 
     /**

@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class PurchasedReciept extends javax.swing.JFrame {
+public class PurchasedReciept extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
 

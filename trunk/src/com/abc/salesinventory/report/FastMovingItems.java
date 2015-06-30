@@ -10,7 +10,7 @@ package com.abc.salesinventory.report;
  *
  * @author Manuri
  */
-public class FastMovingItems extends javax.swing.JFrame {
+public class FastMovingItems extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FastMovingItems

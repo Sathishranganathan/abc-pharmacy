@@ -13,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Manuri
  */
-public class StockValueAnalysisReport extends javax.swing.JFrame {
+public class StockValueAnalysisReport extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form StockValueAnalysisReport

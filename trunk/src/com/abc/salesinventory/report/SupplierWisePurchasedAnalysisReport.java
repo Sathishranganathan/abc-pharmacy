@@ -18,7 +18,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class SupplierWisePurchasedAnalysisReport extends javax.swing.JFrame {
+public class SupplierWisePurchasedAnalysisReport extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
 
