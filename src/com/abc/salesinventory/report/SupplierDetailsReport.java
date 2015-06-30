@@ -39,7 +39,8 @@ public class SupplierDetailsReport extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSupplierDetails = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Supplier Details Report");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

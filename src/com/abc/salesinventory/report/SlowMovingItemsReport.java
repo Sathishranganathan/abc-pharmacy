@@ -10,7 +10,7 @@ package com.abc.salesinventory.report;
  *
  * @author Manuri
  */
-public class SlowMovingItemsReport extends javax.swing.JFrame {
+public class SlowMovingItemsReport extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SlowMovingItemsReport
@@ -33,7 +33,8 @@ public class SlowMovingItemsReport extends javax.swing.JFrame {
         cmbYear = new javax.swing.JComboBox();
         btnViewReport = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Slow Moving Items Report");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

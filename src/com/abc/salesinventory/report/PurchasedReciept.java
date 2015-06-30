@@ -50,7 +50,8 @@ public class PurchasedReciept extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Purchased Receipt");

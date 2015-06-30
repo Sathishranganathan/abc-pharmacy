@@ -48,7 +48,8 @@ public class CustomerWiseSalesReport extends javax.swing.JInternalFrame {
         btnViewReport = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Customer Wise Sales Analysis Report");
 
         jLabel3.setText("Customer Name");
