@@ -43,6 +43,8 @@ public interface MasterService {
     public String saveOrUpdateSupplier(Supplier supplier) throws HibernateException;
 
     public void removeSupplier(Supplier supplier);
+    
+    public Supplier getSupplierByMobile(String mobile);
 
     //Product
     public Product getProduct(String productCode);

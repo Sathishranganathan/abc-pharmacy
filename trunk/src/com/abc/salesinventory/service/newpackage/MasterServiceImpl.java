@@ -21,7 +21,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-
 /**
  *
  * @author Manuri
@@ -37,8 +36,8 @@ public class MasterServiceImpl implements MasterService {
         session.close();
         return customer.getId();
     }
-    
-        @Override
+
+    @Override
     public String saveMessage(Message message) throws HibernateException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -107,6 +106,21 @@ public class MasterServiceImpl implements MasterService {
         session.delete(supplier);
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public Supplier getSupplierByMobile(String mobile) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        String hql = "from Supplier s where s.mobile='" + mobile + "' ";
+        Query q = session.createQuery(hql);
+        List<Supplier> resultList = q.list();
+        session.getTransaction().commit();
+        session.close();
+        if (resultList != null && resultList.size() == 1) {
+            return resultList.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -311,8 +325,8 @@ public class MasterServiceImpl implements MasterService {
         }
         return transactions;
     }
-    
-     public Set<Transaction> getAllSalesTransactions() {
+
+    public Set<Transaction> getAllSalesTransactions() {
         Set<Transaction> transactions = new HashSet<Transaction>();
 
         Session session = HibernateUtil.getSessionFactory().openSession();
