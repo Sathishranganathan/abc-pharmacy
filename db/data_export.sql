@@ -45,6 +45,7 @@ INSERT INTO `permission` (`id`, `name`, `code`, `description`) VALUES ('5','Cust
 INSERT INTO `permission` (`id`, `name`, `code`, `description`) VALUES ('6','Suppliers','MANAGE_SUPPLIERS','Manage suppliers');
 INSERT INTO `permission` (`id`, `name`, `code`, `description`) VALUES ('7','Products','MANAGE_PRODUCTS','Manage products');
 INSERT INTO `permission` (`id`, `name`, `code`, `description`) VALUES ('8','Reports','GENERATE_REPORTS','Generate reports');
+INSERT INTO `permission` (`id`, `name`, `code`, `description`) VALUES ('9', 'Messages', 'SEND_MESSAGES', 'Send & receive messages');
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,15 +76,15 @@ UNLOCK TABLES;
 
 LOCK TABLES `role_permission` WRITE;
 /*!40000 ALTER TABLE `role_permission` DISABLE KEYS */;
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('11b3535b-3ed5-41e0-bf21-725091fa5367','3','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('bc97a80a-e6ad-4c07-940e-14c9957f6f53','1','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('e91f0ab4-f0c5-4a1a-81ed-73efff356efd','2','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('f5184154-b308-4b8b-831f-b9bc9b4b716a','4','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d956c', '5', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d9562', '6', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d9563', '7', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d956s', '8', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
-
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('11b3535b-3ed5-41e0-bf21-725091fa5367', '3', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('bc97a80a-e6ad-4c07-940e-14c9957f6f53', '1', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('e91f0ab4-f0c5-4a1a-81ed-73efff356efd', '2', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('f5184154-b308-4b8b-4751-b9bc9b4b716a', '4', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-9b8a-857a-108c74210292', '5', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('3aee48e5-3577-46e0-857a-0865eb2d9562', '6', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-4751-46e0-857a-503c87be8f74', '7', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('8519da79-3577-46e0-9b8a-0865eb2d956s', '8', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('e230d6a9-6674-4922-9725-4970e6bc3ee0', '9', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
 /*!40000 ALTER TABLE `role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
