@@ -107,7 +107,7 @@ private static String QUERY_ALL = "from Stock";
         jScrollPane1 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Search Stock");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

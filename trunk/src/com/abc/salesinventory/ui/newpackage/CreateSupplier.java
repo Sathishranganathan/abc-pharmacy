@@ -67,7 +67,7 @@ public class CreateSupplier extends javax.swing.JInternalFrame {
         txtSupplierAddress = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Add Supplier Details");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

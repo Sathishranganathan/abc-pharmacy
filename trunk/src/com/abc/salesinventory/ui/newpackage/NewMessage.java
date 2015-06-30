@@ -12,7 +12,7 @@ import com.abc.salesinventory.model.newpackage.Message;
  *
  * @author Manuri
  */
-public class NewMessage extends javax.swing.JFrame {
+public class NewMessage extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewMessage
@@ -47,7 +47,7 @@ public class NewMessage extends javax.swing.JFrame {
         txtDateTime = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

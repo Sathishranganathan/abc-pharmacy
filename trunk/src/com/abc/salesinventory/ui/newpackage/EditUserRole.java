@@ -115,7 +115,7 @@ public class EditUserRole extends javax.swing.JInternalFrame {
         jPermissionTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Edit User Role");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

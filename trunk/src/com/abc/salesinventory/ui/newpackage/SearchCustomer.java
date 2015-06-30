@@ -148,7 +148,7 @@ public class SearchCustomer extends javax.swing.JInternalFrame {
         btnEditCustomer = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Search Customer");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

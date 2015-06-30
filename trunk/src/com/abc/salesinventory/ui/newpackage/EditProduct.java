@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Manuri
  */
-public class EditProduct extends javax.swing.JFrame {
+public class EditProduct extends javax.swing.JInternalFrame {
 
    MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();
@@ -62,7 +62,7 @@ public class EditProduct extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         ftxtStandardReorderLevel = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Edit Product Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

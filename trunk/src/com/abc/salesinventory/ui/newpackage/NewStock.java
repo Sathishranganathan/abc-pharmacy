@@ -10,7 +10,7 @@ package com.abc.salesinventory.ui.newpackage;
  *
  * @author Manuri
  */
-public class NewStock extends javax.swing.JFrame {
+public class NewStock extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewStock
@@ -56,7 +56,7 @@ public class NewStock extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         btnClear.setBackground(new java.awt.Color(255, 255, 255));
 

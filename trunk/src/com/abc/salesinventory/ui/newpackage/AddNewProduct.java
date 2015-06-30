@@ -57,7 +57,7 @@ public class AddNewProduct extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         ftxtStandardReorderLevel = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Add New Product");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

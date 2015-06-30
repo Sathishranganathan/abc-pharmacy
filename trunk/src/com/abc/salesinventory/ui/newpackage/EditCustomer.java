@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Manuri
  */
-public class EditCustomer extends javax.swing.JFrame {
+public class EditCustomer extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();
@@ -72,7 +72,7 @@ public class EditCustomer extends javax.swing.JFrame {
         ftxtCustomerOffice = new javax.swing.JFormattedTextField();
         txtCustomerName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Edit Customer Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

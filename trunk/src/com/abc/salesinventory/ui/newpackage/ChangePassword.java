@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Manuri
  */
-public class ChangePassword extends javax.swing.JFrame {
+public class ChangePassword extends javax.swing.JInternalFrame {
 
     private String userId;
 
@@ -52,7 +52,7 @@ public class ChangePassword extends javax.swing.JFrame {
         txtNewPassword = new javax.swing.JPasswordField();
         txtConfirmPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Change Password");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

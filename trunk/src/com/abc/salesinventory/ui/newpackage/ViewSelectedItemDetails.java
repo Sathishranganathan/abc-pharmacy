@@ -10,7 +10,7 @@ package com.abc.salesinventory.ui.newpackage;
  *
  * @author Manuri
  */
-public class ViewSelectedItemDetails extends javax.swing.JFrame {
+public class ViewSelectedItemDetails extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ViewReOrder
@@ -33,7 +33,7 @@ public class ViewSelectedItemDetails extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Stock Details for Selected Product");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
