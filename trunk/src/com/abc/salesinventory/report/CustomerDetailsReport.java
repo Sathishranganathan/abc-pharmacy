@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class CustomerDetailsReport extends javax.swing.JFrame {
+public class CustomerDetailsReport extends javax.swing.JInternalFrame {
     
      SecurityService securityService = new SecurityServiceImpl();
 
@@ -40,7 +40,8 @@ public class CustomerDetailsReport extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnCustomerDetails = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Customer Details Report");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

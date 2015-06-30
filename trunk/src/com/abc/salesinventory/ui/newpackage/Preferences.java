@@ -7,6 +7,7 @@ package com.abc.salesinventory.ui.newpackage;
 
 import com.abc.salesinventory.service.newpackage.MasterService;
 import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,7 +75,7 @@ public class Preferences extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -95,7 +96,7 @@ public class Preferences extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtReportLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,7 +111,20 @@ public class Preferences extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        masterService.setPreference(MasterService.PREF_REPORT_LOCATION, txtReportLocation.getText());
+        String modifiedLoc = null;
+
+        String strFileSeparator = System.getProperty("file.separator");
+
+        String lastChars = txtReportLocation.getText().substring(txtReportLocation.getText().length() - 2, txtReportLocation.getText().length());
+        if (!lastChars.equals(strFileSeparator + strFileSeparator)) {
+            String lastChar = txtReportLocation.getText().substring(txtReportLocation.getText().length() - 1, txtReportLocation.getText().length());
+            if (lastChar.equals(strFileSeparator)) {
+                modifiedLoc = txtReportLocation.getText() + strFileSeparator;
+            } else {
+                modifiedLoc = txtReportLocation.getText() + strFileSeparator + strFileSeparator;
+            }
+        }
+        masterService.setPreference(MasterService.PREF_REPORT_LOCATION, modifiedLoc);
         this.dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -152,7 +166,9 @@ public class Preferences extends javax.swing.JInternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Preferences().setVisible(true);
+                MDISym sym = new MDISym();
+                sym.getjDesktopPane1().add(new Preferences()).setVisible(true);
+                sym.setVisible(true);
             }
         });
     }
