@@ -14,7 +14,7 @@ import com.abc.salesinventory.service.newpackage.MasterServiceImpl;
 import javax.swing.JOptionPane;
 
 
-public class AddNewProduct extends javax.swing.JFrame {
+public class AddNewProduct extends javax.swing.JInternalFrame {
 
      MasterService masterService = new MasterServiceImpl();
     /**

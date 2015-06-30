@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuri
  */
-public class ReorederProducts extends javax.swing.JFrame {
+public class ReorederProducts extends javax.swing.JInternalFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
 

@@ -24,7 +24,7 @@ import org.hibernate.Session;
  *
  * @author Manuri
  */
-public class SearchStock extends javax.swing.JFrame {
+public class SearchStock extends javax.swing.JInternalFrame {
 
      MasterService masterService = new MasterServiceImpl();
     /**

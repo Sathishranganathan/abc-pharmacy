@@ -39,7 +39,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuri
  */
-public class Sales extends javax.swing.JFrame {
+public class Sales extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
@@ -860,7 +860,7 @@ public class Sales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelTransactionActionPerformed
 
     private void btnViewStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStockActionPerformed
-        StockDetailsPopup popup = new StockDetailsPopup(this, true, txtProductCode.getText());
+        StockDetailsPopup popup = new StockDetailsPopup(null, true, txtProductCode.getText());
         popup.setVisible(true);
     }//GEN-LAST:event_btnViewStockActionPerformed
 

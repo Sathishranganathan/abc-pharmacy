@@ -10,7 +10,7 @@ package com.abc.salesinventory.report;
  *
  * @author Manuri
  */
-public class MonthlySalesReport extends javax.swing.JFrame {
+public class MonthlySalesReport extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CustomerWiseSalesAnalysis

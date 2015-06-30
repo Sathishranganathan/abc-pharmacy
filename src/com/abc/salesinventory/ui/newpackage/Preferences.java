@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Manuri
  */
-public class Preferences extends javax.swing.JFrame {
+public class Preferences extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
 

@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author Manuri
  */
-public class CustomerWiseSalesReport extends javax.swing.JFrame {
+public class CustomerWiseSalesReport extends javax.swing.JInternalFrame {
 
     MasterService masterService = new MasterServiceImpl();
 

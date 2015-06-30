@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Manuri
  */
-public class CreateUser extends javax.swing.JFrame {
+public class CreateUser extends javax.swing.JInternalFrame {
 
     SecurityService securityService = new SecurityServiceImpl();
 
