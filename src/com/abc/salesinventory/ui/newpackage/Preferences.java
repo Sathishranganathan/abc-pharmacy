@@ -41,7 +41,7 @@ public class Preferences extends javax.swing.JFrame {
         txtReportLocation = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);

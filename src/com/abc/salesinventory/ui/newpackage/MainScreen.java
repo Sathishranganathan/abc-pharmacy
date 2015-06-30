@@ -109,7 +109,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sales & Inventory Management System - Eraj Pharmaceuticals");
         setExtendedState(1);
 
