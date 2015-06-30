@@ -54,8 +54,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`product_code`, `product_name`, `category`, `unit`, `reorder_level`) VALUES ('p123','terww','Capsule','g',100);
-INSERT INTO `product` (`product_code`, `product_name`, `category`, `unit`, `reorder_level`) VALUES ('p457847','hyurue','Vaccine','packet',50);
+INSERT INTO `product` (`product_code`, `product_name`, `category`, `unit`, `reorder_level`,`standard_reorder_level`) VALUES ('p123','terww','Capsule','g',100,80);
+INSERT INTO `product` (`product_code`, `product_name`, `category`, `unit`, `reorder_level`,`standard_reorder_level`) VALUES ('p457847','hyurue','Vaccine','packet',50,40);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,6 +79,11 @@ INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('11b353
 INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('bc97a80a-e6ad-4c07-940e-14c9957f6f53','1','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
 INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('e91f0ab4-f0c5-4a1a-81ed-73efff356efd','2','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
 INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('f5184154-b308-4b8b-831f-b9bc9b4b716a','4','aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d956c', '5', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d9562', '6', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d9563', '7', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+INSERT INTO `role_permission` (`id`, `permission_id`, `role_id`) VALUES ('fe70ee56-3577-46e0-857a-0865eb2d956s', '8', 'aafd7f9f-6fbb-43ac-bcdb-5896670de0ab');
+
 /*!40000 ALTER TABLE `role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 

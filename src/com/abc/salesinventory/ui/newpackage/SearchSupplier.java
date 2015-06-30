@@ -102,7 +102,7 @@ private static String QUERY_BASED_ON_NAME = "from Supplier s where s.name like '
         btnEditSupplier = new javax.swing.JButton();
         btnDeleteSupplier = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Search Supplier");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

@@ -77,7 +77,7 @@ public class ReorederProducts extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Re-Order");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

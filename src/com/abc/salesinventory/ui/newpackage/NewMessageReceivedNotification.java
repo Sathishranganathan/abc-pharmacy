@@ -12,7 +12,7 @@ import com.abc.salesinventory.model.newpackage.Message;
  *
  * @author Manuri
  */
-public class NewMessageReceivedNotification extends  javax.swing.JFrame {
+public class NewMessageReceivedNotification extends  javax.swing.JInternalFrame {
 
     private Message message;
     /**

@@ -10,7 +10,7 @@ package com.abc.salesinventory.ui.newpackage;
  *
  * @author Manuri
  */
-public class SelectItem extends javax.swing.JFrame {
+public class SelectItem extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SelectItem
@@ -34,7 +34,7 @@ public class SelectItem extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Select");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

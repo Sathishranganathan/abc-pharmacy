@@ -23,7 +23,7 @@ import org.hibernate.Session;
  *
  * @author Manuri
  */
-public class SearchProduct extends javax.swing.JFrame {
+public class SearchProduct extends javax.swing.JInternalFrame {
 
      MasterService masterService = new MasterServiceImpl();
     /**
@@ -108,7 +108,7 @@ private static String QUERY_ALL = "from Product";
         btnEditSupplier = new javax.swing.JButton();
         btnDeleteSupplier = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Search Products");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

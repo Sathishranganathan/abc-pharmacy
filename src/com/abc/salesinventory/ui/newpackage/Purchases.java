@@ -38,7 +38,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuri
  */
-public class Purchases extends javax.swing.JFrame {
+public class Purchases extends javax.swing.JInternalFrame {
     
     MasterService masterService = new MasterServiceImpl();
     InventoryService inventoryService = new InventoryServiceImpl();
@@ -155,7 +155,7 @@ public class Purchases extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 0, 0));
         jLabel31.setText("*");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Purchases");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -467,8 +467,7 @@ public class Purchases extends javax.swing.JFrame {
                                         .addGap(33, 33, 33))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(21, 21, 21)

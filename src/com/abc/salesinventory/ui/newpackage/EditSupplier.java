@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Manuri
  */
-public class EditSupplier extends javax.swing.JFrame {
+public class EditSupplier extends javax.swing.JInternalFrame {
 
    MasterService masterService = new MasterServiceImpl();
     Validator val = new Validator();
@@ -69,7 +69,7 @@ public class EditSupplier extends javax.swing.JFrame {
         ftxtSupplierOffice = new javax.swing.JFormattedTextField();
         txtSupplierName = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Edit Supplier Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

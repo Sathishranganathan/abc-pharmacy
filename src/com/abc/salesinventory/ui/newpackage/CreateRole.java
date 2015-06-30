@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuri
  */
-public class CreateRole extends javax.swing.JFrame {
+public class CreateRole extends javax.swing.JInternalFrame {
 
     private SecurityService securityService = new SecurityServiceImpl();
     private Validator val = new Validator();
@@ -92,7 +92,7 @@ public class CreateRole extends javax.swing.JFrame {
         jPermissionTable = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Add Role");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

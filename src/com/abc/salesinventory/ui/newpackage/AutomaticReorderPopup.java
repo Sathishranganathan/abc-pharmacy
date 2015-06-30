@@ -23,7 +23,7 @@ import org.smslib.TimeoutException;
  *
  * @author Manuri
  */
-public class AutomaticReorderPopup extends javax.swing.JFrame {
+public class AutomaticReorderPopup extends javax.swing.JInternalFrame {
 
     InventoryService inventoryService = new InventoryServiceImpl();
     Object[] value = new Object[8];
@@ -93,7 +93,7 @@ public class AutomaticReorderPopup extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtaMessage = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
         setTitle("Product Re-Order");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
