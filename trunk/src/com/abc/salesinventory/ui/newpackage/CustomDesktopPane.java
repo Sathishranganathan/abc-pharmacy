@@ -21,7 +21,7 @@ public class CustomDesktopPane extends JDesktopPane{
     private Image image;
     {
         try {
-            image = ImageIO.read(new URL("https://abc-pharmacy.googlecode.com/svn/trunk/Logo/eraj%20pharmaceuticals.png"));
+            image = ImageIO.read(new URL("https://abc-pharmacy.googlecode.com/svn/trunk/Logo/Eraj%20PharmaceuticalsLogo.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
