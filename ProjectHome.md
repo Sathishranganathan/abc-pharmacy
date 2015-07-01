@@ -1,0 +1,1 @@
+A Java based desktop sales and inventory control system.
