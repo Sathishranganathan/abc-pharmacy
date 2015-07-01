@@ -504,7 +504,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPurchaseActionPerformed
         if (securityService.hasPermission("DO_PURCHASES", this.userId)) {
-            new Purchases().setVisible(true);
+            jDesktopPane1.add(new Purchases()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -528,7 +528,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void miChangeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangeRoleActionPerformed
         if (securityService.hasPermission("MANAGE_ROLES", this.userId)) {
-            new CreateRole().setVisible(true);
+            jDesktopPane1.add(new CreateRole()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
@@ -543,12 +543,12 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_miEditRoleActionPerformed
 
     private void miChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miChangePasswordActionPerformed
-        new ChangePassword(this.userId).setVisible(true);
+        jDesktopPane1.add(new ChangePassword(this.userId)).setVisible(true);
     }//GEN-LAST:event_miChangePasswordActionPerformed
 
     private void miSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSearchProductActionPerformed
         if (securityService.hasPermission("MANAGE_PRODUCTS", this.userId)) {
-            new SearchProduct().setVisible(true);
+            jDesktopPane1.add(new SearchProduct()).setVisible(true);
         }else {
             JOptionPane.showMessageDialog(null, "You are not authorized to access this.", "No Access", 2);
         }
